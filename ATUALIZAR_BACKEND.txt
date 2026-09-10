@@ -1,0 +1,9 @@
+ATUALIZAÇÃO NECESSÁRIA NO APPS SCRIPT
+
+Para a aba “Atletas” mostrar nomes, R.A, curso, equipe, modalidade e vínculo, substitua o Código.gs do Apps Script pelo arquivo Codigo.gs desta pasta e faça uma NOVA IMPLANTAÇÃO/ATUALIZE a implantação existente.
+
+No Apps Script: Implantar > Gerenciar implantações > Editar (lápis) > Nova versão > Implantar.
+
+A URL /exec pode continuar a mesma se você atualizar a implantação existente.
+
+As abas “Nova equipe”, “Minhas equipes” e “Orientações” funcionam no frontend; “Minhas equipes” usa a ação dashboard que já existia. A listagem detalhada de “Atletas” depende desta atualização do backend.

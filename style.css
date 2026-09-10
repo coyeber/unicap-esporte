@@ -666,3 +666,41 @@ textarea{resize:vertical}
   .student-card{padding:20px}
   .student-review{grid-template-columns:1fr}
 }
+
+
+/* ===== Painel funcional do coordenador ===== */
+.official-nav button{cursor:pointer;transition:background .2s ease,color .2s ease,transform .2s ease}
+.official-nav button:hover{background:rgba(255,255,255,.075);color:#fff;transform:translateX(2px)}
+.official-panel[hidden]{display:none!important}
+.panel-toolbar{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:18px}
+.panel-toolbar h2{font-size:30px;letter-spacing:-.035em;margin:4px 0 2px}
+.panel-toolbar p{margin:0;color:var(--muted);font-size:11px}
+.panel-kicker{font-size:9px;font-weight:950;letter-spacing:.18em;color:#a20a29}
+.panel-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px}
+.panel-stat{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:var(--shadow)}
+.panel-stat span{display:block;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+.panel-stat strong{display:block;font-size:32px;line-height:1;margin-top:8px;color:#600012}
+.panel-data-card{padding:0;overflow:hidden}
+.panel-list{min-height:170px}
+.panel-loading,.panel-empty{min-height:170px;display:grid;place-items:center;text-align:center;padding:32px;color:var(--muted);font-size:12px}
+.panel-empty strong{display:block;color:#231718;font-size:15px;margin-bottom:5px}
+.panel-empty span{display:block}.panel-empty.error{color:#9d1430}
+.panel-search{display:flex;align-items:center;gap:14px;padding:16px 18px;border-bottom:1px solid #eee5df;background:#fff}
+.panel-search input{flex:1;border:1px solid var(--line);background:#faf8f5;border-radius:12px;padding:12px 14px;font:inherit;font-size:11px;outline:0}
+.panel-search input:focus{border-color:#a20a29;box-shadow:0 0 0 3px rgba(162,10,41,.08)}
+.panel-search span{font-size:10px;font-weight:900;color:#8b0018;white-space:nowrap}
+.data-table-wrap{overflow:auto}
+.panel-table{width:100%;border-collapse:collapse;min-width:720px}
+.panel-table th,.panel-table td{padding:14px 16px;text-align:left;border-bottom:1px solid #eee6e0;font-size:10px;vertical-align:middle}
+.panel-table th{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:#8a7772;background:#faf8f5;position:sticky;top:0}
+.panel-table tbody tr:hover{background:#fff9f7}
+.panel-table code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9px;color:#6b5a57}
+.status-pill{display:inline-flex;padding:6px 9px;border-radius:999px;background:#eef7ef;color:#23733a;font-size:8px;font-weight:950;letter-spacing:.04em}
+.athlete-name-cell{display:flex;align-items:center;gap:8px}.avatar.small{width:28px;height:28px;font-size:8px;flex:0 0 28px}
+.guidance-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.guidance-card b{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:#f4e7e9;color:#a20a29;font-size:9px;margin-bottom:14px}
+.guidance-card h3{margin-bottom:8px}.guidance-card p{font-size:11px;line-height:1.65;color:var(--muted);margin:0}
+.guidance-contact{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:16px;background:linear-gradient(120deg,#fff,#fbf4ef)}
+.guidance-contact span{display:block;font-size:9px;font-weight:900;color:#a20a29;text-transform:uppercase;letter-spacing:.12em;margin-bottom:4px}
+.guidance-contact strong{font-size:14px}
+@media(max-width:800px){.panel-stat-grid,.guidance-grid{grid-template-columns:1fr}.panel-toolbar,.guidance-contact{align-items:stretch;flex-direction:column}.panel-search{align-items:stretch;flex-direction:column}.panel-search span{white-space:normal}}

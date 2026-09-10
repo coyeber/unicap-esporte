@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#680012">
+  <title>Inscrição do Aluno | UNICAP Esporte</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="./assets/favicon-192.png">
+</head>
+<body class="student-page">
+  <header class="subpage-header">
+    <a class="brand brand-esporte" href="./index.html" style="text-decoration:none">
+      <span class="round-logo"><img src="./assets/unicap-esporte.jpg" alt=""></span>
+      <span class="brand-copy"><strong>UNICAP</strong><b>Esporte</b></span>
+    </a>
+    <div class="header-actions">
+      <a class="back-home" href="./index.html">← Voltar ao site</a>
+      <div class="university-logo"><img src="./assets/unicap-universidade.jpg" alt="Universidade Católica de Pernambuco"></div>
+    </div>
+  </header>
+
+  <main class="student-layout">
+    <aside class="student-sidebar">
+      <div class="student-side-title">
+        <small>EQUIPE INDEPENDENTE</small>
+        <h2>Crie sua equipe.</h2>
+        <p>Uma tela exclusiva para o aluno responsável, separada da página inicial.</p>
+      </div>
+
+      <div class="student-steps" id="studentSteps">
+        <div class="student-step-item active" data-step-item="1"><b>1</b><span>Responsável</span></div>
+        <div class="student-step-item" data-step-item="2"><b>2</b><span>Equipe</span></div>
+        <div class="student-step-item" data-step-item="3"><b>3</b><span>Atletas</span></div>
+        <div class="student-step-item" data-step-item="4"><b>4</b><span>Confirmar</span></div>
+      </div>
+
+      <div class="student-side-note">
+        <strong>Equipe independente</strong>
+        <span>O responsável cria a equipe completa e responde pelos participantes e pelas informações enviadas.</span>
+      </div>
+    </aside>
+
+    <section class="student-main">
+      <div class="student-main-head">
+        <div><div class="eyebrow">Inscrição do aluno</div><h1>Equipe independente</h1></div>
+        <span class="student-progress" id="studentProgress">Etapa 1 de 4</span>
+      </div>
+
+      <form id="studentDedicatedForm">
+        <div class="student-card" id="studentStepContent"></div>
+      </form>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="./config.js"></script>
+  <script src="./api.js"></script>
+  <script src="./aluno.js"></script>
+</body>
+</html>

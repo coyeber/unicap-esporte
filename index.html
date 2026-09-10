@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#780015">
+  <meta name="description" content="UNICAP Esporte — portal de inscrições esportivas.">
+  <title>UNICAP Esporte</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="./assets/favicon-192.png">
+</head>
+<body>
+  <div class="page-noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <button class="brand brand-esporte" data-scroll="inicio" aria-label="Voltar ao início">
+      <span class="round-logo"><img src="./assets/unicap-esporte.jpg" alt=""></span>
+      <span class="brand-copy"><strong>UNICAP</strong><b>Esporte</b></span>
+    </button>
+
+    <nav class="desktop-nav" aria-label="Navegação principal">
+      <button class="active" data-scroll="inicio">Início</button>
+      <button data-scroll="modalidades">Modalidades</button>
+      <button data-scroll="atleticas">Atléticas</button>
+      <button data-scroll="inscricoes">Inscrições</button>
+      <button data-scroll="calendario">Calendário</button>
+      <button data-scroll="contato">Contato</button>
+    </nav>
+
+    <div class="university-logo">
+      <img src="./assets/unicap-universidade.jpg" alt="Universidade Católica de Pernambuco">
+    </div>
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button data-scroll="inicio">Início</button>
+    <button data-scroll="modalidades">Modalidades</button>
+    <button data-scroll="atleticas">Atléticas</button>
+    <button data-scroll="inscricoes">Inscrições</button>
+    <button data-scroll="calendario">Calendário</button>
+    <button data-scroll="contato">Contato</button>
+  </div>
+
+  <main id="app"></main>
+
+  <footer class="footer" id="contato">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="round-logo large"><img src="./assets/unicap-esporte.jpg" alt=""></span>
+        <div><strong>UNICAP Esporte</strong><span>Esporte, integração e vida universitária.</span></div>
+      </div>
+      <img class="footer-unicap" src="./assets/unicap-universidade.jpg" alt="Universidade Católica de Pernambuco">
+      <div class="footer-tagline">MAIS QUE ESPORTE.<br><strong>UMA UNIVERSIDADE MAIS HUMANA.</strong></div>
+    </div>
+    <div class="footer-bottom">
+      <span>Portal de inscrições esportivas da UNICAP</span>
+      <span>Desenvolvido por <strong>Coyeber</strong> <b>&lt;/&gt;</b></span>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./config.js"></script>
+  <script src="./api.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

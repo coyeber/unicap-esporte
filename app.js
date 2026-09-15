@@ -214,7 +214,7 @@ function appMarkup(){
         <div class="eyebrow">Portal de inscrições</div>
         <h2>Faça tudo em um só lugar.</h2>
       </div>
-      <p>Cadastros completos, organizados e preparados para o Google Sheets.</p>
+      <p>Inscrições organizadas para alunos e atléticas em um único portal.</p>
     </div>
 
     <div class="portal-tabs reveal">
@@ -236,7 +236,7 @@ function appMarkup(){
     <div class="section-heading reveal">
       <div class="eyebrow">Calendário e informações</div>
       <h2>Programação centralizada.</h2>
-      <p>O espaço já está preparado para receber datas oficiais, avisos e atualizações da coordenação esportiva.</p>
+      <p>Confira os prazos oficiais e acompanhe as informações da Super Copa UNICAP 2026.</p>
     </div>
     <div class="calendar-grid">
       <article class="calendar-card reveal">
@@ -244,18 +244,19 @@ function appMarkup(){
         <div class="placeholder-calendar">
           <div>
             ${icon("calendar")}
-            <strong>Pronto para o calendário oficial</strong>
-            <p>Assim que as datas forem definidas, elas podem ser carregadas pelo mesmo backend do Google Sheets sem precisar redesenhar o site.</p>
+            <strong>Super Copa UNICAP 2026</strong>
+            <p>Jogos de 19 a 23 de outubro de 2026. A tabela, os grupos, horários e locais serão divulgados pela organização após o encerramento das inscrições.</p>
           </div>
         </div>
       </article>
       <aside class="info-card reveal">
         <h3>Informações importantes</h3>
         <div class="info-list">
-          <div class="info-item"><strong>Equipes independentes</strong><span>O aluno responsável cadastra a equipe inteira e assina o termo de responsabilidade.</span></div>
-          <div class="info-item"><strong>Convidado extracurricular</strong><span>É obrigatório informar a autorização da coordenação esportiva.</span></div>
-          <div class="info-item"><strong>Atléticas</strong><span>O acesso de coordenadores será controlado por usuário e senha vinculados à planilha.</span></div>
+          <div class="info-item"><strong>Inscrições</strong><span>As inscrições das equipes vão até 1º de outubro de 2026.</span></div>
+          <div class="info-item"><strong>Taxa e ação solidária</strong><span>Pagamento da taxa e entrega de 1 bolsa de leite por atleta até 15 de outubro.</span></div>
+          <div class="info-item"><strong>Regulamento oficial</strong><span>Consulte as regras completas de equipes, uniformes, horários, disciplina e premiação.</span></div>
         </div>
+        <a class="btn btn-primary regulation-cta" href="./regulamento.html">Ver regulamento oficial ${icon("arrow")}</a>
       </aside>
     </div>
   </section>
@@ -268,65 +269,18 @@ function appMarkup(){
 }
 
 function studentFormMarkup(){
-  const steps=["Responsável","Equipe","Atletas","Confirmar"];
   return `
   <div class="panel-title">
-    <div><h3>Inscrição de equipe independente</h3><small>Etapa ${state.studentStep} de 4</small></div>
+    <div><h3>Inscrição de equipe independente</h3><small>Área do aluno responsável</small></div>
     <span class="dash-pill">Aluno</span>
   </div>
-  <div class="wizard-steps">
-    ${steps.map((s,i)=>`<div class="w-step ${state.studentStep===i+1?"active":""} ${state.studentStep>i+1?"done":""}"><b>${state.studentStep>i+1?"✓":i+1}</b><span>${s}</span></div>`).join("")}
-  </div>
-  <form class="form-content" id="studentForm">${studentStepMarkup()}</form>`;
-}
-
-function studentStepMarkup(){
-  const d=state.studentData;
-  if(state.studentStep===1){
-    return `
-      <div class="form-grid">
-        <label><span>Nome completo *</span><input id="respNome" value="${esc(d.respNome||"")}" placeholder="Nome do responsável"></label>
-        <label><span>R.A / Matrícula *</span><input id="respRa" value="${esc(d.respRa||"")}" placeholder="R.A / matrícula"></label>
-        <label><span>CPF *</span><input id="respCpf" value="${esc(d.respCpf||"")}" placeholder="000.000.000-00"></label>
-        <label><span>Telefone *</span><input id="respTelefone" value="${esc(d.respTelefone||"")}" placeholder="(81) 99999-9999"></label>
-        <label class="full"><span>E-mail institucional *</span><input id="respEmail" value="${esc(d.respEmail||"")}" type="email" placeholder="seuemail@...unicap.br"></label>
-      </div>
-      <div class="inline-note">O responsável será o contato oficial da equipe e responderá pelas informações enviadas.</div>
-      <div class="form-actions"><span></span><button class="btn btn-primary" type="button" data-student-next>Próximo passo ${icon("arrow")}</button></div>`;
-  }
-  if(state.studentStep===2){
-    return `
-      <div class="form-grid">
-        <label><span>Nome da equipe *</span><input id="teamName" value="${esc(d.teamName||"")}" placeholder="Ex.: Fênix UNICAP"></label>
-        <label><span>Curso base *</span><input id="baseCourse" value="${esc(d.baseCourse||"")}" placeholder="Ex.: Sistemas para Internet"></label>
-        <label class="full"><span>Modalidade *</span>
-          <select id="teamSport">${SPORTS.map(s=>`<option ${d.teamSport===s.name?"selected":""}>${s.name}</option>`).join("")}</select>
-        </label>
-      </div>
-      <div class="form-actions"><button class="btn btn-outline" type="button" data-student-prev>← Voltar</button><button class="btn btn-primary" type="button" data-student-next>Próximo passo ${icon("arrow")}</button></div>`;
-  }
-  if(state.studentStep===3){
-    return `
-      <div class="athlete-builder">
-        <div class="form-grid">
-          <label><span>Nome do atleta *</span><input id="athNome"></label>
-          <label><span>R.A / Matrícula *</span><input id="athRa"></label>
-          <label><span>CPF *</span><input id="athCpf" placeholder="000.000.000-00"></label>
-          <label><span>Telefone</span><input id="athTelefone" placeholder="(81) 99999-9999"></label>
-          <label><span>Curso *</span><input id="athCurso"></label>
-          <label><span>Vínculo *</span><select id="athVinculo"><option>Aluno do próprio curso</option><option>Aluno de outro curso</option><option>Convidado extracurricular</option></select></label>
-          <label class="full" id="athAuthWrap" hidden><span>Autorização / observação *</span><textarea id="athAutorizacao" rows="3" placeholder="Informe quem autorizou a participação."></textarea></label>
-        </div>
-        <button class="btn btn-gold" type="button" data-add-athlete>＋ Adicionar atleta</button>
-      </div>
-      <div class="athletes-list">${athleteListMarkup()}</div>
-      <div class="form-actions"><button class="btn btn-outline" type="button" data-student-prev>← Voltar</button><button class="btn btn-primary" type="button" data-student-next>Próximo passo ${icon("arrow")}</button></div>`;
-  }
-  return `
-    <div class="term-box">${icon("check")}<div><strong>Termo de responsabilidade</strong><div style="font-size:10px;margin-top:4px">O responsável declara que acompanhará a equipe, receberá as comunicações oficiais e responderá pelos participantes inscritos.</div></div></div>
-    <label style="margin-top:14px"><span>Declaração do responsável *</span><textarea id="termText" rows="6" placeholder="Declaro que sou responsável pela equipe e pelos participantes cadastrados...">${esc(d.termText||"")}</textarea></label>
-    <label class="checkbox-line"><input type="checkbox" id="acceptTerm"><div><strong>Confirmo e aceito</strong><span>As informações fornecidas são verdadeiras e estou de acordo com o termo.</span></div></label>
-    <div class="form-actions"><button class="btn btn-outline" type="button" data-student-prev>← Voltar</button><button class="btn btn-primary" type="submit">Finalizar inscrição ${icon("arrow")}</button></div>`;
+  <div class="form-content portal-public-access">
+    <div class="portal-public-copy">
+      <strong>Monte sua equipe e participe da Super Copa UNICAP 2026.</strong>
+      <p>Cadastre o responsável, escolha a modalidade, informe os atletas e envie a inscrição pela área exclusiva do aluno.</p>
+    </div>
+    <a class="btn btn-primary" href="./aluno.html">Iniciar inscrição ${icon("arrow")}</a>
+  </div>`;
 }
 
 function athleteListMarkup(){
@@ -340,37 +294,18 @@ function athleteListMarkup(){
 }
 
 function coordinatorMarkup(){
-  if(!state.coordinatorLogged){
-    return `
-      <div class="panel-title">
-        <div><h3>Acesso do coordenador</h3><small>Entre com o usuário da sua atlética</small></div>
-        <span class="dash-pill">Restrito</span>
-      </div>
-      <form class="form-content" id="coordinatorLogin">
-        <div class="form-grid">
-          <label class="full"><span>Usuário *</span><input id="loginUser" placeholder="Usuário da atlética"></label>
-          <label class="full"><span>Senha *</span><input id="loginPass" type="password" placeholder="••••••••"></label>
-          <label class="full"><span>Atlética para demonstração</span>
-            <select id="loginAthletic">${COURSES.map(([name])=>`<option>${name}</option>`).join("")}</select>
-          </label>
-        </div>
-        <div class="inline-note">Enquanto o Google Apps Script não estiver conectado, este login funciona apenas como demonstração visual.</div>
-        <div class="form-actions"><span></span><button class="btn btn-primary" type="submit">Entrar no painel ${icon("arrow")}</button></div>
-      </form>`;
-  }
   return `
     <div class="panel-title">
-      <div><h3>Nova equipe oficial</h3><small>${esc(state.coordinatorAthletic)}</small></div>
-      <button class="btn btn-outline" style="padding:8px 12px;font-size:10px" type="button" data-logout>Trocar acesso</button>
+      <div><h3>Área do coordenador</h3><small>Acesso exclusivo das atléticas</small></div>
+      <span class="dash-pill">Restrito</span>
     </div>
-    <form class="form-content" id="officialTeamForm">
-      <div class="form-grid">
-        <label><span>Nome da equipe *</span><input id="officialTeamName" placeholder="Ex.: Sistemas Futsal A"></label>
-        <label><span>Modalidade *</span><select id="officialSport">${SPORTS.map(s=>`<option>${s.name}</option>`).join("")}</select></label>
+    <div class="form-content portal-public-access">
+      <div class="portal-public-copy">
+        <strong>Gerencie as inscrições da sua atlética.</strong>
+        <p>Cadastre equipes oficiais, organize os atletas e acompanhe as inscrições da sua representação acadêmica.</p>
       </div>
-      <div class="inline-note">A atlética será definida pelo login do coordenador. No backend real, o navegador não poderá alterar esse vínculo.</div>
-      <div class="form-actions"><span></span><button class="btn btn-primary" type="submit">Preparar cadastro ${icon("arrow")}</button></div>
-    </form>`;
+      <a class="btn btn-primary" href="./coordenador.html">Acessar painel ${icon("arrow")}</a>
+    </div>`;
 }
 
 function dashboardPreviewMarkup(){
@@ -473,7 +408,7 @@ function wirePortal(){
     e.preventDefault();saveCurrentStudentStep();
     if(!document.getElementById("acceptTerm")?.checked){showToast("Confirme o termo de responsabilidade.","error");return}
     if(!state.studentData.termText?.trim()){showToast("Escreva a declaração do responsável.","error");return}
-    if(!CONFIG.API_URL){showToast("Inscrição validada. Falta conectar o Google Apps Script.");return}
+    if(!CONFIG.API_URL){showToast("Serviço de inscrições temporariamente indisponível. Tente novamente em instantes.");return}
   });
 
   document.getElementById("coordinatorLogin")?.addEventListener("submit",e=>{
@@ -484,13 +419,13 @@ function wirePortal(){
     state.coordinatorLogged=true;
     state.coordinatorAthletic=document.getElementById("loginAthletic").value;
     state.coordinatorName="Coordenador";
-    renderPortalOnly();showToast("Painel aberto em modo demonstração.");
+    renderPortalOnly();showToast("Acesso realizado.");
   });
   document.querySelector("[data-logout]")?.addEventListener("click",()=>{state.coordinatorLogged=false;state.coordinatorAthletic="";renderPortalOnly()});
   document.getElementById("officialTeamForm")?.addEventListener("submit",e=>{
     e.preventDefault();
     if(!document.getElementById("officialTeamName").value.trim()){showToast("Informe o nome da equipe.","error");return}
-    showToast("Estrutura da equipe pronta. O salvamento real entra com o Código.gs.");
+    showToast("Cadastro pronto para envio.");
   });
 }
 

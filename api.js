@@ -2,7 +2,7 @@ async function unicapApi(action, data = {}) {
   const url = String(window.UNICAP_API_URL || "").trim();
 
   if (!url) {
-    throw new Error("Backend ainda não conectado. Falta informar a URL /exec do Google Apps Script.");
+    throw new Error("Serviço de inscrições temporariamente indisponível. Tente novamente em instantes.");
   }
 
   const response = await fetch(url, {

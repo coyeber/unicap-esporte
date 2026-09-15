@@ -16,6 +16,7 @@
 const CFG = {
   SPREADSHEET_ID: '1uyScG9Premstru5K-6zkH0c6C1-OGuqxd1A257E2x_0',
   ABA_ACESSOS: 'ACESSOS_ATLETICAS',
+  ABA_ADMIN: 'ACESSOS_ADMIN',
   ABA_INDEPENDENTES: 'EQUIPES_INDEPENDENTES',
   SESSION_SECONDS: 21600, // 6 horas
   STATUS_PADRAO: 'INSCRITA',
@@ -62,6 +63,17 @@ const ACESSOS_PADRAO = [
   ['Matemática', 'matematica', 'Matematica@2026', 'Coordenador de Matemática', true],
   ['Arquitetura', 'arquitetura', 'Arquitetura@2026', 'Coordenador de Arquitetura', true],
   ['Administração', 'administracao', 'Administracao@2026', 'Coordenador de Administração', true]
+];
+
+const HEADERS_ADMIN = [
+  'Usuario',
+  'Senha',
+  'Nome',
+  'Ativo'
+];
+
+const ACESSOS_ADMIN_PADRAO = [
+  ['admin', 'admin', 'Administrador UNICAP Esporte', true]
 ];
 
 const HEADERS_ATLETICA = [
@@ -116,6 +128,9 @@ function configurarProjeto() {
   criarOuPrepararAba_(ss, CFG.ABA_ACESSOS, HEADERS_ACESSOS);
   preencherAcessosPadrao_(ss);
 
+  criarOuPrepararAba_(ss, CFG.ABA_ADMIN, HEADERS_ADMIN);
+  preencherAcessoAdminPadrao_(ss);
+
   Object.keys(CFG.ATLETICAS).forEach(function(atletica) {
     criarOuPrepararAba_(ss, CFG.ATLETICAS[atletica], HEADERS_ATLETICA);
   });
@@ -141,6 +156,16 @@ function preencherAcessosPadrao_(ss) {
   }
 }
 
+function preencherAcessoAdminPadrao_(ss) {
+  const sh = ss.getSheetByName(CFG.ABA_ADMIN);
+  if (!sh) return;
+
+  if (sh.getLastRow() <= 1) {
+    sh.getRange(2, 1, ACESSOS_ADMIN_PADRAO.length, HEADERS_ADMIN.length)
+      .setValues(ACESSOS_ADMIN_PADRAO);
+  }
+}
+
 function criarOuPrepararAba_(ss, nome, headers) {
   let sh = ss.getSheetByName(nome);
   if (!sh) sh = ss.insertSheet(nome);
@@ -154,7 +179,7 @@ function criarOuPrepararAba_(ss, nome, headers) {
 }
 
 function formatarTodasAsAbas_(ss) {
-  const nomes = [CFG.ABA_ACESSOS, CFG.ABA_INDEPENDENTES]
+  const nomes = [CFG.ABA_ACESSOS, CFG.ABA_ADMIN, CFG.ABA_INDEPENDENTES]
     .concat(Object.keys(CFG.ATLETICAS).map(a => CFG.ATLETICAS[a]));
 
   nomes.forEach(function(nome) {
@@ -182,6 +207,13 @@ function formatarTodasAsAbas_(ss) {
       sh.setColumnWidth(3, 180);
       sh.setColumnWidth(4, 270);
       sh.setColumnWidth(5, 90);
+    }
+
+    if (nome === CFG.ABA_ADMIN) {
+      sh.setColumnWidth(1, 160);
+      sh.setColumnWidth(2, 180);
+      sh.setColumnWidth(3, 260);
+      sh.setColumnWidth(4, 90);
     }
   });
 }
@@ -270,6 +302,66 @@ function validarSessao_(token) {
   }
 }
 
+function loginAdmin_(data) {
+  const usuario = limparTexto_(data && data.usuario).toLowerCase();
+  const senha = String(data && data.senha || '').trim();
+
+  if (!usuario || !senha) return fail_('Informe usuário e senha.');
+
+  const ss = getSpreadsheet_();
+  const sh = ss.getSheetByName(CFG.ABA_ADMIN);
+  if (!sh || sh.getLastRow() < 2) return fail_('O acesso administrativo ainda não foi configurado.');
+
+  const dados = sh.getRange(2, 1, sh.getLastRow() - 1, HEADERS_ADMIN.length).getValues();
+  for (let i = 0; i < dados.length; i++) {
+    const userPlanilha = String(dados[i][0] || '').trim().toLowerCase();
+    const senhaPlanilha = String(dados[i][1] || '').trim();
+    const nome = String(dados[i][2] || '').trim();
+    const ativo = normalizarBoolean_(dados[i][3]);
+
+    if (userPlanilha === usuario) {
+      if (!ativo) return fail_('Este acesso administrativo está desativado.');
+      if (senhaPlanilha !== senha) return fail_('Usuário ou senha inválidos.');
+
+      const token = Utilities.getUuid() + '-' + Utilities.getUuid();
+      const session = {
+        usuario: userPlanilha,
+        nome: nome || 'Administrador UNICAP Esporte',
+        tipo: 'admin',
+        criadoEm: new Date().toISOString()
+      };
+
+      CacheService.getScriptCache().put('admin-session:' + token, JSON.stringify(session), CFG.SESSION_SECONDS);
+      return {ok:true, token:token, nome:session.nome, expiresIn:CFG.SESSION_SECONDS};
+    }
+  }
+
+  return fail_('Usuário ou senha inválidos.');
+}
+
+function validarSessaoAdmin_(token) {
+  token = String(token || '').trim();
+  if (!token) return null;
+
+  const raw = CacheService.getScriptCache().get('admin-session:' + token);
+  if (!raw) return null;
+
+  try {
+    const session = JSON.parse(raw);
+    if (!session || session.tipo !== 'admin') return null;
+    CacheService.getScriptCache().put('admin-session:' + token, raw, CFG.SESSION_SECONDS);
+    return session;
+  } catch (err) {
+    return null;
+  }
+}
+
+function logoutAdmin_(data) {
+  const token = String(data && data.token || '').trim();
+  if (token) CacheService.getScriptCache().remove('admin-session:' + token);
+  return {ok:true};
+}
+
 function logout_(data) {
   const token = String(data && data.token || '').trim();
   if (token) CacheService.getScriptCache().remove('session:' + token);
@@ -285,7 +377,7 @@ function doGet() {
     ok: true,
     service: 'UNICAP Esporte',
     status: 'online',
-    version: '2.0.0'
+    version: '2.1.0'
   });
 }
 
@@ -312,6 +404,12 @@ function doPost(e) {
       case 'logout':
         return json_(logout_(data));
 
+      case 'adminLogin':
+        return json_(loginAdmin_(data));
+
+      case 'adminLogout':
+        return json_(logoutAdmin_(data));
+
       case 'saveIndependentTeam':
         return json_(salvarEquipeIndependente_(data));
 
@@ -329,6 +427,9 @@ function doPost(e) {
 
       case 'dashboard':
         return json_(dashboard_(data));
+
+      case 'adminDashboard':
+        return json_(adminDashboard_(data));
 
       default:
         return json_(fail_('Ação inválida.'));
@@ -563,6 +664,155 @@ function dashboard_(data) {
     listaEquipes: Object.keys(equipesMap).map(k => equipesMap[k]),
     listaAtletas: listaAtletas
   };
+}
+
+// ============================================================
+// DASHBOARD ADMINISTRATIVO — SOMENTE CONSULTA
+// ============================================================
+
+function adminDashboard_(data) {
+  const token = String(data && data.token || '').trim();
+  const session = validarSessaoAdmin_(token);
+  if (!session) return fail_('Sessão do administrador expirada ou inválida.');
+
+  const ss = getSpreadsheet_();
+  const equipesMap = {};
+  const atletas = [];
+  const modalidades = {};
+  const atleticasComEquipe = {};
+
+  function registrarEquipe_(team) {
+    if (!team.idEquipe) return;
+    if (!equipesMap[team.idEquipe]) {
+      equipesMap[team.idEquipe] = team;
+    } else {
+      equipesMap[team.idEquipe].atletas += 1;
+    }
+  }
+
+  Object.keys(CFG.ATLETICAS).forEach(function(atletica) {
+    const sh = ss.getSheetByName(CFG.ATLETICAS[atletica]);
+    if (!sh || sh.getLastRow() < 2) return;
+
+    const dados = sh.getRange(2, 1, sh.getLastRow() - 1, HEADERS_ATLETICA.length).getValues();
+    dados.forEach(function(r) {
+      const id = String(r[1] || '');
+      const modalidade = String(r[5] || '');
+      const teamExists = Boolean(equipesMap[id]);
+
+      registrarEquipe_({
+        dataHora: dataIso_(r[0]),
+        idEquipe: id,
+        tipo: 'ATLETICA',
+        origem: String(r[3] || atletica),
+        nomeEquipe: String(r[4] || ''),
+        modalidade: modalidade,
+        cursoBase: String(r[6] || atletica),
+        responsavel: String(r[7] || ''),
+        atletas: 1,
+        status: String(r[15] || CFG.STATUS_PADRAO)
+      });
+
+      if (!teamExists && modalidade) modalidades[modalidade] = (modalidades[modalidade] || 0) + 1;
+      if (id) atleticasComEquipe[atletica] = true;
+
+      atletas.push({
+        dataHora: dataIso_(r[0]),
+        idEquipe: id,
+        tipo: 'ATLETICA',
+        origem: String(r[3] || atletica),
+        equipe: String(r[4] || ''),
+        modalidade: modalidade,
+        nome: String(r[8] || ''),
+        ra: String(r[9] || ''),
+        telefone: String(r[11] || ''),
+        curso: String(r[12] || ''),
+        vinculo: String(r[13] || ''),
+        status: String(r[15] || CFG.STATUS_PADRAO)
+      });
+    });
+  });
+
+  const shInd = ss.getSheetByName(CFG.ABA_INDEPENDENTES);
+  if (shInd && shInd.getLastRow() >= 2) {
+    const dados = shInd.getRange(2, 1, shInd.getLastRow() - 1, HEADERS_INDEPENDENTES.length).getValues();
+    dados.forEach(function(r) {
+      const id = String(r[1] || '');
+      const modalidade = String(r[4] || '');
+      const teamExists = Boolean(equipesMap[id]);
+
+      registrarEquipe_({
+        dataHora: dataIso_(r[0]),
+        idEquipe: id,
+        tipo: 'INDEPENDENTE',
+        origem: String(r[5] || 'Equipe independente'),
+        nomeEquipe: String(r[3] || ''),
+        modalidade: modalidade,
+        cursoBase: String(r[5] || ''),
+        responsavel: String(r[6] || ''),
+        responsavelRA: String(r[7] || ''),
+        responsavelTelefone: String(r[9] || ''),
+        responsavelEmail: String(r[10] || ''),
+        atletas: 1,
+        status: String(r[19] || CFG.STATUS_PADRAO)
+      });
+
+      if (!teamExists && modalidade) modalidades[modalidade] = (modalidades[modalidade] || 0) + 1;
+
+      atletas.push({
+        dataHora: dataIso_(r[0]),
+        idEquipe: id,
+        tipo: 'INDEPENDENTE',
+        origem: String(r[5] || 'Equipe independente'),
+        equipe: String(r[3] || ''),
+        modalidade: modalidade,
+        nome: String(r[12] || ''),
+        ra: String(r[13] || ''),
+        telefone: String(r[15] || ''),
+        curso: String(r[16] || ''),
+        vinculo: String(r[17] || ''),
+        status: String(r[19] || CFG.STATUS_PADRAO)
+      });
+    });
+  }
+
+  const equipes = Object.keys(equipesMap).map(function(k) { return equipesMap[k]; });
+  equipes.sort(function(a,b) { return String(b.dataHora).localeCompare(String(a.dataHora)); });
+  atletas.sort(function(a,b) { return String(b.dataHora).localeCompare(String(a.dataHora)); });
+
+  let oficiais = 0;
+  let independentes = 0;
+  equipes.forEach(function(equipe) {
+    if (equipe.tipo === 'ATLETICA') oficiais++;
+    if (equipe.tipo === 'INDEPENDENTE') independentes++;
+  });
+
+  return {
+    ok: true,
+    nome: session.nome,
+    resumo: {
+      equipes: equipes.length,
+      atletas: atletas.length,
+      oficiais: oficiais,
+      independentes: independentes,
+      modalidades: Object.keys(modalidades).length,
+      atleticas: Object.keys(atleticasComEquipe).length
+    },
+    modalidades: modalidades,
+    equipes: equipes,
+    atletas: atletas,
+    recentes: equipes.slice(0, 50)
+  };
+}
+
+function dataIso_(valor) {
+  if (Object.prototype.toString.call(valor) === '[object Date]' && !isNaN(valor.getTime())) {
+    return valor.toISOString();
+  }
+  const texto = String(valor == null ? '' : valor).trim();
+  if (!texto) return '';
+  const data = new Date(texto);
+  return isNaN(data.getTime()) ? texto : data.toISOString();
 }
 
 // ============================================================

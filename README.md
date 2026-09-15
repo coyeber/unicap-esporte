@@ -21,3 +21,8 @@ adicione a URL que termina em `/exec` no arquivo `config.js`.
 O projeto é estático e pode ser publicado diretamente no Vercel sem comando de build.
 
 Desenvolvido por Coyeber.
+
+
+## Painel administrativo
+
+Foram adicionadas as páginas `administrador.html` e `painel-admin.html`. O backend cria a aba `ACESSOS_ADMIN` com o acesso inicial `admin` / `admin`. Troque a senha na planilha antes de usar em produção. O painel é de consulta e não retorna CPF para o navegador.

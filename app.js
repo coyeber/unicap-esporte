@@ -67,6 +67,7 @@ function icon(name){
     heart:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 8c0 6-8 11-8 11S4 14 4 8a4 4 0 0 1 7-3 4 4 0 0 1 7 0 4 4 0 0 1 2 3Z"/></svg>`,
     student:`<svg ${base}><path d="m4 15 20-9 20 9-20 9L4 15Z"/><path d="M12 19v10c7 6 17 6 24 0V19"/><path d="M44 16v14"/></svg>`,
     manager:`<svg ${base}><circle cx="17" cy="15" r="7"/><path d="M5 40c2-10 7-15 12-15s10 5 12 15"/><rect x="28" y="19" width="16" height="18" rx="3"/><path d="M32 24h8M32 29h8"/></svg>`,
+    admin:`<svg ${base}><path d="M24 5 39 11v11c0 10-6 17-15 21C15 39 9 32 9 22V11l15-6Z"/><path d="M17 24h14M24 17v14"/></svg>`,
     domino:`<svg ${base}><rect x="8" y="5" width="14" height="32" rx="3" transform="rotate(-10 8 5)"/><path d="M8 21h15"/><circle cx="14" cy="13" r="1.2" fill="currentColor"/><circle cx="17" cy="29" r="1.2" fill="currentColor"/><circle cx="12" cy="31" r="1.2" fill="currentColor"/><rect x="27" y="9" width="14" height="32" rx="3" transform="rotate(8 27 9)"/><path d="m27 25 14 2"/><circle cx="33" cy="17" r="1.2" fill="currentColor"/><circle cx="35" cy="34" r="1.2" fill="currentColor"/></svg>`,
     volley:`<svg ${base}><circle cx="24" cy="24" r="18"/><path d="M12 10c10 3 17 9 21 18M15 40c2-12 8-22 18-29M7 28c12-4 24-4 35 2"/></svg>`,
     ping:`<svg ${base}><circle cx="18" cy="18" r="11"/><path d="m26 26 12 12"/><circle cx="38" cy="12" r="4"/></svg>`,
@@ -143,6 +144,13 @@ function appMarkup(){
         <p>Acesse o painel da sua atlética para cadastrar equipes oficiais, organizar atletas e acompanhar as inscrições por modalidade.</p>
         <button class="mini-action" data-action="openManager">→</button>
         <div class="path-art">${icon("manager")}</div>
+      </article>
+      <article class="path-card admin reveal">
+        <div class="path-icon">${icon("admin")}</div>
+        <h3>Administrador</h3>
+        <p>Visualize todas as equipes inscritas, atletas, matrículas, modalidades e as inscrições mais recentes em um painel geral.</p>
+        <button class="mini-action" data-action="openAdmin">→</button>
+        <div class="path-art">${icon("admin")}</div>
       </article>
     </div>
   </section>
@@ -504,6 +512,9 @@ function wireGlobal(){
   }));
   document.querySelectorAll("[data-action='openManager']").forEach(btn=>btn.addEventListener("click",()=>{
     window.location.href="./coordenador.html";
+  }));
+  document.querySelectorAll("[data-action='openAdmin']").forEach(btn=>btn.addEventListener("click",()=>{
+    window.location.href="./administrador.html";
   }));
   document.querySelectorAll("[data-portal]").forEach(btn=>btn.addEventListener("click",()=>{
     if(btn.dataset.portal==="coordenador"){

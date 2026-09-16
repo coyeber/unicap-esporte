@@ -103,14 +103,13 @@ function appMarkup(){
     <div class="hero-copy reveal">
       <div class="hero-kicker">UNICAP ESPORTE</div>
       <h1>Inscrições <span>abertas</span></h1>
-      <p class="hero-lead">Participe dos jogos, represente seu curso e viva o melhor do esporte universitário. Um portal pensado para unir equipes, atléticas e modalidades em uma experiência organizada e profissional.</p>
+      <p class="hero-lead"><strong>As inscrições não são individuais.</strong> O cadastro das equipes deve ser realizado pelo coordenador da atlética ou pelo coordenador do curso.</p>
       <div class="hero-benefits">
         <div class="benefit"><div class="benefit-icon">${icon("trophy")}</div><div><strong>Competição</strong><span>saudável</span></div></div>
         <div class="benefit"><div class="benefit-icon">${icon("users")}</div><div><strong>Integração</strong><span>entre cursos</span></div></div>
         <div class="benefit"><div class="benefit-icon">${icon("heart")}</div><div><strong>Universidade</strong><span>mais forte</span></div></div>
       </div>
       <div class="hero-actions">
-        <button class="btn btn-primary" data-action="openStudent">Fazer minha inscrição ${icon("arrow")}</button>
         <button class="btn btn-ghost" data-scroll="modalidades">Conheça as modalidades</button>
       </div>
     </div>
@@ -127,14 +126,14 @@ function appMarkup(){
 
   <section class="section white" id="como-funciona">
     <div class="section-heading reveal">
-      <div class="eyebrow">Como fazer sua inscrição</div>
-      <h2>Escolha seu perfil e acesse a área correspondente.</h2>
+      <div class="eyebrow">Como fazer a inscrição</div>
+      <h2>A inscrição deve ser realizada pelo coordenador responsável.</h2>
     </div>
     <div class="path-grid">
       <article class="path-card reveal">
         <div class="path-icon">${icon("student")}</div>
-        <h3>Aluno</h3>
-        <p>Crie sua equipe de forma independente, escolha o curso base, defina a modalidade e cadastre todos os participantes.</p>
+        <h3>Coordenador do Curso</h3>
+        <p>Para cursos sem atlética ou equipes organizadas diretamente pelo curso, o coordenador responsável cadastra a equipe e seus atletas.</p>
         <button class="mini-action" data-action="openStudent">→</button>
         <div class="path-art">${icon("student")}</div>
       </article>
@@ -212,14 +211,14 @@ function appMarkup(){
     <div class="section-heading row reveal">
       <div>
         <div class="eyebrow">Portal de inscrições</div>
-        <h2>Faça tudo em um só lugar.</h2>
+        <h2>Acesso para os responsáveis pelas inscrições.</h2>
       </div>
-      <p>Inscrições organizadas para alunos e atléticas em um único portal.</p>
+      <p>Este portal não é destinado à inscrição individual de atletas. O cadastro deve ser feito pelo coordenador do curso ou da atlética.</p>
     </div>
 
     <div class="portal-tabs reveal">
-      <button data-portal="aluno" class="${state.portalTab==="aluno"?"active":""}">Sou aluno</button>
-      <button data-portal="coordenador" class="${state.portalTab==="coordenador"?"active":""}">Sou coordenador</button>
+      <button data-portal="aluno" class="${state.portalTab==="aluno"?"active":""}">Coordenador do Curso</button>
+      <button data-portal="coordenador" class="${state.portalTab==="coordenador"?"active":""}">Coordenador de Atlética</button>
     </div>
 
     <div class="preview-grid">
@@ -271,15 +270,15 @@ function appMarkup(){
 function studentFormMarkup(){
   return `
   <div class="panel-title">
-    <div><h3>Inscrição de equipe independente</h3><small>Área do aluno responsável</small></div>
-    <span class="dash-pill">Aluno</span>
+    <div><h3>Inscrição por curso</h3><small>Área do coordenador do curso</small></div>
+    <span class="dash-pill">Coordenador do Curso</span>
   </div>
   <div class="form-content portal-public-access">
     <div class="portal-public-copy">
-      <strong>Monte sua equipe e participe da Super Copa UNICAP 2026.</strong>
-      <p>Cadastre o responsável, escolha a modalidade, informe os atletas e envie a inscrição pela área exclusiva do aluno.</p>
+      <strong>Cadastre a equipe representando o seu curso.</strong>
+      <p>O coordenador do curso informa os dados da equipe, escolhe a modalidade, cadastra os atletas e envia a inscrição.</p>
     </div>
-    <a class="btn btn-primary" href="./aluno.html">Iniciar inscrição ${icon("arrow")}</a>
+    <a class="btn btn-primary" href="./aluno.html">Cadastrar equipe ${icon("arrow")}</a>
   </div>`;
 }
 

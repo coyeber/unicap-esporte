@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#45000c">
+  <title>Administrador | UNICAP Esporte</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="./assets/favicon-192.png">
+</head>
+<body class="subpage-body">
+  <header class="subpage-header">
+    <a class="brand brand-esporte" href="./index.html" style="text-decoration:none">
+      <span class="round-logo"><img src="./assets/unicap-esporte.jpg" alt=""></span>
+      <span class="brand-copy"><strong>UNICAP</strong><b>Esporte</b></span>
+    </a>
+    <div class="header-actions">
+      <a class="back-home" href="./index.html">← Voltar ao site</a>
+      <div class="university-logo"><img src="./assets/unicap-universidade.jpg" alt="Universidade Católica de Pernambuco"></div>
+    </div>
+  </header>
+
+  <main class="subpage-shell">
+    <section class="subpage-visual admin-login-visual">
+      <div class="subpage-kicker">ADMINISTRAÇÃO GERAL</div>
+      <h1>Todas as inscrições em um único painel.</h1>
+      <p>Área exclusiva para acompanhar equipes oficiais e independentes, atletas, matrículas, modalidades e os registros mais recentes.</p>
+      <div class="visual-points">
+        <div class="visual-point"><b>01</b><span>Veja todas as equipes inscritas na competição.</span></div>
+        <div class="visual-point"><b>02</b><span>Consulte atletas, R.A / matrícula, curso e vínculo.</span></div>
+        <div class="visual-point"><b>03</b><span>Acompanhe novas inscrições em ordem cronológica.</span></div>
+      </div>
+    </section>
+
+    <section class="subpage-content">
+      <div class="subpage-card">
+        <div class="subpage-card-head">
+          <div>
+            <div class="eyebrow">Acesso restrito</div>
+            <h2>Administrador</h2>
+            <p>Use o perfil administrativo para consultar todas as inscrições.</p>
+          </div>
+          <span class="secure-badge admin-badge">● ADMIN</span>
+        </div>
+
+        <form id="adminLogin" class="login-form">
+          <label><span>Usuário *</span><input id="adminUser" autocomplete="username" placeholder="Usuário do administrador"></label>
+          <label><span>Senha *</span><input id="adminPass" type="password" autocomplete="current-password" placeholder="••••••••"></label>
+          <button class="btn btn-primary login-submit" type="submit">Entrar no painel →</button>
+        </form>
+
+        <div class="helper-box">
+          <strong>Perfil somente de consulta.</strong> O administrador visualiza inscrições e participantes, sem alterar os cadastros pelo painel.
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="toast" class="toast"></div>
+  <script src="./config.js"></script>
+  <script src="./api.js"></script>
+  <script src="./admin-login.js"></script>
+</body>
+</html>

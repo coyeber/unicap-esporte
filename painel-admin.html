@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#45000c">
+  <title>Painel Administrativo | UNICAP Esporte</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="./assets/favicon-192.png">
+</head>
+<body class="admin-page">
+  <header class="subpage-header">
+    <a class="brand brand-esporte" href="./index.html" style="text-decoration:none">
+      <span class="round-logo"><img src="./assets/unicap-esporte.jpg" alt=""></span>
+      <span class="brand-copy"><strong>UNICAP</strong><b>Esporte</b></span>
+    </a>
+    <div class="header-actions">
+      <a class="back-home" href="./index.html">← Site principal</a>
+      <div class="university-logo"><img src="./assets/unicap-universidade.jpg" alt="Universidade Católica de Pernambuco"></div>
+    </div>
+  </header>
+
+  <main class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-title"><small>CONTROLE GERAL</small><strong>Administrador</strong></div>
+      <nav class="admin-nav" aria-label="Navegação administrativa">
+        <button class="active" type="button" data-view="overview">⌂ Visão geral</button>
+        <button type="button" data-view="teams">▤ Equipes</button>
+        <button type="button" data-view="athletes">● Atletas</button>
+        <button type="button" data-view="updates">↻ Atualizações</button>
+      </nav>
+      <div class="admin-user">
+        <strong id="adminName">Administrador</strong>
+        <span>Acesso de consulta geral</span>
+        <button id="adminLogout" class="btn admin-logout" type="button">Sair</button>
+      </div>
+    </aside>
+
+    <section class="admin-main">
+      <div class="admin-main-head">
+        <div><div class="eyebrow" id="adminEyebrow">Administração</div><h1 id="adminTitle">Visão geral</h1></div>
+        <div style="display:flex;gap:8px;align-items:center"><span class="admin-chip">LEITURA GERAL</span><button class="btn btn-outline" type="button" id="adminRefresh">↻ Atualizar</button></div>
+      </div>
+
+      <section class="admin-panel" data-panel="overview">
+        <div class="admin-stat-grid">
+          <article class="admin-stat"><span>Equipes</span><strong id="statTeams">0</strong></article>
+          <article class="admin-stat"><span>Atletas</span><strong id="statAthletes">0</strong></article>
+          <article class="admin-stat"><span>Oficiais</span><strong id="statOfficial">0</strong></article>
+          <article class="admin-stat"><span>Independentes</span><strong id="statIndependent">0</strong></article>
+          <article class="admin-stat"><span>Modalidades</span><strong id="statSports">0</strong></article>
+          <article class="admin-stat"><span>Atléticas</span><strong id="statAthletics">0</strong></article>
+        </div>
+
+        <div class="admin-grid">
+          <article class="admin-card">
+            <div class="admin-card-head"><div><h3>Últimas inscrições</h3><span>Equipes registradas mais recentemente</span></div></div>
+            <div id="overviewRecent" class="admin-recent"><div class="admin-loading">Carregando inscrições…</div></div>
+          </article>
+          <article class="admin-card">
+            <div class="admin-card-head"><div><h3>Equipes por modalidade</h3><span>Distribuição das inscrições</span></div></div>
+            <div id="sportSummary" class="admin-sport-list"><div class="admin-loading">Carregando modalidades…</div></div>
+            <div class="admin-note">Por segurança, o painel não exibe CPF. Para a administração ficam disponíveis os dados necessários de equipe, atleta, matrícula, curso e vínculo.</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="admin-panel" data-panel="teams" hidden>
+        <div class="admin-toolbar">
+          <div><span class="panel-kicker">INSCRIÇÕES</span><h2>Todas as equipes</h2><p>Equipes oficiais das atléticas e equipes independentes.</p></div>
+        </div>
+        <div class="admin-card" style="padding:0;overflow:hidden">
+          <div class="admin-filters">
+            <input id="teamSearch" type="search" placeholder="Buscar equipe, modalidade, curso ou responsável…">
+            <select id="teamType"><option value="">Todos os tipos</option><option value="ATLETICA">Oficiais</option><option value="INDEPENDENTE">Independentes</option></select>
+            <select id="teamSport"><option value="">Todas as modalidades</option></select>
+          </div>
+          <div id="adminTeams"><div class="admin-loading">Carregando equipes…</div></div>
+        </div>
+      </section>
+
+      <section class="admin-panel" data-panel="athletes" hidden>
+        <div class="admin-toolbar">
+          <div><span class="panel-kicker">PARTICIPANTES</span><h2>Todos os atletas</h2><p>Consulta geral de nomes, matrículas, cursos, equipes e vínculos.</p></div>
+        </div>
+        <div class="admin-card" style="padding:0;overflow:hidden">
+          <div class="admin-filters">
+            <input id="athleteAdminSearch" type="search" placeholder="Buscar nome, matrícula, equipe, curso ou atlética…">
+            <select id="athleteType"><option value="">Todos os tipos</option><option value="ATLETICA">Oficiais</option><option value="INDEPENDENTE">Independentes</option></select>
+            <select id="athleteSport"><option value="">Todas as modalidades</option></select>
+          </div>
+          <div id="adminAthletes"><div class="admin-loading">Carregando atletas…</div></div>
+        </div>
+      </section>
+
+      <section class="admin-panel" data-panel="updates" hidden>
+        <div class="admin-toolbar">
+          <div><span class="panel-kicker">ATUALIZAÇÕES</span><h2>Inscrições recentes</h2><p>Registros organizados do mais recente para o mais antigo.</p></div>
+        </div>
+        <div class="admin-card">
+          <div id="adminUpdates" class="admin-recent"><div class="admin-loading">Carregando atualizações…</div></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="./config.js"></script>
+  <script src="./api.js"></script>
+  <script src="./admin.js"></script>
+</body>
+</html>

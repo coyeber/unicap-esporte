@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#680012">
+  <title>Cadastro da Equipe | UNICAP Esporte</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="./assets/favicon-192.png">
+</head>
+<body class="official-page">
+  <header class="subpage-header">
+    <a class="brand brand-esporte" href="./index.html" style="text-decoration:none">
+      <span class="round-logo"><img src="./assets/unicap-esporte.jpg" alt=""></span>
+      <span class="brand-copy"><strong>UNICAP</strong><b>Esporte</b></span>
+    </a>
+    <div class="header-actions">
+      <a class="back-home" href="./coordenador.html">← Trocar acesso</a>
+      <div class="university-logo"><img src="./assets/unicap-universidade.jpg" alt="Universidade Católica de Pernambuco"></div>
+    </div>
+  </header>
+
+  <main class="official-layout">
+    <aside class="official-sidebar">
+      <div class="official-title"><small>PAINEL DA ATLÉTICA</small><strong id="sideAthletic">Atlética</strong></div>
+      <nav class="official-nav" aria-label="Navegação do painel">
+        <button class="active" type="button" data-view="new">＋ Nova equipe</button>
+        <button type="button" data-view="teams">▤ Minhas equipes</button>
+        <button type="button" data-view="athletes">● Atletas</button>
+        <button type="button" data-view="guidance">? Orientações</button>
+      </nav>
+      <div class="official-user"><strong id="sideUser">Coordenador</strong><span>Coordenador da atlética</span></div>
+    </aside>
+
+    <section class="official-main">
+      <div class="official-main-head">
+        <div><div class="eyebrow" id="panelEyebrow">Cadastro oficial</div><h1 id="panelTitle">Preparar equipe</h1></div>
+        <span class="athletic-chip" id="athleticChip">Atlética</span>
+      </div>
+
+      <form id="officialRegistration" class="official-panel" data-panel="new">
+        <div class="official-grid">
+          <div>
+            <section class="official-card">
+              <div class="section-number">01</div>
+              <h3>Dados da equipe</h3>
+              <p>Defina o nome oficial e a modalidade.</p>
+              <div class="form-grid">
+                <label><span>Nome da equipe *</span><input id="officialName" placeholder="Ex.: Sistemas Futsal A"></label>
+                <label><span>Modalidade *</span>
+                  <select id="officialSport">
+                    <option>Dominó</option><option>Vôlei Misto</option><option>Tênis de Mesa</option>
+                    <option>Futsal Masculino</option><option>Futsal Feminino</option>
+                    <option>Basquete</option><option>Futmesa</option>
+                  </select>
+                </label>
+                <label class="full"><span>Curso / Atlética</span><input id="officialAthletic" readonly></label>
+              </div>
+            </section>
+
+            <section class="official-card" style="margin-top:18px">
+              <div class="section-number">02</div>
+              <h3>Adicionar atletas</h3>
+              <p>Cadastre cada participante individualmente.</p>
+              <div class="athlete-builder">
+                <div class="form-grid">
+                  <label><span>Nome completo *</span><input id="athNome"></label>
+                  <label><span>R.A / Matrícula *</span><input id="athRa"></label>
+                  <label><span>CPF *</span><input id="athCpf" placeholder="000.000.000-00"></label>
+                  <label><span>Telefone</span><input id="athTel" placeholder="(81) 99999-9999"></label>
+                  <label><span>Curso *</span><input id="athCurso"></label>
+                  <label><span>Vínculo *</span>
+                    <select id="athVinculo">
+                      <option>Aluno do próprio curso</option>
+                      <option>Aluno de outro curso</option>
+                      <option>Convidado extracurricular</option>
+                    </select>
+                  </label>
+                  <label class="full" id="authWrap" hidden><span>Autorização / observação *</span><textarea id="athAuth" rows="3"></textarea></label>
+                </div>
+                <button class="btn btn-gold" id="addOfficialAthlete" type="button">＋ Adicionar atleta</button>
+              </div>
+              <div class="official-athletes" id="officialAthletes"></div>
+            </section>
+          </div>
+
+          <aside>
+            <section class="official-card">
+              <div class="section-number">03</div>
+              <h3>Resumo do cadastro</h3>
+              <p>Confira a equipe antes do envio.</p>
+              <div class="summary-box">
+                <div class="summary-line"><span>Atlética</span><strong id="sumAthletic">—</strong></div>
+                <div class="summary-line"><span>Equipe</span><strong id="sumTeam">Não informado</strong></div>
+                <div class="summary-line"><span>Modalidade</span><strong id="sumSport">Dominó</strong></div>
+                <div class="summary-line"><span>Atletas</span><strong id="sumAthletes">0</strong></div>
+                <div class="summary-line"><span>Status</span><strong style="color:#9b6e18">Em preenchimento</strong></div>
+              </div>
+            </section>
+
+            <section class="official-card" style="margin-top:18px">
+              <div class="section-number">!</div>
+              <h3>Importante</h3>
+              <p>Convidados extracurriculares só podem ser incluídos após autorização direta da coordenação esportiva.</p>
+              <div class="inline-note">A atlética vinculada ao acesso será aplicada automaticamente ao cadastro.</div>
+            </section>
+          </aside>
+        </div>
+
+        <div class="save-official">
+          <div><strong>Cadastro da equipe oficial</strong><small>Revise todos os dados antes de enviar.</small></div>
+          <button class="btn btn-light" type="submit">Salvar equipe →</button>
+        </div>
+      </form>
+
+      <section class="official-panel" data-panel="teams" hidden>
+        <div class="panel-toolbar">
+          <div>
+            <span class="panel-kicker">GESTÃO</span>
+            <h2>Minhas equipes</h2>
+            <p>Equipes já registradas por esta atlética.</p>
+          </div>
+          <button class="btn btn-outline" type="button" id="refreshTeams">↻ Atualizar</button>
+        </div>
+        <div class="panel-stat-grid">
+          <article class="panel-stat"><span>Equipes</span><strong id="dashTeams">0</strong></article>
+          <article class="panel-stat"><span>Atletas</span><strong id="dashAthletes">0</strong></article>
+          <article class="panel-stat"><span>Modalidades</span><strong id="dashSports">0</strong></article>
+        </div>
+        <div class="official-card panel-data-card">
+          <div id="teamList" class="panel-list"><div class="panel-loading">Carregando equipes…</div></div>
+        </div>
+      </section>
+
+      <section class="official-panel" data-panel="athletes" hidden>
+        <div class="panel-toolbar">
+          <div>
+            <span class="panel-kicker">ELENCO</span>
+            <h2>Atletas cadastrados</h2>
+            <p>Consulte os participantes registrados nas equipes da sua atlética.</p>
+          </div>
+          <button class="btn btn-outline" type="button" id="refreshAthletes">↻ Atualizar</button>
+        </div>
+        <div class="official-card panel-data-card">
+          <div class="panel-search">
+            <input id="athleteSearch" type="search" placeholder="Buscar por nome, R.A, curso, equipe ou modalidade…">
+            <span id="athleteTotal">0 atletas</span>
+          </div>
+          <div id="athleteDirectory" class="panel-list"><div class="panel-loading">Carregando atletas…</div></div>
+        </div>
+      </section>
+
+      <section class="official-panel" data-panel="guidance" hidden>
+        <div class="panel-toolbar">
+          <div>
+            <span class="panel-kicker">SUPORTE</span>
+            <h2>Orientações</h2>
+            <p>Regras rápidas para evitar problemas no cadastro.</p>
+          </div>
+        </div>
+        <div class="guidance-grid">
+          <article class="official-card guidance-card"><b>01</b><h3>Dados corretos</h3><p>Confira nome, R.A, CPF, curso e telefone antes de salvar. Dados incorretos podem impedir a validação do atleta.</p></article>
+          <article class="official-card guidance-card"><b>02</b><h3>Convidado extracurricular</h3><p>Só cadastre convidado extracurricular quando houver autorização direta da coordenação esportiva. A justificativa é obrigatória.</p></article>
+          <article class="official-card guidance-card"><b>03</b><h3>Duplicidade</h3><p>O mesmo atleta não deve ser cadastrado duas vezes na mesma modalidade. O sistema faz validações pelo CPF e matrícula.</p></article>
+          <article class="official-card guidance-card"><b>04</b><h3>Responsabilidade</h3><p>A atlética é responsável pelas informações inseridas e por manter a relação de atletas atualizada durante a competição.</p></article>
+        </div>
+        <div class="official-card guidance-contact">
+          <div><span>Precisa de ajuda?</span><strong>Entre em contato com a coordenação do UNICAP Esporte.</strong></div>
+          <button class="btn btn-primary" type="button" data-view-jump="new">Cadastrar nova equipe →</button>
+        </div>
+      </section>
+
+    </section>
+  </main>
+  <div id="toast" class="toast"></div>
+  <script src="./config.js"></script>
+  <script src="./api.js"></script>
+  <script src="./cadastro-coordenador.js"></script>
+</body>
+</html>

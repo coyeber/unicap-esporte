@@ -1,0 +1,12 @@
+VERSÃO LIMPA PARA PUBLICAÇÃO
+
+Foram removidos/revisados textos de desenvolvimento, demonstração e instruções técnicas visíveis ao público, incluindo referências a Google Sheets, backend, Apps Script e telas de demonstração.
+
+Também foram substituídos os formulários demonstrativos da página inicial por botões que levam às áreas reais de Aluno e Coordenador.
+
+Para publicar:
+1. Substitua os arquivos do projeto pelos desta versão.
+2. Não é necessário alterar o Código.gs por causa desta limpeza textual.
+3. git add .
+4. git commit -m "Prepara site para publicação"
+5. git push

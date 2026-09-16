@@ -1,4 +1,4 @@
-﻿
+
 const CONFIG = {
   API_URL: ""
 };
@@ -110,7 +110,7 @@ function appMarkup(){
         <div class="benefit"><div class="benefit-icon">${icon("heart")}</div><div><strong>Universidade</strong><span>mais forte</span></div></div>
       </div>
       <div class="hero-actions">
-        <button class="btn btn-primary" data-action="openStudent">Faça sua inscrição ${icon("arrow")}</button>
+        <button class="btn btn-primary" data-action="openStudent">Fazer minha inscrição ${icon("arrow")}</button>
         <button class="btn btn-ghost" data-scroll="modalidades">Conheça as modalidades</button>
       </div>
     </div>
@@ -128,13 +128,13 @@ function appMarkup(){
   <section class="section white" id="como-funciona">
     <div class="section-heading reveal">
       <div class="eyebrow">Como fazer sua inscrição</div>
-      <h2>Escolha como você vai fazer sua inscrição.</h2>
+      <h2>Escolha seu perfil e acesse a área correspondente.</h2>
     </div>
     <div class="path-grid">
       <article class="path-card reveal">
         <div class="path-icon">${icon("student")}</div>
-        <h3>Criador de Equipe</h3>
-        <p>Crie sua equipe, escolha o curso base, defina a modalidade e cadastre todos os participantes.</p>
+        <h3>Aluno</h3>
+        <p>Crie sua equipe de forma independente, escolha o curso base, defina a modalidade e cadastre todos os participantes.</p>
         <button class="mini-action" data-action="openStudent">→</button>
         <div class="path-art">${icon("student")}</div>
       </article>
@@ -144,6 +144,13 @@ function appMarkup(){
         <p>Acesse o painel da sua atlética para cadastrar equipes oficiais, organizar atletas e acompanhar as inscrições por modalidade.</p>
         <button class="mini-action" data-action="openManager">→</button>
         <div class="path-art">${icon("manager")}</div>
+      </article>
+      <article class="path-card admin reveal">
+        <div class="path-icon">${icon("admin")}</div>
+        <h3>Administrador</h3>
+        <p>Visualize todas as equipes inscritas, atletas, matrículas, modalidades e as inscrições mais recentes em um painel geral.</p>
+        <button class="mini-action" data-action="openAdmin">→</button>
+        <div class="path-art">${icon("admin")}</div>
       </article>
     </div>
   </section>
@@ -207,12 +214,12 @@ function appMarkup(){
         <div class="eyebrow">Portal de inscrições</div>
         <h2>Faça tudo em um só lugar.</h2>
       </div>
-      <p>Inscrições organizadas para criadores de equipe e coordenadores de atlética em um único portal.</p>
+      <p>Inscrições organizadas para alunos e atléticas em um único portal.</p>
     </div>
 
     <div class="portal-tabs reveal">
-      <button data-portal="aluno" class="${state.portalTab==="aluno"?"active":""}">Criador de Equipe</button>
-      <button data-portal="coordenador" class="${state.portalTab==="coordenador"?"active":""}">Coordenador de Atlética</button>
+      <button data-portal="aluno" class="${state.portalTab==="aluno"?"active":""}">Sou aluno</button>
+      <button data-portal="coordenador" class="${state.portalTab==="coordenador"?"active":""}">Sou coordenador</button>
     </div>
 
     <div class="preview-grid">
@@ -264,13 +271,13 @@ function appMarkup(){
 function studentFormMarkup(){
   return `
   <div class="panel-title">
-    <div><h3>Criador de Equipe</h3><small>Inscrição de equipe independente</small></div>
-    <span class="dash-pill">Criador de Equipe</span>
+    <div><h3>Inscrição de equipe independente</h3><small>Área do aluno responsável</small></div>
+    <span class="dash-pill">Aluno</span>
   </div>
   <div class="form-content portal-public-access">
     <div class="portal-public-copy">
       <strong>Monte sua equipe e participe da Super Copa UNICAP 2026.</strong>
-      <p>Cadastre o responsável, escolha a modalidade, informe os atletas e finalize a inscrição da sua equipe.</p>
+      <p>Cadastre o responsável, escolha a modalidade, informe os atletas e envie a inscrição pela área exclusiva do aluno.</p>
     </div>
     <a class="btn btn-primary" href="./aluno.html">Iniciar inscrição ${icon("arrow")}</a>
   </div>`;
@@ -478,4 +485,3 @@ wireGlobal();
 wirePortal();
 wireDashboardTabs();
 observeReveals();
-

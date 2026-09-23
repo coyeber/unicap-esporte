@@ -1,3 +1,4 @@
+
 const form = document.getElementById("creatorLogin");
 const toast = document.getElementById("toast");
 

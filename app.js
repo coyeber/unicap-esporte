@@ -132,7 +132,7 @@ function appMarkup(){
     <div class="path-grid">
       <article class="path-card reveal">
         <div class="path-icon">${icon("student")}</div>
-        <h3>Criador de Equipe / Coordenador do Curso</h3>
+        <h3>Criador de Equipe Sem vínculo com a atlética</h3>
         <p>Para equipes independentes, o responsável cria a equipe e recebe um painel próprio para manter o elenco atualizado.</p>
         <button class="mini-action" data-action="openStudent">→</button>
         <div class="path-art">${icon("student")}</div>

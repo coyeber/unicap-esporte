@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#680012">
+  <title>Painel da Equipe Independente | UNICAP Esporte</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="./assets/favicon-192.png">
+</head>
+<body class="official-page creator-panel-page">
+  <header class="subpage-header">
+    <a class="brand brand-esporte" href="./index.html" style="text-decoration:none">
+      <span class="round-logo"><img src="./assets/unicap-esporte.jpg" alt=""></span>
+      <span class="brand-copy"><strong>UNICAP</strong><b>Esporte</b></span>
+    </a>
+    <div class="header-actions">
+      <a class="back-home" href="./index.html">← Voltar ao site</a>
+      <div class="university-logo"><img src="./assets/unicap-universidade.jpg" alt="Universidade Católica de Pernambuco"></div>
+    </div>
+  </header>
+
+  <main class="official-layout">
+    <aside class="official-sidebar creator-sidebar">
+      <div class="official-title"><small>PAINEL DO CRIADOR</small><strong id="sideCreator">Equipe independente</strong></div>
+      <nav class="official-nav" aria-label="Navegação do painel">
+        <button class="active" type="button" data-view="teams">▤ Minhas equipes</button>
+        <button type="button" data-view="athletes">● Atletas</button>
+        <button type="button" data-view="new">＋ Nova equipe</button>
+        <button type="button" data-view="guidance">? Orientações</button>
+      </nav>
+      <div class="official-user">
+        <strong id="sideUser">Responsável</strong>
+        <span id="sideEmail">Equipe independente</span>
+        <button class="creator-logout" type="button" id="creatorLogout">Sair do painel</button>
+      </div>
+    </aside>
+
+    <section class="official-main">
+      <div class="official-main-head">
+        <div><div class="eyebrow" id="panelEyebrow">Gestão da equipe</div><h1 id="panelTitle">Minhas equipes</h1></div>
+        <span class="athletic-chip">Equipe independente</span>
+      </div>
+
+      <section class="official-panel" data-panel="teams">
+        <div class="panel-toolbar">
+          <div>
+            <span class="panel-kicker">GESTÃO</span>
+            <h2>Minhas equipes</h2>
+            <p>Abra uma equipe para adicionar ou remover atletas do elenco.</p>
+          </div>
+          <button class="btn btn-outline" type="button" id="refreshTeams">↻ Atualizar</button>
+        </div>
+        <div class="panel-stat-grid">
+          <article class="panel-stat"><span>Equipes</span><strong id="dashTeams">0</strong></article>
+          <article class="panel-stat"><span>Atletas</span><strong id="dashAthletes">0</strong></article>
+          <article class="panel-stat"><span>Modalidades</span><strong id="dashSports">0</strong></article>
+        </div>
+        <div class="official-card panel-data-card">
+          <div id="teamList" class="panel-list"><div class="panel-loading">Carregando equipes…</div></div>
+        </div>
+      </section>
+
+      <section class="official-panel" data-panel="athletes" hidden>
+        <div class="panel-toolbar">
+          <div>
+            <span class="panel-kicker">ELENCO</span>
+            <h2>Atletas cadastrados</h2>
+            <p>Consulte os participantes de todas as suas equipes independentes.</p>
+          </div>
+          <button class="btn btn-outline" type="button" id="refreshAthletes">↻ Atualizar</button>
+        </div>
+        <div class="official-card panel-data-card">
+          <div class="panel-search">
+            <input id="athleteSearch" type="search" placeholder="Buscar por nome, R.A, curso, equipe ou modalidade…">
+            <span id="athleteTotal">0 atletas</span>
+          </div>
+          <div id="athleteDirectory" class="panel-list"><div class="panel-loading">Carregando atletas…</div></div>
+        </div>
+      </section>
+
+      <section class="official-panel" data-panel="new" hidden>
+        <div class="panel-toolbar">
+          <div>
+            <span class="panel-kicker">NOVA INSCRIÇÃO</span>
+            <h2>Cadastrar outra equipe</h2>
+            <p>Você pode usar o mesmo e-mail, CPF e senha para vincular outra equipe ao seu perfil.</p>
+          </div>
+        </div>
+        <div class="official-card creator-new-card">
+          <div>
+            <strong>Nova equipe independente</strong>
+            <p>Abra o formulário de inscrição e utilize os mesmos dados de acesso. A nova equipe aparecerá automaticamente neste painel.</p>
+          </div>
+          <a class="btn btn-primary" href="./aluno.html">Cadastrar nova equipe →</a>
+        </div>
+      </section>
+
+      <section class="official-panel" data-panel="guidance" hidden>
+        <div class="panel-toolbar">
+          <div>
+            <span class="panel-kicker">SUPORTE</span>
+            <h2>Orientações</h2>
+            <p>Use este painel para manter o elenco correto até o encerramento das inscrições.</p>
+          </div>
+        </div>
+        <div class="guidance-grid">
+          <article class="official-card guidance-card"><b>01</b><h3>Adicionar atleta</h3><p>Abra “Minhas equipes”, clique em “Gerenciar elenco” e preencha os dados do novo participante.</p></article>
+          <article class="official-card guidance-card"><b>02</b><h3>Remover atleta</h3><p>No mesmo painel de elenco, use “Remover” ao lado do participante que não fará mais parte da equipe.</p></article>
+          <article class="official-card guidance-card"><b>03</b><h3>Dados protegidos</h3><p>O CPF é usado nas validações do cadastro, mas não é exibido nas listas do painel.</p></article>
+          <article class="official-card guidance-card"><b>04</b><h3>Responsabilidade</h3><p>Somente o responsável com e-mail e senha da equipe pode alterar o elenco independente.</p></article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div class="roster-modal" id="rosterModal" hidden>
+    <button class="roster-backdrop" type="button" data-close-roster aria-label="Fechar"></button>
+    <section class="roster-dialog" role="dialog" aria-modal="true" aria-labelledby="rosterTitle">
+      <div class="roster-head">
+        <div><span>GERENCIAR ELENCO</span><h2 id="rosterTitle">Equipe</h2><p id="rosterSubtitle">Modalidade</p></div>
+        <button class="roster-close" type="button" data-close-roster>×</button>
+      </div>
+      <div class="roster-content">
+        <div class="roster-current">
+          <h3>Atletas atuais <span id="rosterCount">0</span></h3>
+          <div id="rosterList" class="roster-list"></div>
+        </div>
+        <div class="roster-add">
+          <h3>Adicionar atleta</h3>
+          <div class="form-grid compact-grid">
+            <label><span>Nome completo *</span><input id="manageNome"></label>
+            <label><span>R.A / Matrícula *</span><input id="manageRa"></label>
+            <label><span>CPF *</span><input id="manageCpf" placeholder="000.000.000-00"></label>
+            <label><span>Telefone</span><input id="manageTel" placeholder="(81) 99999-9999"></label>
+            <label><span>Curso *</span><input id="manageCurso"></label>
+            <label><span>Vínculo *</span><select id="manageVinculo"><option>Aluno do próprio curso</option><option>Aluno de outro curso</option><option>Convidado extracurricular</option></select></label>
+            <label class="full" id="manageAuthWrap" hidden><span>Autorização / observação *</span><textarea id="manageAuth" rows="3"></textarea></label>
+          </div>
+          <button class="btn btn-primary roster-add-button" type="button" id="manageAddAthlete">＋ Adicionar ao elenco</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="./config.js"></script>
+  <script src="./api.js"></script>
+  <script src="./painel-criador.js"></script>
+</body>
+</html>

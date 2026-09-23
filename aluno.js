@@ -54,7 +54,9 @@ function content(){
       <label><span>R.A / Matrícula *</span><input id="respRa" value="${esc(d.respRa||"")}"></label>
       <label><span>CPF *</span><input id="respCpf" value="${esc(d.respCpf||"")}" placeholder="000.000.000-00"></label>
       <label><span>Telefone *</span><input id="respTel" value="${esc(d.respTel||"")}" placeholder="(81) 99999-9999"></label>
-      <label class="full"><span>E-mail institucional *</span><input id="respEmail" type="email" value="${esc(d.respEmail||"")}"></label>
+      <label class="full"><span>E-mail para acesso ao painel *</span><input id="respEmail" type="email" autocomplete="email" value="${esc(d.respEmail||"")}"></label>
+      <label><span>Crie uma senha *</span><input id="respSenha" type="password" autocomplete="new-password" value="${esc(d.respSenha||"")}" placeholder="Mínimo 6 caracteres"></label>
+      <label><span>Confirme a senha *</span><input id="respSenha2" type="password" autocomplete="new-password" value="${esc(d.respSenha2||"")}" placeholder="Repita a senha"></label>
     </div>
     <div class="form-actions">
       <span></span>
@@ -163,7 +165,7 @@ function athleteList(){
 }
 
 function save(){
-  ["respNome","respRa","respCpf","respTel","respEmail","teamName","baseCourse","teamSport","termText"]
+  ["respNome","respRa","respCpf","respTel","respEmail","respSenha","respSenha2","teamName","baseCourse","teamSport","termText"]
     .forEach(id=>{
       const e=$(id);
       if(e) state.data[id]=e.value;
@@ -182,12 +184,20 @@ function updateSteps(){
 
 function validate(){
   if(state.step===1){
-    if(["respNome","respRa","respCpf","respTel","respEmail"].some(id=>!$(id).value.trim())){
+    if(["respNome","respRa","respCpf","respTel","respEmail","respSenha","respSenha2"].some(id=>!$(id).value.trim())){
       toast("Preencha todos os campos obrigatórios.","error");
       return false;
     }
     if(!validCPF($("respCpf").value)){
       toast("CPF inválido.","error");
+      return false;
+    }
+    if($("respSenha").value.length < 6){
+      toast("A senha precisa ter pelo menos 6 caracteres.","error");
+      return false;
+    }
+    if($("respSenha").value !== $("respSenha2").value){
+      toast("As senhas não coincidem.","error");
       return false;
     }
   }
@@ -313,15 +323,30 @@ $("studentDedicatedForm").addEventListener("submit", async (e)=>{
         emailInstitucional:state.data.respEmail,
         termo:state.data.termText
       },
+      senha:state.data.respSenha,
       atletas:state.athletes
     });
 
-    toast(`Inscrição enviada com sucesso! ID: ${result.idEquipe}`,"success");
+    toast(`Equipe cadastrada! Abrindo seu painel...`,"success");
+
+    try{
+      const login=await unicapApi("creatorLogin",{
+        email:state.data.respEmail,
+        senha:state.data.respSenha
+      });
+      sessionStorage.setItem("unicap_creator_token",login.token);
+      sessionStorage.setItem("unicap_creator_name",login.nome || state.data.respNome || "Criador de Equipe");
+      sessionStorage.setItem("unicap_creator_email",login.email || state.data.respEmail);
+      setTimeout(()=>window.location.href="./painel-criador.html",550);
+      return;
+    }catch(loginErr){
+      toast(`Equipe cadastrada! Use seu e-mail e senha para acessar o painel.`,"success");
+    }
 
     state.step=1;
     state.athletes=[];
     state.data={};
-    setTimeout(()=>render(),600);
+    setTimeout(()=>render(),700);
 
   }catch(err){
     toast(err instanceof Error ? err.message : "Erro ao enviar inscrição.","error");

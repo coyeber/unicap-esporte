@@ -9,6 +9,7 @@ if (!token || !athletic) {
 
 const athletes = [];
 let dashboardCache = null;
+let activeManageTeamId = "";
 const $ = id => document.getElementById(id);
 const nums = v => (v || "").replace(/\D/g, "");
 const cpfMask = v => nums(v).slice(0,11)
@@ -216,7 +217,7 @@ function renderTeamDirectory(teams){
   root.innerHTML = `
     <div class="data-table-wrap">
       <table class="panel-table">
-        <thead><tr><th>Equipe</th><th>Modalidade</th><th>Atletas</th><th>Status</th><th>ID</th></tr></thead>
+        <thead><tr><th>Equipe</th><th>Modalidade</th><th>Atletas</th><th>Status</th><th>ID</th><th>Ações</th></tr></thead>
         <tbody>${teams.map(t => `
           <tr>
             <td><strong>${esc(t.nomeEquipe)}</strong></td>
@@ -224,9 +225,14 @@ function renderTeamDirectory(teams){
             <td>${esc(t.atletas)}</td>
             <td><span class="status-pill">${esc(t.status || "INSCRITA")}</span></td>
             <td><code>${esc(t.idEquipe)}</code></td>
+            <td><button class="table-action" type="button" data-manage-team="${esc(t.idEquipe)}">Gerenciar elenco</button></td>
           </tr>`).join("")}</tbody>
       </table>
     </div>`;
+
+  root.querySelectorAll("[data-manage-team]").forEach(button => {
+    button.addEventListener("click", () => openRosterManager(button.dataset.manageTeam));
+  });
 }
 
 function renderAthleteDirectory(list){
@@ -265,6 +271,113 @@ function renderAthleteDirectory(list){
       </table>
     </div>`;
 }
+
+// ===== Gerenciar elenco de uma equipe já salva =====
+function openRosterManager(teamId){
+  activeManageTeamId = teamId;
+  renderRosterManager();
+  $("rosterModal").hidden = false;
+  document.body.classList.add("modal-open");
+}
+
+function closeRosterManager(){
+  activeManageTeamId = "";
+  $("rosterModal").hidden = true;
+  document.body.classList.remove("modal-open");
+}
+
+function renderRosterManager(){
+  const team = (dashboardCache?.listaEquipes || []).find(t => t.idEquipe === activeManageTeamId);
+  const roster = (dashboardCache?.listaAtletas || []).filter(a => a.idEquipe === activeManageTeamId);
+  if(!team) return closeRosterManager();
+
+  $("rosterTitle").textContent = team.nomeEquipe || "Equipe";
+  $("rosterSubtitle").textContent = `${team.modalidade || "Modalidade"} · ${athletic}`;
+  $("rosterCount").textContent = String(roster.length);
+  $("rosterList").innerHTML = roster.map(a => `
+    <div class="roster-athlete">
+      <div class="avatar">${initials(a.nome)}</div>
+      <div>
+        <strong>${esc(a.nome)}</strong>
+        <span>${esc(a.curso || "—")} · ${esc(a.vinculo || "—")}${a.ra ? ` · RA ${esc(a.ra)}` : ""}</span>
+      </div>
+      <button type="button" class="roster-remove" data-remove-id="${esc(a.atletaId)}" data-remove-name="${esc(a.nome)}">Remover</button>
+    </div>`).join("") || '<div class="panel-empty">Nenhum atleta nesta equipe.</div>';
+
+  $("rosterList").querySelectorAll("[data-remove-id]").forEach(button => {
+    button.addEventListener("click", () => removeSavedAthlete(button.dataset.removeId, button.dataset.removeName));
+  });
+}
+
+async function removeSavedAthlete(atletaId, nome){
+  if(!confirm(`Remover ${nome || "este atleta"} da equipe?`)) return;
+  try{
+    const result = await unicapApi("manageOfficialTeam", {
+      token,
+      operacao:"remover",
+      idEquipe:activeManageTeamId,
+      atletaId
+    });
+    dashboardCache = result;
+    renderDashboard(result);
+    renderRosterManager();
+    toast("Atleta removido do elenco.");
+  }catch(err){
+    toast(err instanceof Error ? err.message : "Não foi possível remover o atleta.", "error");
+  }
+}
+
+async function addSavedAthlete(){
+  const vinculo = $("manageVinculo").value;
+  const atleta = {
+    nome:$("manageNome").value.trim(),
+    ra:$("manageRa").value.trim(),
+    cpf:nums($("manageCpf").value),
+    telefone:$("manageTel").value.trim(),
+    curso:$("manageCurso").value.trim(),
+    vinculo,
+    autorizacao:$("manageAuth").value.trim()
+  };
+
+  if(!atleta.nome || !atleta.cpf){ toast("Preencha nome e CPF.", "error"); return; }
+  if(vinculo !== "Convidado extracurricular" && (!atleta.ra || !atleta.curso)){ toast("Aluno precisa de R.A e curso.", "error"); return; }
+  if(!validCPF(atleta.cpf)){ toast("CPF inválido.", "error"); return; }
+  if(vinculo === "Convidado extracurricular" && !atleta.autorizacao){ toast("Informe a autorização do convidado.", "error"); return; }
+
+  const button = $("manageAddAthlete");
+  const original = button.textContent;
+  button.disabled = true;
+  button.textContent = "Adicionando...";
+  try{
+    const result = await unicapApi("manageOfficialTeam", {
+      token,
+      operacao:"adicionar",
+      idEquipe:activeManageTeamId,
+      atleta
+    });
+    dashboardCache = result;
+    ["manageNome","manageRa","manageCpf","manageTel","manageCurso","manageAuth"].forEach(id => $(id).value = "");
+    renderDashboard(result);
+    renderRosterManager();
+    toast("Atleta adicionado ao elenco.");
+  }catch(err){
+    toast(err instanceof Error ? err.message : "Não foi possível adicionar o atleta.", "error");
+  }finally{
+    button.disabled = false;
+    button.textContent = original;
+  }
+}
+
+$("manageCpf")?.addEventListener("input", () => $("manageCpf").value = cpfMask($("manageCpf").value));
+$("manageTel")?.addEventListener("input", () => $("manageTel").value = phoneMask($("manageTel").value));
+$("manageVinculo")?.addEventListener("change", () => {
+  $("manageAuthWrap").hidden = $("manageVinculo").value !== "Convidado extracurricular";
+});
+$("manageAddAthlete")?.addEventListener("click", addSavedAthlete);
+document.querySelectorAll("[data-close-roster]").forEach(button => button.addEventListener("click", closeRosterManager));
+document.addEventListener("keydown", e => {
+  if(e.key === "Escape" && !$("rosterModal").hidden) closeRosterManager();
+});
 
 $("refreshTeams")?.addEventListener("click", () => loadDashboard(true));
 $("refreshAthletes")?.addEventListener("click", () => loadDashboard(true));

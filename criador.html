@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#680012">
+  <title>Acesso da Equipe Independente | UNICAP Esporte</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="./assets/favicon-192.png">
+</head>
+<body class="subpage-body">
+  <header class="subpage-header">
+    <a class="brand brand-esporte" href="./index.html" style="text-decoration:none">
+      <span class="round-logo"><img src="./assets/unicap-esporte.jpg" alt=""></span>
+      <span class="brand-copy"><strong>UNICAP</strong><b>Esporte</b></span>
+    </a>
+    <div class="header-actions">
+      <a class="back-home" href="./aluno.html">＋ Criar nova equipe</a>
+      <a class="back-home" href="./index.html">← Voltar ao site</a>
+      <div class="university-logo"><img src="./assets/unicap-universidade.jpg" alt="Universidade Católica de Pernambuco"></div>
+    </div>
+  </header>
+
+  <main class="subpage-shell">
+    <section class="subpage-visual creator-login-visual">
+      <div class="subpage-kicker">EQUIPE INDEPENDENTE</div>
+      <h1>Volte à sua equipe sempre que precisar.</h1>
+      <p>Use o e-mail e a senha definidos no primeiro cadastro para consultar o elenco e manter os participantes atualizados.</p>
+      <div class="visual-points">
+        <div class="visual-point"><b>01</b><span>Entre com o e-mail do responsável pela equipe.</span></div>
+        <div class="visual-point"><b>02</b><span>Veja todas as equipes vinculadas ao seu perfil.</span></div>
+        <div class="visual-point"><b>03</b><span>Adicione ou remova atletas quando precisar corrigir o elenco.</span></div>
+      </div>
+    </section>
+
+    <section class="subpage-content">
+      <div class="subpage-card">
+        <div class="subpage-card-head">
+          <div>
+            <div class="eyebrow">Acesso do responsável</div>
+            <h2>Criador de Equipe</h2>
+            <p>Entre com o acesso criado no cadastro da equipe independente.</p>
+          </div>
+          <span class="secure-badge">● ACESSO RESTRITO</span>
+        </div>
+
+        <form id="creatorLogin" class="login-form">
+          <label><span>E-mail *</span><input id="creatorEmail" type="email" autocomplete="username" placeholder="seuemail@exemplo.com"></label>
+          <label><span>Senha *</span><input id="creatorPass" type="password" autocomplete="current-password" placeholder="••••••••"></label>
+          <button class="btn btn-primary login-submit" type="submit">Entrar no painel →</button>
+        </form>
+
+        <div class="helper-box">
+          <strong>Ainda não possui acesso?</strong> O perfil é criado automaticamente quando a primeira equipe independente é cadastrada.
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="toast" class="toast"></div>
+  <script src="./config.js"></script>
+  <script src="./api.js"></script>
+  <script src="./criador.js"></script>
+</body>
+</html>

@@ -175,6 +175,36 @@
 
     </section>
   </main>
+
+  <div class="roster-modal" id="rosterModal" hidden>
+    <button class="roster-backdrop" type="button" data-close-roster aria-label="Fechar"></button>
+    <section class="roster-dialog" role="dialog" aria-modal="true" aria-labelledby="rosterTitle">
+      <div class="roster-head">
+        <div><span>GERENCIAR ELENCO</span><h2 id="rosterTitle">Equipe</h2><p id="rosterSubtitle">Modalidade</p></div>
+        <button class="roster-close" type="button" data-close-roster>×</button>
+      </div>
+      <div class="roster-content">
+        <div class="roster-current">
+          <h3>Atletas atuais <span id="rosterCount">0</span></h3>
+          <div id="rosterList" class="roster-list"></div>
+        </div>
+        <div class="roster-add">
+          <h3>Adicionar atleta</h3>
+          <div class="form-grid compact-grid">
+            <label><span>Nome completo *</span><input id="manageNome"></label>
+            <label><span>R.A / Matrícula *</span><input id="manageRa"></label>
+            <label><span>CPF *</span><input id="manageCpf" placeholder="000.000.000-00"></label>
+            <label><span>Telefone</span><input id="manageTel" placeholder="(81) 99999-9999"></label>
+            <label><span>Curso *</span><input id="manageCurso"></label>
+            <label><span>Vínculo *</span><select id="manageVinculo"><option>Aluno do próprio curso</option><option>Aluno de outro curso</option><option>Convidado extracurricular</option></select></label>
+            <label class="full" id="manageAuthWrap" hidden><span>Autorização / observação *</span><textarea id="manageAuth" rows="3"></textarea></label>
+          </div>
+          <button class="btn btn-primary roster-add-button" type="button" id="manageAddAthlete">＋ Adicionar ao elenco</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <div id="toast" class="toast"></div>
   <script src="./config.js"></script>
   <script src="./api.js"></script>

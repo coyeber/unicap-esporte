@@ -132,8 +132,8 @@ function appMarkup(){
     <div class="path-grid">
       <article class="path-card reveal">
         <div class="path-icon">${icon("student")}</div>
-        <h3>Coordenador do Curso</h3>
-        <p>Para cursos sem atlética ou equipes organizadas diretamente pelo curso, o coordenador responsável cadastra a equipe e seus atletas.</p>
+        <h3>Criador de Equipe / Coordenador do Curso</h3>
+        <p>Para equipes independentes, o responsável cria a equipe e recebe um painel próprio para manter o elenco atualizado.</p>
         <button class="mini-action" data-action="openStudent">→</button>
         <div class="path-art">${icon("student")}</div>
       </article>
@@ -217,7 +217,7 @@ function appMarkup(){
     </div>
 
     <div class="portal-tabs reveal">
-      <button data-portal="aluno" class="${state.portalTab==="aluno"?"active":""}">Coordenador do Curso</button>
+      <button data-portal="aluno" class="${state.portalTab==="aluno"?"active":""}">Criador de Equipe</button>
       <button data-portal="coordenador" class="${state.portalTab==="coordenador"?"active":""}">Coordenador de Atlética</button>
     </div>
 
@@ -270,15 +270,18 @@ function appMarkup(){
 function studentFormMarkup(){
   return `
   <div class="panel-title">
-    <div><h3>Inscrição por curso</h3><small>Área do coordenador do curso</small></div>
-    <span class="dash-pill">Coordenador do Curso</span>
+    <div><h3>Equipe independente</h3><small>Área do criador da equipe</small></div>
+    <span class="dash-pill">Criador de Equipe</span>
   </div>
   <div class="form-content portal-public-access">
     <div class="portal-public-copy">
-      <strong>Cadastre a equipe representando o seu curso.</strong>
-      <p>O coordenador do curso informa os dados da equipe, escolhe a modalidade, cadastra os atletas e envia a inscrição.</p>
+      <strong>Cadastre a equipe e crie seu acesso.</strong>
+      <p>Depois do primeiro cadastro, o responsável poderá entrar no painel para adicionar ou remover atletas da própria equipe.</p>
     </div>
-    <a class="btn btn-primary" href="./aluno.html">Cadastrar equipe ${icon("arrow")}</a>
+    <div class="portal-public-actions">
+      <a class="btn btn-primary" href="./aluno.html">Cadastrar equipe ${icon("arrow")}</a>
+      <a class="btn btn-outline" href="./criador.html">Já tenho equipe · Entrar no painel</a>
+    </div>
   </div>`;
 }
 

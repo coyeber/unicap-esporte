@@ -73,7 +73,7 @@ function content(){
       <label><span>Curso base *</span><input id="baseCourse" value="${esc(d.baseCourse||"")}"></label>
       <label class="full"><span>Modalidade *</span>
         <select id="teamSport">
-          ${["Dominó","Vôlei Misto","Tênis de Mesa","Futsal Masculino","Futsal Feminino","Basquete","Futmesa"]
+          ${["Dominó","Vôlei Misto","Tênis de Mesa","Futsal Masculino","Futsal Feminino","Handebol Masculino","Handebol Feminino","Basquete","Futmesa"]
             .map(x=>`<option ${d.teamSport===x?"selected":""}>${x}</option>`).join("")}
         </select>
       </label>

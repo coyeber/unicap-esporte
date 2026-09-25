@@ -9,6 +9,8 @@ const SPORTS = [
   {name:"Tênis de Mesa", icon:"ping", desc:"Velocidade, reflexo e precisão.", image:"./assets/tenis-mesa.jpg", tag:"Mesa"},
   {name:"Futsal Masculino", icon:"soccer", desc:"Intensidade, disputa e talento.", image:"./assets/futsal-1.jpg", tag:"Futsal"},
   {name:"Futsal Feminino", icon:"soccer", desc:"Força, técnica e protagonismo.", image:"./assets/futsal-2.jpg", tag:"Futsal"},
+  {name:"Handebol Masculino", icon:"handball", desc:"Velocidade, força e estratégia em equipe.", image:"", tag:"Quadra"},
+  {name:"Handebol Feminino", icon:"handball", desc:"Intensidade, técnica e trabalho coletivo.", image:"", tag:"Quadra"},
   {name:"Basquete", icon:"basket", desc:"Coletivo, ritmo e vibração.", image:"./assets/basquete.jpg", tag:"Quadra"},
   {name:"Futmesa", icon:"table", desc:"Criatividade, controle e espetáculo.", image:"./assets/futmesa.jpg", tag:"Areia"}
 ];
@@ -72,6 +74,7 @@ function icon(name){
     volley:`<svg ${base}><circle cx="24" cy="24" r="18"/><path d="M12 10c10 3 17 9 21 18M15 40c2-12 8-22 18-29M7 28c12-4 24-4 35 2"/></svg>`,
     ping:`<svg ${base}><circle cx="18" cy="18" r="11"/><path d="m26 26 12 12"/><circle cx="38" cy="12" r="4"/></svg>`,
     soccer:`<svg ${base}><circle cx="24" cy="24" r="18"/><path d="m24 15 7 5-3 8h-8l-3-8 7-5Z"/><path d="M17 20 9 17M31 20l8-3M20 28l-4 9M28 28l4 9M24 15V6"/></svg>`,
+    handball:`<svg ${base}><circle cx="31" cy="17" r="10"/><path d="M24 10c3 4 7 7 13 9M22 18c5-1 10 1 15 5M29 7c-1 6 1 12 6 18"/><path d="M8 39c3-8 7-13 13-17M7 31c4-2 8-2 12 0M11 24c3-1 6 0 9 2"/></svg>`,
     basket:`<svg ${base}><circle cx="24" cy="24" r="18"/><path d="M9 12c8 7 12 15 13 30M26 6c-5 11-6 23 1 36M6 24h36M10 35c11-7 21-10 31-8"/></svg>`,
     table:`<svg ${base}><path d="M6 19h36"/><path d="m11 19-5 23M37 19l5 23M24 19v23"/><circle cx="34" cy="10" r="4"/></svg>`,
     code:`<svg ${base}><rect x="5" y="8" width="38" height="26" rx="3"/><path d="M15 42h18M24 34v8M18 17l-5 4 5 4M30 17l5 4-5 4"/></svg>`,
@@ -331,7 +334,7 @@ function dashboardPreviewMarkup(){
       <div class="stats">
         <div class="stat"><b>3</b><span>Equipes inscritas</span></div>
         <div class="stat"><b>42</b><span>Atletas cadastrados</span></div>
-        <div class="stat"><b>7</b><span>Modalidades</span></div>
+        <div class="stat"><b>9</b><span>Modalidades</span></div>
         <div class="stat"><b style="color:#16855f">100%</b><span>Inscrições em dia</span></div>
       </div>
       <div class="dash-tabs"><button class="active">Equipes</button><button>Atletas</button><button>Inscrições</button><button>Estatísticas</button></div>

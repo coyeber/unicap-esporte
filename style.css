@@ -821,6 +821,12 @@ textarea{resize:vertical}
   font:inherit;font-size:9px;font-weight:900;cursor:pointer;white-space:nowrap;transition:.18s
 }
 .table-action:hover{background:#760018;color:#fff;border-color:#760018}
+.team-action-group{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.table-action.secondary{background:#fff;color:#5d0012;border-color:#d8c1c6}
+.table-action.secondary:hover{background:#5d0012;color:#fff;border-color:#5d0012}
+.sport-dialog{width:min(560px,96vw)}
+.sport-dialog .roster-content{grid-template-columns:1fr}
+.sport-dialog select{width:100%;margin-top:7px;padding:12px 13px;border:1px solid #dfd4cf;border-radius:11px;background:#fff;font:inherit;font-size:11px;color:#4e0010}
 body.modal-open{overflow:hidden}
 .roster-modal[hidden]{display:none!important}
 .roster-modal{position:fixed;inset:0;z-index:2000;display:grid;place-items:center;padding:24px}

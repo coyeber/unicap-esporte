@@ -24,7 +24,8 @@ const COURSES = [
   ["Ciência da Computação","computer"],
   ["Matemática","math"],
   ["Arquitetura","architecture"],
-  ["Administração","business"]
+  ["Administração","business"],
+  ["Engenharia da Complexidade","engineering"]
 ];
 
 const state = {
@@ -86,6 +87,7 @@ function icon(name){
     math:`<svg ${base}><path d="M37 8H14l12 16-12 16h23"/></svg>`,
     architecture:`<svg ${base}><path d="M9 39 24 7l15 32H9Z"/><path d="M24 16v17M17 33h14"/></svg>`,
     business:`<svg ${base}><path d="M9 39V26h6v13M21 39V18h6v21M33 39V10h6v29"/></svg>`,
+    engineering:`<svg ${base}><circle cx="24" cy="24" r="7"/><path d="M24 5v6M24 37v6M5 24h6M37 24h6M10.5 10.5l4.2 4.2M33.3 33.3l4.2 4.2M37.5 10.5l-4.2 4.2M14.7 33.3l-4.2 4.2"/><circle cx="24" cy="24" r="16"/></svg>`,
     calendar:`<svg ${base}><rect x="6" y="10" width="36" height="32" rx="4"/><path d="M14 5v10M34 5v10M6 19h36"/><path d="M14 27h5M24 27h5M34 27h2M14 34h5M24 34h5"/></svg>`,
     check:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 4 4L19 6"/></svg>`
   };
@@ -203,7 +205,7 @@ function appMarkup(){
         <div class="eyebrow">Atléticas e cursos</div>
         <h2>Orgulho de cada curso. Força de uma só universidade.</h2>
       </div>
-      <p>Nove atléticas oficiais + equipes independentes.</p>
+      <p>Dez atléticas oficiais + equipes independentes.</p>
     </div>
     <div class="course-grid">
       ${COURSES.map(([name,ico])=>`<article class="course-card reveal"><div class="course-icon">${icon(ico)}</div><strong>${name}</strong></article>`).join("")}

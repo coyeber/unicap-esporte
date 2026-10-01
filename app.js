@@ -109,11 +109,6 @@ function appMarkup(){
       <div class="hero-kicker">UNICAP ESPORTE</div>
       <h1>Inscrições <span>abertas</span></h1>
       <p class="hero-lead"><strong>As inscrições não são individuais.</strong> O cadastro das equipes deve ser realizado pelo coordenador da atlética ou pelo coordenador do curso.</p>
-      <div class="hero-benefits">
-        <div class="benefit"><div class="benefit-icon">${icon("trophy")}</div><div><strong>Competição</strong><span>saudável</span></div></div>
-        <div class="benefit"><div class="benefit-icon">${icon("users")}</div><div><strong>Integração</strong><span>entre cursos</span></div></div>
-        <div class="benefit"><div class="benefit-icon">${icon("heart")}</div><div><strong>Universidade</strong><span>mais forte</span></div></div>
-      </div>
       <div class="hero-actions">
         <button class="btn btn-ghost" data-scroll="modalidades">Conheça as modalidades</button>
       </div>

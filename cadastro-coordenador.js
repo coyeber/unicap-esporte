@@ -10,6 +10,8 @@ if (!token || !athletic) {
 const athletes = [];
 let dashboardCache = null;
 let activeManageTeamId = "";
+let activeSportTeamId = "";
+const MODALIDADES = ["Dominó","Vôlei Misto","Tênis de Mesa","Futsal Masculino","Futsal Feminino","Handebol Masculino","Handebol Feminino","Basquete","Futmesa"];
 const $ = id => document.getElementById(id);
 const nums = v => (v || "").replace(/\D/g, "");
 const cpfMask = v => nums(v).slice(0,11)
@@ -225,13 +227,16 @@ function renderTeamDirectory(teams){
             <td>${esc(t.atletas)}</td>
             <td><span class="status-pill">${esc(t.status || "INSCRITA")}</span></td>
             <td><code>${esc(t.idEquipe)}</code></td>
-            <td><button class="table-action" type="button" data-manage-team="${esc(t.idEquipe)}">Gerenciar elenco</button></td>
+            <td><div class="team-action-group"><button class="table-action" type="button" data-manage-team="${esc(t.idEquipe)}">Gerenciar elenco</button><button class="table-action secondary" type="button" data-change-sport="${esc(t.idEquipe)}">Mudar modalidade</button></div></td>
           </tr>`).join("")}</tbody>
       </table>
     </div>`;
 
   root.querySelectorAll("[data-manage-team]").forEach(button => {
     button.addEventListener("click", () => openRosterManager(button.dataset.manageTeam));
+  });
+  root.querySelectorAll("[data-change-sport]").forEach(button => {
+    button.addEventListener("click", () => openSportManager(button.dataset.changeSport));
   });
 }
 
@@ -271,6 +276,64 @@ function renderAthleteDirectory(list){
       </table>
     </div>`;
 }
+
+// ===== Alterar modalidade de uma equipe já salva =====
+function openSportManager(teamId){
+  const team = (dashboardCache?.listaEquipes || []).find(t => t.idEquipe === teamId);
+  if(!team) return;
+
+  activeSportTeamId = teamId;
+  $("sportTeamName").textContent = team.nomeEquipe || "Equipe";
+  $("sportSelect").innerHTML = MODALIDADES.map(m => `<option value="${esc(m)}">${esc(m)}</option>`).join("");
+  $("sportSelect").value = team.modalidade || MODALIDADES[0];
+  $("sportModal").hidden = false;
+  document.body.classList.add("modal-open");
+}
+
+function closeSportManager(){
+  activeSportTeamId = "";
+  $("sportModal").hidden = true;
+  document.body.classList.remove("modal-open");
+}
+
+async function saveSportChange(){
+  const team = (dashboardCache?.listaEquipes || []).find(t => t.idEquipe === activeSportTeamId);
+  if(!team) return closeSportManager();
+
+  const modalidade = $("sportSelect").value;
+  if(!modalidade || modalidade === team.modalidade){
+    toast("Selecione uma modalidade diferente.", "error");
+    return;
+  }
+
+  if(!confirm(`Alterar ${team.nomeEquipe} de ${team.modalidade} para ${modalidade}?`)) return;
+
+  const button = $("saveSportChange");
+  const original = button.textContent;
+  button.disabled = true;
+  button.textContent = "Salvando...";
+
+  try{
+    const result = await unicapApi("manageOfficialTeam", {
+      token,
+      operacao:"modalidade",
+      idEquipe:activeSportTeamId,
+      modalidade
+    });
+    dashboardCache = result;
+    renderDashboard(result);
+    closeSportManager();
+    toast("Modalidade alterada com sucesso.");
+  }catch(err){
+    toast(err instanceof Error ? err.message : "Não foi possível alterar a modalidade.", "error");
+  }finally{
+    button.disabled = false;
+    button.textContent = original;
+  }
+}
+
+$("saveSportChange")?.addEventListener("click", saveSportChange);
+document.querySelectorAll("[data-close-sport]").forEach(button => button.addEventListener("click", closeSportManager));
 
 // ===== Gerenciar elenco de uma equipe já salva =====
 function openRosterManager(teamId){
@@ -376,7 +439,9 @@ $("manageVinculo")?.addEventListener("change", () => {
 $("manageAddAthlete")?.addEventListener("click", addSavedAthlete);
 document.querySelectorAll("[data-close-roster]").forEach(button => button.addEventListener("click", closeRosterManager));
 document.addEventListener("keydown", e => {
-  if(e.key === "Escape" && !$("rosterModal").hidden) closeRosterManager();
+  if(e.key !== "Escape") return;
+  if(!$("rosterModal").hidden) closeRosterManager();
+  if(!$("sportModal").hidden) closeSportManager();
 });
 
 $("refreshTeams")?.addEventListener("click", () => loadDashboard(true));

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#570010">
+  <title>E-Sports UNICAP | Supercopa 2026</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+</head>
+<body class="esports-page">
+  <header class="subpage-header">
+    <a class="brand brand-esporte" href="./index.html" style="text-decoration:none">
+      <span class="round-logo"><img src="./assets/unicap-esporte.jpg" alt=""></span>
+      <span class="brand-copy"><strong>UNICAP</strong><b>Esporte</b></span>
+    </a>
+    <div class="header-actions">
+      <a class="back-home" href="./index.html">← Voltar ao site</a>
+      <div class="university-logo"><img src="./assets/unicap-universidade.jpg" alt="Universidade Católica de Pernambuco"></div>
+    </div>
+  </header>
+
+  <main class="esports-shell">
+    <section class="esports-intro">
+      <div>
+        <span class="esports-kicker">SUPERCOPA UNICAP 2026</span>
+        <h1>E-Sports <em>UNICAP</em></h1>
+        <p>Inscrição individual e direta. Não é necessário ser coordenador, criar equipe ou cadastrar login.</p>
+      </div>
+      <div class="esports-games">
+        <article><span>01</span><strong>Clash Royale</strong><small>Inscrição individual</small></article>
+        <article><span>02</span><strong>eFootball</strong><small>Inscrição individual</small></article>
+      </div>
+    </section>
+
+    <section class="esports-form-card">
+      <div class="esports-form-head">
+        <div><span>INSCRIÇÃO</span><h2>Garanta sua participação</h2><p>Você pode realizar mais de uma inscrição, inclusive uma para cada game.</p></div>
+        <span class="status-pill">INSCRIÇÕES ABERTAS</span>
+      </div>
+
+      <form id="esportsForm">
+        <div class="form-grid">
+          <label class="full"><span>Nome completo *</span><input id="espNome" autocomplete="name" required></label>
+          <label><span>R.A / Matrícula *</span><input id="espRa" required></label>
+          <label><span>CPF *</span><input id="espCpf" inputmode="numeric" placeholder="000.000.000-00" required></label>
+          <label><span>Telefone *</span><input id="espTelefone" inputmode="tel" placeholder="(81) 99999-9999" required></label>
+          <label><span>E-mail *</span><input id="espEmail" type="email" autocomplete="email" required></label>
+          <label><span>Curso *</span><input id="espCurso" placeholder="Ex.: Sistemas para Internet" required></label>
+          <label><span>Game *</span>
+            <select id="espGame" required>
+              <option value="">Selecione</option>
+              <option>Clash Royale</option>
+              <option>eFootball</option>
+            </select>
+          </label>
+        </div>
+        <div class="esports-notice">Os dados desta inscrição são salvos separadamente das equipes oficiais e independentes.</div>
+        <button class="btn btn-primary esports-submit" type="submit">Confirmar inscrição →</button>
+      </form>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="./config.js"></script>
+  <script src="./api.js"></script>
+  <script src="./esports.js"></script>
+</body>
+</html>

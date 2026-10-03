@@ -144,6 +144,13 @@ function appMarkup(){
         <button class="mini-action" data-action="openManager">→</button>
         <div class="path-art">${icon("manager")}</div>
       </article>
+      <article class="path-card esports-path reveal">
+        <div class="path-icon esports-path-icon">🎮</div>
+        <h3>E-Sports UNICAP</h3>
+        <p>Inscrição individual para Clash Royale e eFootball. Sem coordenador, sem equipe e sem criação de login.</p>
+        <button class="mini-action" data-action="openEsports">→</button>
+        <div class="path-art">🎮</div>
+      </article>
       <article class="path-card admin reveal">
         <div class="path-icon">${icon("admin")}</div>
         <h3>Administrador</h3>
@@ -452,6 +459,9 @@ function wireGlobal(){
   }));
   document.querySelectorAll("[data-action='openAdmin']").forEach(btn=>btn.addEventListener("click",()=>{
     window.location.href="./administrador.html";
+  }));
+  document.querySelectorAll("[data-action='openEsports']").forEach(btn=>btn.addEventListener("click",()=>{
+    window.location.href="./esports.html";
   }));
   document.querySelectorAll("[data-portal]").forEach(btn=>btn.addEventListener("click",()=>{
     if(btn.dataset.portal==="coordenador"){

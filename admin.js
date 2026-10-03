@@ -37,6 +37,7 @@ const panelMeta = {
   overview:["Administração","Visão geral"],
   teams:["Inscrições","Todas as equipes"],
   athletes:["Participantes","Todos os atletas"],
+  esports:["E-Sports UNICAP","Inscrições E-Sports"],
   updates:["Atualizações","Inscrições recentes"]
 };
 
@@ -72,7 +73,7 @@ async function loadAdmin(force=false){
       return;
     }
     toast(message,"error");
-    ["adminTeams","adminAthletes","overviewRecent","sportSummary","adminUpdates"].forEach(id => {
+    ["adminTeams","adminAthletes","adminEsports","overviewRecent","sportSummary","adminUpdates"].forEach(id => {
       if($(id)) $(id).innerHTML = `<div class="admin-empty"><div><strong>Não foi possível carregar.</strong><span>${esc(message)}</span></div></div>`;
     });
   }finally{
@@ -104,6 +105,7 @@ function renderAll(){
   renderRecent("adminUpdates", adminData.recentes || []);
   renderTeams();
   renderAthletes();
+  renderEsports();
 }
 
 function renderSportSummary(){
@@ -187,6 +189,40 @@ function renderAthletes(){
       <td><span class="status-pill">${esc(a.status || "INSCRITA")}</span></td>
     </tr>`).join("")}</tbody></table></div>`;
 }
+
+function renderEsports(){
+  const root = $("adminEsports");
+  if(!root || !adminData) return;
+  const all = adminData.esports || [];
+  const q = String($("esportsSearch")?.value || "").trim().toLowerCase();
+  const game = $("esportsGame")?.value || "";
+  const list = all.filter(item => {
+    const hay = [item.nome,item.ra,item.telefone,item.email,item.curso,item.game,item.idInscricao].join(" ").toLowerCase();
+    return (!q || hay.includes(q)) && (!game || item.game === game);
+  });
+  if($("statEsports")) $("statEsports").textContent = all.length;
+  if($("statClash")) $("statClash").textContent = all.filter(i => i.game === "Clash Royale").length;
+  if($("statEfootball")) $("statEfootball").textContent = all.filter(i => i.game === "eFootball").length;
+  if(!list.length){
+    root.innerHTML = '<div class="admin-empty"><div><strong>Nenhuma inscrição E-Sports encontrada.</strong><span>As inscrições aparecerão aqui quando forem realizadas.</span></div></div>';
+    return;
+  }
+  root.innerHTML = `<div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Data</th><th>Participante</th><th>R.A / Matrícula</th><th>Curso</th><th>Game</th><th>Telefone</th><th>E-mail</th><th>Status</th><th>ID</th></tr></thead><tbody>${list.map(i => `
+    <tr>
+      <td>${esc(dateLabel(i.dataHora))}</td>
+      <td><strong>${esc(i.nome)}</strong></td>
+      <td>${esc(i.ra || "—")}</td>
+      <td>${esc(i.curso || "—")}</td>
+      <td><span class="admin-type ind">${esc(i.game)}</span></td>
+      <td>${esc(i.telefone || "—")}</td>
+      <td>${esc(i.email || "—")}</td>
+      <td><span class="status-pill">${esc(i.status || "INSCRITO")}</span></td>
+      <td><code>${esc(i.idInscricao)}</code></td>
+    </tr>`).join("")}</tbody></table></div>`;
+}
+
+$("esportsSearch")?.addEventListener("input", renderEsports);
+$("esportsGame")?.addEventListener("change", renderEsports);
 
 ["teamSearch","teamType","teamSport"].forEach(id => $(id)?.addEventListener("input", renderTeams));
 ["teamType","teamSport"].forEach(id => $(id)?.addEventListener("change", renderTeams));

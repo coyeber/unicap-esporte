@@ -30,6 +30,7 @@ $("espTelefone").addEventListener("input",()=> $("espTelefone").value=phoneMask(
 
 $("esportsForm").addEventListener("submit",async e=>{
   e.preventDefault();
+  const form=e.currentTarget;
   const data={
     nome:$("espNome").value.trim(),
     ra:$("espRa").value.trim(),
@@ -43,13 +44,13 @@ $("esportsForm").addEventListener("submit",async e=>{
     toast("Preencha todos os campos.","error"); return;
   }
   if(!validCPF(data.cpf)){ toast("CPF inválido.","error"); return; }
-  const button=e.currentTarget.querySelector('button[type="submit"]');
+  const button=form.querySelector('button[type="submit"]');
   const original=button.textContent;
   button.disabled=true; button.textContent="Enviando...";
   try{
     const result=await unicapApi("saveEsportsRegistration",data);
     toast(`Inscrição realizada! ID: ${result.idInscricao}`);
-    e.currentTarget.reset();
+    form.reset();
   }catch(err){
     toast(err instanceof Error ? err.message : "Não foi possível realizar a inscrição.","error");
   }finally{

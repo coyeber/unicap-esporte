@@ -857,3 +857,16 @@ body.modal-open{overflow:hidden}
   .creator-new-card{align-items:stretch;flex-direction:column}.creator-new-card .btn{justify-content:center}
   .portal-public-actions{align-items:stretch;flex-direction:column}.portal-public-actions .btn{width:100%;justify-content:center}
 }
+
+
+/* ===== E-Sports UNICAP ===== */
+.esports-path{background:linear-gradient(145deg,#250007,#700019)!important;color:#fff;border-color:#7e1830!important}
+.esports-path h3,.esports-path p{color:#fff!important}.esports-path p{opacity:.72}.esports-path .mini-action{background:#fff;color:#6d0017}.esports-path .path-art{font-size:92px;opacity:.08}.esports-path-icon{font-size:30px}
+.esports-page{min-height:100vh;background:radial-gradient(circle at 85% 8%,rgba(174,0,45,.12),transparent 26%),#f4efe9}
+.esports-shell{max-width:1180px;margin:auto;padding:58px 24px 90px}
+.esports-intro{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:38px;border-radius:28px;background:linear-gradient(135deg,#240006,#720018);color:#fff;box-shadow:0 25px 70px rgba(56,0,11,.18)}
+.esports-kicker{font-size:10px;font-weight:950;letter-spacing:.18em;color:#e5bd72}.esports-intro h1{font-size:clamp(46px,7vw,78px);line-height:.95;letter-spacing:-.055em;margin:12px 0}.esports-intro h1 em{font-style:normal;color:#e9bd6c}.esports-intro p{max-width:650px;color:rgba(255,255,255,.72);font-size:14px;line-height:1.65}
+.esports-games{display:grid;gap:10px}.esports-games article{display:grid;grid-template-columns:42px 1fr;gap:2px 12px;align-items:center;padding:16px;border:1px solid rgba(255,255,255,.13);border-radius:16px;background:rgba(255,255,255,.07)}.esports-games article>span{grid-row:1/3;width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#e7bd6e;color:#3b0009;font-weight:950}.esports-games strong{font-size:17px}.esports-games small{color:rgba(255,255,255,.55)}
+.esports-form-card{max-width:900px;margin:28px auto 0;background:#fff;border:1px solid var(--line);border-radius:26px;padding:30px;box-shadow:var(--shadow)}.esports-form-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:25px}.esports-form-head>div>span{font-size:9px;letter-spacing:.16em;font-weight:950;color:#900020}.esports-form-head h2{font-size:32px;margin:5px 0}.esports-form-head p{margin:0;color:var(--muted);font-size:11px}.esports-notice{margin-top:18px;padding:12px 14px;border-radius:12px;background:#faf3e5;border:1px solid #eeddb6;color:#70592e;font-size:10px}.esports-submit{margin-top:18px;width:100%;justify-content:center}
+.esports-admin-stats{grid-template-columns:repeat(3,minmax(0,1fr));max-width:720px}.esports-admin-filters{grid-template-columns:minmax(220px,1fr) 200px}
+@media(max-width:760px){.esports-shell{padding:28px 14px 70px}.esports-intro{grid-template-columns:1fr;padding:24px}.esports-form-card{padding:20px}.esports-form-head{flex-direction:column}.esports-admin-stats{grid-template-columns:1fr 1fr}.esports-admin-filters{grid-template-columns:1fr}}

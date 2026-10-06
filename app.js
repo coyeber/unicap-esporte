@@ -12,7 +12,8 @@ const SPORTS = [
   {name:"Handebol Masculino", icon:"handball", desc:"Velocidade, força e estratégia em equipe.", image:"", tag:"Quadra"},
   {name:"Handebol Feminino", icon:"handball", desc:"Intensidade, técnica e trabalho coletivo.", image:"", tag:"Quadra"},
   {name:"Basquete", icon:"basket", desc:"Coletivo, ritmo e vibração.", image:"./assets/basquete.jpg", tag:"Quadra"},
-  {name:"Futmesa", icon:"table", desc:"Criatividade, controle e espetáculo.", image:"./assets/futmesa.jpg", tag:"Areia"}
+  {name:"Futmesa", icon:"table", desc:"Criatividade, controle e espetáculo.", image:"./assets/futmesa.jpg", tag:"Areia"},
+  {name:"X1 Futebol", icon:"soccer", desc:"Duelo individual, habilidade e intensidade no um contra um.", image:"", tag:"Individual"}
 ];
 
 const COURSES = [
@@ -127,7 +128,7 @@ function appMarkup(){
   <section class="section white" id="como-funciona">
     <div class="section-heading reveal">
       <div class="eyebrow">Como fazer a inscrição</div>
-      <h2>A inscrição deve ser realizada pelo coordenador responsável.</h2>
+      <h2>Escolha o tipo de inscrição da sua modalidade.</h2>
     </div>
     <div class="path-grid">
       <article class="path-card reveal">
@@ -150,6 +151,13 @@ function appMarkup(){
         <p>Inscrição individual para Clash Royale e eFootball. Sem coordenador, sem equipe e sem criação de login.</p>
         <button class="mini-action" data-action="openEsports">→</button>
         <div class="path-art">🎮</div>
+      </article>
+      <article class="path-card x1-path reveal">
+        <div class="path-icon x1-path-icon">⚽</div>
+        <h3>X1 Futebol</h3>
+        <p>Nova modalidade com inscrição individual e direta. Sem necessidade de criar equipe ou acessar painel de coordenador.</p>
+        <button class="mini-action" data-action="openX1">→</button>
+        <div class="path-art">1×1</div>
       </article>
       <article class="path-card admin reveal">
         <div class="path-icon">${icon("admin")}</div>
@@ -220,7 +228,7 @@ function appMarkup(){
         <div class="eyebrow">Portal de inscrições</div>
         <h2>Acesso para os responsáveis pelas inscrições.</h2>
       </div>
-      <p>Este portal não é destinado à inscrição individual de atletas. O cadastro deve ser feito pelo coordenador do curso ou da atlética.</p>
+      <p>Equipes são cadastradas pelo responsável ou coordenador. E-Sports e X1 Futebol possuem inscrição individual própria.</p>
     </div>
 
     <div class="portal-tabs reveal">
@@ -462,6 +470,9 @@ function wireGlobal(){
   }));
   document.querySelectorAll("[data-action='openEsports']").forEach(btn=>btn.addEventListener("click",()=>{
     window.location.href="./esports.html";
+  }));
+  document.querySelectorAll("[data-action='openX1']").forEach(btn=>btn.addEventListener("click",()=>{
+    window.location.href="./x1.html";
   }));
   document.querySelectorAll("[data-portal]").forEach(btn=>btn.addEventListener("click",()=>{
     if(btn.dataset.portal==="coordenador"){

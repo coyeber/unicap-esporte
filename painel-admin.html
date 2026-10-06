@@ -29,7 +29,7 @@
         <button class="active" type="button" data-view="overview">⌂ Visão geral</button>
         <button type="button" data-view="teams">▤ Equipes</button>
         <button type="button" data-view="athletes">● Atletas</button>
-        <button type="button" data-view="esports">🎮 E-Sports</button>
+        <button type="button" data-view="esports">◎ Inscrições individuais</button>
         <button type="button" data-view="updates">↻ Atualizações</button>
       </nav>
       <div class="admin-user">
@@ -98,19 +98,20 @@
 
       <section class="admin-panel" data-panel="esports" hidden>
         <div class="admin-toolbar">
-          <div><span class="panel-kicker">E-SPORTS UNICAP</span><h2>Inscrições E-Sports</h2><p>Participantes de Clash Royale e eFootball, separados das equipes esportivas.</p></div>
+          <div><span class="panel-kicker">MODALIDADES INDIVIDUAIS</span><h2>Inscrições individuais</h2><p>Participantes de Clash Royale, eFootball e X1 Futebol, separados das equipes esportivas.</p></div>
         </div>
         <div class="admin-stat-grid esports-admin-stats">
           <article class="admin-stat"><span>Total</span><strong id="statEsports">0</strong></article>
           <article class="admin-stat"><span>Clash Royale</span><strong id="statClash">0</strong></article>
           <article class="admin-stat"><span>eFootball</span><strong id="statEfootball">0</strong></article>
+          <article class="admin-stat"><span>X1 Futebol</span><strong id="statX1">0</strong></article>
         </div>
         <div class="admin-card" style="padding:0;overflow:hidden">
           <div class="admin-filters esports-admin-filters">
             <input id="esportsSearch" type="search" placeholder="Buscar nome, matrícula, curso ou e-mail…">
-            <select id="esportsGame"><option value="">Todos os games</option><option>Clash Royale</option><option>eFootball</option></select>
+            <select id="esportsGame"><option value="">Todas as modalidades</option><option>Clash Royale</option><option>eFootball</option><option>X1 Futebol</option></select>
           </div>
-          <div id="adminEsports"><div class="admin-loading">Carregando inscrições E-Sports…</div></div>
+          <div id="adminEsports"><div class="admin-loading">Carregando inscrições individuais…</div></div>
         </div>
       </section>
 

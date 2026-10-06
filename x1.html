@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#570010">
+  <title>X1 Futebol | Supercopa UNICAP 2026</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+</head>
+<body class="esports-page x1-page">
+  <header class="subpage-header">
+    <a class="brand brand-esporte" href="./index.html" style="text-decoration:none">
+      <span class="round-logo"><img src="./assets/unicap-esporte.jpg" alt=""></span>
+      <span class="brand-copy"><strong>UNICAP</strong><b>Esporte</b></span>
+    </a>
+    <div class="header-actions">
+      <a class="back-home" href="./index.html">← Voltar ao site</a>
+      <div class="university-logo"><img src="./assets/unicap-universidade.jpg" alt="Universidade Católica de Pernambuco"></div>
+    </div>
+  </header>
+
+  <main class="esports-shell">
+    <section class="esports-intro x1-intro">
+      <div>
+        <span class="esports-kicker">NOVA MODALIDADE · SUPERCOPA UNICAP 2026</span>
+        <h1>X1 <em>Futebol</em></h1>
+        <p>Inscrição individual e direta para a nova modalidade X1 da UNICAP Esporte. Não é necessário criar equipe ou acessar o painel de coordenador.</p>
+      </div>
+      <div class="esports-games">
+        <article><span>01</span><strong>X1 Futebol</strong><small>Inscrição individual</small></article>
+        <article><span>1×1</span><strong>Um contra um</strong><small>Nova modalidade da Supercopa</small></article>
+      </div>
+    </section>
+
+    <section class="esports-form-card">
+      <div class="esports-form-head">
+        <div><span>INSCRIÇÃO X1</span><h2>Garanta sua participação</h2><p>Preencha seus dados para realizar a inscrição individual no X1 Futebol.</p></div>
+        <span class="status-pill">INSCRIÇÕES ABERTAS</span>
+      </div>
+
+      <form id="x1Form">
+        <div class="form-grid">
+          <label class="full"><span>Nome completo *</span><input id="x1Nome" autocomplete="name" required></label>
+          <label><span>R.A / Matrícula *</span><input id="x1Ra" required></label>
+          <label><span>CPF *</span><input id="x1Cpf" inputmode="numeric" placeholder="000.000.000-00" required></label>
+          <label><span>Telefone *</span><input id="x1Telefone" inputmode="tel" placeholder="(81) 99999-9999" required></label>
+          <label><span>E-mail *</span><input id="x1Email" type="email" autocomplete="email" required></label>
+          <label><span>Curso *</span><input id="x1Curso" placeholder="Ex.: Sistemas para Internet" required></label>
+        </div>
+        <div class="esports-notice">Esta é uma inscrição individual. Não é necessário cadastrar equipe, elenco ou criar senha de acesso.</div>
+        <button class="btn btn-primary esports-submit" type="submit">Confirmar inscrição no X1 →</button>
+      </form>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="./config.js"></script>
+  <script src="./api.js"></script>
+  <script src="./x1.js"></script>
+</body>
+</html>

@@ -26,7 +26,8 @@ const COURSES = [
   ["Matemática","math"],
   ["Arquitetura","architecture"],
   ["Administração","business"],
-  ["Engenharia da Complexidade","engineering"]
+  ["Engenharia da Complexidade","engineering"],
+  ["Jornalismo","journalism"]
 ];
 
 const state = {
@@ -89,6 +90,7 @@ function icon(name){
     architecture:`<svg ${base}><path d="M9 39 24 7l15 32H9Z"/><path d="M24 16v17M17 33h14"/></svg>`,
     business:`<svg ${base}><path d="M9 39V26h6v13M21 39V18h6v21M33 39V10h6v29"/></svg>`,
     engineering:`<svg ${base}><circle cx="24" cy="24" r="7"/><path d="M24 5v6M24 37v6M5 24h6M37 24h6M10.5 10.5l4.2 4.2M33.3 33.3l4.2 4.2M37.5 10.5l-4.2 4.2M14.7 33.3l-4.2 4.2"/><circle cx="24" cy="24" r="16"/></svg>`,
+    journalism:`<svg ${base}><rect x="7" y="8" width="34" height="32" rx="3"/><path d="M13 15h14M13 21h22M13 27h22M13 33h14"/><rect x="29" y="13" width="6" height="6" rx="1"/></svg>`,
     calendar:`<svg ${base}><rect x="6" y="10" width="36" height="32" rx="4"/><path d="M14 5v10M34 5v10M6 19h36"/><path d="M14 27h5M24 27h5M34 27h2M14 34h5M24 34h5"/></svg>`,
     check:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 4 4L19 6"/></svg>`
   };
@@ -215,7 +217,7 @@ function appMarkup(){
         <div class="eyebrow">Atléticas e cursos</div>
         <h2>Orgulho de cada curso. Força de uma só universidade.</h2>
       </div>
-      <p>Dez atléticas oficiais + equipes independentes.</p>
+      <p>Onze atléticas oficiais + equipes independentes.</p>
     </div>
     <div class="course-grid">
       ${COURSES.map(([name,ico])=>`<article class="course-card reveal"><div class="course-icon">${icon(ico)}</div><strong>${name}</strong></article>`).join("")}

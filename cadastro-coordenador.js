@@ -11,7 +11,7 @@ const athletes = [];
 let dashboardCache = null;
 let activeManageTeamId = "";
 let activeSportTeamId = "";
-const MODALIDADES = ["Dominó","Vôlei Misto","Tênis de Mesa","Futsal Masculino","Futsal Feminino","Handebol Masculino","Handebol Feminino","Basquete","Futmesa"];
+const MODALIDADES = ["Dominó","Vôlei Misto","Tênis de Mesa","Futsal Masculino","Futsal Feminino","Handebol Masculino","Handebol Feminino","Basquete","Futmesa","X1 Futebol"];
 const $ = id => document.getElementById(id);
 const nums = v => (v || "").replace(/\D/g, "");
 const cpfMask = v => nums(v).slice(0,11)

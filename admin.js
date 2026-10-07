@@ -37,7 +37,7 @@ const panelMeta = {
   overview:["Administração","Visão geral"],
   teams:["Inscrições","Todas as equipes"],
   athletes:["Participantes","Todos os atletas"],
-  esports:["Modalidades individuais","Inscrições individuais"],
+  esports:["E-Sports UNICAP","Inscrições E-Sports"],
   updates:["Atualizações","Inscrições recentes"]
 };
 
@@ -203,12 +203,11 @@ function renderEsports(){
   if($("statEsports")) $("statEsports").textContent = all.length;
   if($("statClash")) $("statClash").textContent = all.filter(i => i.game === "Clash Royale").length;
   if($("statEfootball")) $("statEfootball").textContent = all.filter(i => i.game === "eFootball").length;
-  if($("statX1")) $("statX1").textContent = all.filter(i => i.game === "X1 Futebol").length;
   if(!list.length){
-    root.innerHTML = '<div class="admin-empty"><div><strong>Nenhuma inscrição individual encontrada.</strong><span>As inscrições aparecerão aqui quando forem realizadas.</span></div></div>';
+    root.innerHTML = '<div class="admin-empty"><div><strong>Nenhuma inscrição E-Sports encontrada.</strong><span>As inscrições aparecerão aqui quando forem realizadas.</span></div></div>';
     return;
   }
-  root.innerHTML = `<div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Data</th><th>Participante</th><th>R.A / Matrícula</th><th>Curso</th><th>Modalidade</th><th>Telefone</th><th>E-mail</th><th>Status</th><th>ID</th></tr></thead><tbody>${list.map(i => `
+  root.innerHTML = `<div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Data</th><th>Participante</th><th>R.A / Matrícula</th><th>Curso</th><th>Game</th><th>Telefone</th><th>E-mail</th><th>Status</th><th>ID</th></tr></thead><tbody>${list.map(i => `
     <tr>
       <td>${esc(dateLabel(i.dataHora))}</td>
       <td><strong>${esc(i.nome)}</strong></td>

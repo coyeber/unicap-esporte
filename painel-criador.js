@@ -54,7 +54,6 @@ $("sideEmail").textContent = creatorEmail || "Equipe independente";
 const panelMeta = {
   teams:{eyebrow:"Gestão da equipe", title:"Minhas equipes"},
   athletes:{eyebrow:"Gestão da equipe", title:"Atletas"},
-  new:{eyebrow:"Nova inscrição", title:"Cadastrar equipe"},
   guidance:{eyebrow:"Suporte", title:"Orientações"}
 };
 
@@ -103,7 +102,7 @@ function renderDashboard(data){
 function renderTeams(teams){
   const root = $("teamList");
   if(!teams.length){
-    root.innerHTML = '<div class="panel-empty"><div><strong>Nenhuma equipe vinculada.</strong><span>Cadastre uma equipe independente para ela aparecer aqui.</span></div></div>';
+    root.innerHTML = '<div class="panel-empty"><div><strong>Nenhuma equipe vinculada.</strong><span>O cadastro de novas equipes está encerrado.</span></div></div>';
     return;
   }
   root.innerHTML = `
@@ -117,7 +116,7 @@ function renderTeams(teams){
             <td>${esc(t.cursoBase || "—")}</td>
             <td>${esc(t.atletas)}</td>
             <td><span class="status-pill">${esc(t.status || "INSCRITA")}</span></td>
-            <td><button class="table-action" type="button" data-manage-team="${esc(t.idEquipe)}">Gerenciar elenco</button></td>
+            <td><button class="table-action" type="button" data-manage-team="${esc(t.idEquipe)}">Adicionar atletas</button></td>
           </tr>`).join("")}</tbody>
       </table>
     </div>`;
@@ -170,22 +169,8 @@ function renderRoster(){
     <div class="roster-athlete">
       <div class="avatar">${initials(a.nome)}</div>
       <div><strong>${esc(a.nome)}</strong><span>${esc(a.curso || "—")} · ${esc(a.vinculo || "—")}${a.ra ? ` · RA ${esc(a.ra)}` : ""}</span></div>
-      <button type="button" class="roster-remove" data-remove-id="${esc(a.atletaId)}" data-remove-name="${esc(a.nome)}">Remover</button>
     </div>`).join("") || '<div class="panel-empty">Nenhum atleta nesta equipe.</div>';
-  $("rosterList").querySelectorAll("[data-remove-id]").forEach(btn => btn.addEventListener("click", () => removeAthlete(btn.dataset.removeId, btn.dataset.removeName)));
-}
 
-async function removeAthlete(atletaId, nome){
-  if(!confirm(`Remover ${nome || "este atleta"} da equipe?`)) return;
-  try{
-    const result = await unicapApi("manageIndependentTeam", {token, operacao:"remover", idEquipe:activeTeamId, atletaId});
-    dashboardCache = result;
-    renderDashboard(result);
-    renderRoster();
-    toast("Atleta removido do elenco.");
-  }catch(err){
-    toast(err instanceof Error ? err.message : "Não foi possível remover o atleta.","error");
-  }
 }
 
 async function addAthlete(){

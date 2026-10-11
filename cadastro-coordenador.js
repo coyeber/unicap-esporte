@@ -7,11 +7,8 @@ if (!token || !athletic) {
   window.location.href = "./coordenador.html";
 }
 
-const athletes = [];
 let dashboardCache = null;
 let activeManageTeamId = "";
-let activeSportTeamId = "";
-const MODALIDADES = ["Dominó","Vôlei Misto","Tênis de Mesa","Futsal Masculino","Futsal Feminino","Handebol Masculino","Handebol Feminino","Basquete","Futmesa","X1 Futebol"];
 const $ = id => document.getElementById(id);
 const nums = v => (v || "").replace(/\D/g, "");
 const cpfMask = v => nums(v).slice(0,11)
@@ -55,20 +52,17 @@ function initials(name){
 
 $("sideAthletic").textContent = athletic;
 $("athleticChip").textContent = athletic;
-$("officialAthletic").value = athletic;
-$("sumAthletic").textContent = athletic;
 $("sideUser").textContent = coordinatorName;
 
 // ===== Navegação lateral =====
 const panelMeta = {
-  new: { eyebrow: "Cadastro oficial", title: "Preparar equipe" },
   teams: { eyebrow: "Gestão da atlética", title: "Minhas equipes" },
   athletes: { eyebrow: "Gestão da atlética", title: "Atletas" },
   guidance: { eyebrow: "Suporte", title: "Orientações" }
 };
 
 function setView(view){
-  if(!panelMeta[view]) view = "new";
+  if(!panelMeta[view]) view = "teams";
 
   document.querySelectorAll("[data-panel]").forEach(panel => {
     panel.hidden = panel.dataset.panel !== view;
@@ -94,81 +88,6 @@ document.querySelectorAll(".official-nav [data-view]").forEach(button => {
 document.querySelectorAll("[data-view-jump]").forEach(button => {
   button.addEventListener("click", () => setView(button.dataset.viewJump));
 });
-
-// ===== Cadastro de atletas =====
-$("athCpf").addEventListener("input", () => $("athCpf").value = cpfMask($("athCpf").value));
-$("athTel").addEventListener("input", () => $("athTel").value = phoneMask($("athTel").value));
-$("athVinculo").addEventListener("change", () => {
-  $("authWrap").hidden = $("athVinculo").value !== "Convidado extracurricular";
-});
-$("officialName").addEventListener("input", updateSummary);
-$("officialSport").addEventListener("change", updateSummary);
-
-$("addOfficialAthlete").addEventListener("click", () => {
-  const vinculo = $("athVinculo").value;
-  const a = {
-    nome: $("athNome").value.trim(),
-    ra: $("athRa").value.trim(),
-    cpf: $("athCpf").value.trim(),
-    telefone: $("athTel").value.trim(),
-    curso: $("athCurso").value.trim(),
-    vinculo,
-    autorizacao: $("athAuth").value.trim()
-  };
-
-  if(!a.nome || !a.cpf) {
-    toast("Preencha nome e CPF.", "error");
-    return;
-  }
-  if(vinculo !== "Convidado extracurricular" && (!a.ra || !a.curso)) {
-    toast("Aluno precisa de R.A e curso.", "error");
-    return;
-  }
-  if(!validCPF(a.cpf)) {
-    toast("CPF inválido.", "error");
-    return;
-  }
-  if(vinculo === "Convidado extracurricular" && !a.autorizacao) {
-    toast("Informe a autorização do convidado.", "error");
-    return;
-  }
-
-  athletes.push({...a, cpf: nums(a.cpf)});
-  ["athNome","athRa","athCpf","athTel","athCurso","athAuth"].forEach(id => $(id).value = "");
-  renderAthletes();
-  updateSummary();
-  toast("Atleta adicionado.");
-});
-
-function renderAthletes(){
-  if(!athletes.length){
-    $("officialAthletes").innerHTML = '<div class="empty-list">Nenhum atleta adicionado ainda.</div>';
-    return;
-  }
-
-  $("officialAthletes").innerHTML = athletes.map((a,i) => `
-    <div class="official-athlete-row">
-      <div class="avatar">${initials(a.nome)}</div>
-      <div>
-        <strong>${esc(a.nome)}</strong>
-        <span>${esc(a.curso || "Convidado")} · ${esc(a.vinculo)}${a.ra ? " · RA " + esc(a.ra) : ""}</span>
-      </div>
-      <button class="remove-athlete" type="button" data-remove="${i}">×</button>
-    </div>
-  `).join("");
-
-  document.querySelectorAll("[data-remove]").forEach(b => b.addEventListener("click", () => {
-    athletes.splice(Number(b.dataset.remove), 1);
-    renderAthletes();
-    updateSummary();
-  }));
-}
-
-function updateSummary(){
-  $("sumTeam").textContent = $("officialName").value.trim() || "Não informado";
-  $("sumSport").textContent = $("officialSport").value;
-  $("sumAthletes").textContent = String(athletes.length);
-}
 
 // ===== Dados do painel =====
 async function loadDashboard(force = false){
@@ -212,7 +131,7 @@ function renderTeamDirectory(teams){
   if(!root) return;
 
   if(!teams.length){
-    root.innerHTML = '<div class="panel-empty"><strong>Nenhuma equipe cadastrada.</strong><span>Use “Nova equipe” para fazer o primeiro cadastro.</span></div>';
+    root.innerHTML = '<div class="panel-empty"><strong>Nenhuma equipe cadastrada.</strong><span>O cadastro de novas equipes está encerrado.</span></div>';
     return;
   }
 
@@ -227,7 +146,7 @@ function renderTeamDirectory(teams){
             <td>${esc(t.atletas)}</td>
             <td><span class="status-pill">${esc(t.status || "INSCRITA")}</span></td>
             <td><code>${esc(t.idEquipe)}</code></td>
-            <td><div class="team-action-group"><button class="table-action" type="button" data-manage-team="${esc(t.idEquipe)}">Gerenciar elenco</button><button class="table-action secondary" type="button" data-change-sport="${esc(t.idEquipe)}">Mudar modalidade</button></div></td>
+            <td><div class="team-action-group"><button class="table-action" type="button" data-manage-team="${esc(t.idEquipe)}">Adicionar atletas</button></div></td>
           </tr>`).join("")}</tbody>
       </table>
     </div>`;
@@ -235,9 +154,7 @@ function renderTeamDirectory(teams){
   root.querySelectorAll("[data-manage-team]").forEach(button => {
     button.addEventListener("click", () => openRosterManager(button.dataset.manageTeam));
   });
-  root.querySelectorAll("[data-change-sport]").forEach(button => {
-    button.addEventListener("click", () => openSportManager(button.dataset.changeSport));
-  });
+
 }
 
 function renderAthleteDirectory(list){
@@ -277,64 +194,6 @@ function renderAthleteDirectory(list){
     </div>`;
 }
 
-// ===== Alterar modalidade de uma equipe já salva =====
-function openSportManager(teamId){
-  const team = (dashboardCache?.listaEquipes || []).find(t => t.idEquipe === teamId);
-  if(!team) return;
-
-  activeSportTeamId = teamId;
-  $("sportTeamName").textContent = team.nomeEquipe || "Equipe";
-  $("sportSelect").innerHTML = MODALIDADES.map(m => `<option value="${esc(m)}">${esc(m)}</option>`).join("");
-  $("sportSelect").value = team.modalidade || MODALIDADES[0];
-  $("sportModal").hidden = false;
-  document.body.classList.add("modal-open");
-}
-
-function closeSportManager(){
-  activeSportTeamId = "";
-  $("sportModal").hidden = true;
-  document.body.classList.remove("modal-open");
-}
-
-async function saveSportChange(){
-  const team = (dashboardCache?.listaEquipes || []).find(t => t.idEquipe === activeSportTeamId);
-  if(!team) return closeSportManager();
-
-  const modalidade = $("sportSelect").value;
-  if(!modalidade || modalidade === team.modalidade){
-    toast("Selecione uma modalidade diferente.", "error");
-    return;
-  }
-
-  if(!confirm(`Alterar ${team.nomeEquipe} de ${team.modalidade} para ${modalidade}?`)) return;
-
-  const button = $("saveSportChange");
-  const original = button.textContent;
-  button.disabled = true;
-  button.textContent = "Salvando...";
-
-  try{
-    const result = await unicapApi("manageOfficialTeam", {
-      token,
-      operacao:"modalidade",
-      idEquipe:activeSportTeamId,
-      modalidade
-    });
-    dashboardCache = result;
-    renderDashboard(result);
-    closeSportManager();
-    toast("Modalidade alterada com sucesso.");
-  }catch(err){
-    toast(err instanceof Error ? err.message : "Não foi possível alterar a modalidade.", "error");
-  }finally{
-    button.disabled = false;
-    button.textContent = original;
-  }
-}
-
-$("saveSportChange")?.addEventListener("click", saveSportChange);
-document.querySelectorAll("[data-close-sport]").forEach(button => button.addEventListener("click", closeSportManager));
-
 // ===== Gerenciar elenco de uma equipe já salva =====
 function openRosterManager(teamId){
   activeManageTeamId = teamId;
@@ -364,30 +223,9 @@ function renderRosterManager(){
         <strong>${esc(a.nome)}</strong>
         <span>${esc(a.curso || "—")} · ${esc(a.vinculo || "—")}${a.ra ? ` · RA ${esc(a.ra)}` : ""}</span>
       </div>
-      <button type="button" class="roster-remove" data-remove-id="${esc(a.atletaId)}" data-remove-name="${esc(a.nome)}">Remover</button>
     </div>`).join("") || '<div class="panel-empty">Nenhum atleta nesta equipe.</div>';
 
-  $("rosterList").querySelectorAll("[data-remove-id]").forEach(button => {
-    button.addEventListener("click", () => removeSavedAthlete(button.dataset.removeId, button.dataset.removeName));
-  });
-}
 
-async function removeSavedAthlete(atletaId, nome){
-  if(!confirm(`Remover ${nome || "este atleta"} da equipe?`)) return;
-  try{
-    const result = await unicapApi("manageOfficialTeam", {
-      token,
-      operacao:"remover",
-      idEquipe:activeManageTeamId,
-      atletaId
-    });
-    dashboardCache = result;
-    renderDashboard(result);
-    renderRosterManager();
-    toast("Atleta removido do elenco.");
-  }catch(err){
-    toast(err instanceof Error ? err.message : "Não foi possível remover o atleta.", "error");
-  }
 }
 
 async function addSavedAthlete(){
@@ -441,65 +279,10 @@ document.querySelectorAll("[data-close-roster]").forEach(button => button.addEve
 document.addEventListener("keydown", e => {
   if(e.key !== "Escape") return;
   if(!$("rosterModal").hidden) closeRosterManager();
-  if(!$("sportModal").hidden) closeSportManager();
 });
 
 $("refreshTeams")?.addEventListener("click", () => loadDashboard(true));
 $("refreshAthletes")?.addEventListener("click", () => loadDashboard(true));
 $("athleteSearch")?.addEventListener("input", () => renderAthleteDirectory(dashboardCache?.listaAtletas || []));
 
-// ===== Salvar equipe =====
-document.getElementById("officialRegistration").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const nomeEquipe = $("officialName").value.trim();
-  const modalidade = $("officialSport").value;
-
-  if(!nomeEquipe) {
-    toast("Informe o nome da equipe.", "error");
-    return;
-  }
-  if(!athletes.length) {
-    toast("Adicione pelo menos um atleta.", "error");
-    return;
-  }
-
-  const button = e.currentTarget.querySelector('button[type="submit"]');
-  const original = button.innerHTML;
-  button.disabled = true;
-  button.textContent = "Salvando...";
-
-  try {
-    const result = await unicapApi("saveOfficialTeam", {
-      token,
-      nomeEquipe,
-      modalidade,
-      cursoBase: athletic,
-      atletas: athletes
-    });
-
-    toast(`Equipe salva com sucesso! ID: ${result.idEquipe}`, "success");
-    athletes.splice(0, athletes.length);
-    $("officialName").value = "";
-    renderAthletes();
-    updateSummary();
-    dashboardCache = null;
-    setTimeout(() => setView("teams"), 500);
-  } catch(err) {
-    const message = err instanceof Error ? err.message : "Erro ao salvar equipe.";
-    if (/sessão/i.test(message)) {
-      sessionStorage.removeItem("unicap_coord_token");
-      toast(message, "error");
-      setTimeout(() => window.location.href = "./coordenador.html", 1200);
-      return;
-    }
-    toast(message, "error");
-  } finally {
-    button.disabled = false;
-    button.innerHTML = original;
-  }
-});
-
-renderAthletes();
-updateSummary();
-setView(location.hash.replace("#", "") || "new");
+setView(location.hash.replace("#", "") || "teams");

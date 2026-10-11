@@ -18,17 +18,85 @@
       <span class="brand-copy"><strong>UNICAP</strong><b>Esporte</b></span>
     </a>
     <div class="header-actions">
+      <a class="back-home" href="./coordenador.html">← Trocar acesso</a>
       <div class="university-logo"><img src="./assets/unicap-universidade.jpg" alt="Universidade Católica de Pernambuco"></div>
     </div>
   </header>
 
-  <main class="registration-closed">
-    <section class="registration-status-panel" role="status">
-      <span class="registration-status-label">SUPERCOPA UNICAP 2026</span>
-      <h1>Inscrições encerradas</h1>
-      <p>O prazo de inscrições e o acesso aos painéis de coordenadores de atlética e equipes independentes foram encerrados.</p>
-      <p><strong>As tabelas dos jogos serão divulgadas em breve.</strong> As informações das inscrições serão enviadas aos números de contato dos representantes das equipes.</p>
-      <a class="btn btn-primary" href="./index.html">Voltar ao site →</a>
+  <main class="official-layout">
+    <aside class="official-sidebar">
+      <div class="official-title"><small>PAINEL DA ATLÉTICA</small><strong id="sideAthletic">Atlética</strong></div>
+      <nav class="official-nav" aria-label="Navegação do painel">
+        <button class="active" type="button" data-view="teams">▤ Minhas equipes</button>
+        <button type="button" data-view="athletes">● Atletas</button>
+        <button type="button" data-view="guidance">? Orientações</button>
+      </nav>
+      <div class="official-user"><strong id="sideUser">Coordenador</strong><span>Coordenador da atlética</span></div>
+    </aside>
+
+    <section class="official-main">
+      <div class="official-main-head">
+        <div><div class="eyebrow" id="panelEyebrow">Gestão da atlética</div><h1 id="panelTitle">Minhas equipes</h1></div>
+        <span class="athletic-chip" id="athleticChip">Atlética</span>
+      </div>
+
+      <section class="official-panel" data-panel="teams">
+        <div class="panel-toolbar">
+          <div>
+            <span class="panel-kicker">GESTÃO</span>
+            <h2>Minhas equipes</h2>
+            <p>Equipes já inscritas. Apenas a inclusão de atletas está liberada; ninguém pode ser removido.</p>
+          </div>
+          <button class="btn btn-outline" type="button" id="refreshTeams">↻ Atualizar</button>
+        </div>
+        <div class="panel-stat-grid">
+          <article class="panel-stat"><span>Equipes</span><strong id="dashTeams">0</strong></article>
+          <article class="panel-stat"><span>Atletas</span><strong id="dashAthletes">0</strong></article>
+          <article class="panel-stat"><span>Modalidades</span><strong id="dashSports">0</strong></article>
+        </div>
+        <div class="official-card panel-data-card">
+          <div id="teamList" class="panel-list"><div class="panel-loading">Carregando equipes…</div></div>
+        </div>
+      </section>
+
+      <section class="official-panel" data-panel="athletes" hidden>
+        <div class="panel-toolbar">
+          <div>
+            <span class="panel-kicker">ELENCO</span>
+            <h2>Atletas cadastrados</h2>
+            <p>Consulte os participantes registrados nas equipes da sua atlética.</p>
+          </div>
+          <button class="btn btn-outline" type="button" id="refreshAthletes">↻ Atualizar</button>
+        </div>
+        <div class="official-card panel-data-card">
+          <div class="panel-search">
+            <input id="athleteSearch" type="search" placeholder="Buscar por nome, R.A, curso, equipe ou modalidade…">
+            <span id="athleteTotal">0 atletas</span>
+          </div>
+          <div id="athleteDirectory" class="panel-list"><div class="panel-loading">Carregando atletas…</div></div>
+        </div>
+      </section>
+
+      <section class="official-panel" data-panel="guidance" hidden>
+        <div class="panel-toolbar">
+          <div>
+            <span class="panel-kicker">SUPORTE</span>
+            <h2>Orientações</h2>
+            <p>Regras rápidas para evitar problemas no cadastro.</p>
+          </div>
+        </div>
+        <div class="guidance-grid">
+          <article class="official-card guidance-card"><b>01</b><h3>Dados corretos</h3><p>Confira nome, R.A, CPF, curso e telefone antes de salvar. Dados incorretos podem impedir a validação do atleta.</p></article>
+          <article class="official-card guidance-card"><b>02</b><h3>Convidado extracurricular</h3><p>Só cadastre convidado extracurricular quando houver autorização direta da coordenação esportiva. A justificativa é obrigatória.</p></article>
+          <article class="official-card guidance-card"><b>03</b><h3>Duplicidade</h3><p>O mesmo atleta não deve ser cadastrado duas vezes na mesma modalidade. O sistema faz validações pelo CPF e matrícula.</p></article>
+          <article class="official-card guidance-card"><b>04</b><h3>Responsabilidade</h3><p>A atlética é responsável pelas informações inseridas e por manter a relação de atletas atualizada durante a competição.</p></article>
+        </div>
+        <div class="official-card guidance-contact">
+          <div><span>Precisa de ajuda?</span><strong>Entre em contato com a coordenação do UNICAP Esporte.</strong></div>
+          <button class="btn btn-primary" type="button" data-view-jump="teams">Ver equipes →</button>
+        </div>
+      </section>
+
     </section>
   </main>
 
@@ -36,7 +104,7 @@
     <button class="roster-backdrop" type="button" data-close-roster aria-label="Fechar"></button>
     <section class="roster-dialog" role="dialog" aria-modal="true" aria-labelledby="rosterTitle">
       <div class="roster-head">
-        <div><span>GERENCIAR ELENCO</span><h2 id="rosterTitle">Equipe</h2><p id="rosterSubtitle">Modalidade</p></div>
+        <div><span>ADICIONAR ATLETAS</span><h2 id="rosterTitle">Equipe</h2><p id="rosterSubtitle">Modalidade</p></div>
         <button class="roster-close" type="button" data-close-roster>×</button>
       </div>
       <div class="roster-content">
@@ -61,38 +129,9 @@
     </section>
   </div>
 
-  <div class="roster-modal" id="sportModal" hidden>
-    <button class="roster-backdrop" type="button" data-close-sport aria-label="Fechar"></button>
-    <section class="roster-dialog sport-dialog" role="dialog" aria-modal="true" aria-labelledby="sportTeamName">
-      <div class="roster-head">
-        <div><span>ALTERAR MODALIDADE</span><h2 id="sportTeamName">Equipe</h2><p>Escolha a nova modalidade da equipe.</p></div>
-        <button class="roster-close" type="button" data-close-sport>×</button>
-      </div>
-      <div class="roster-content">
-        <div class="roster-add" style="width:100%">
-          <label><span>Nova modalidade</span>
-            <select id="sportSelect">
-              <option>Dominó</option>
-              <option>Vôlei Misto</option>
-              <option>Tênis de Mesa</option>
-              <option>Futsal Masculino</option>
-              <option>Futsal Feminino</option>
-              <option>Handebol Masculino</option>
-              <option>Handebol Feminino</option>
-              <option>Basquete</option>
-              <option>Futmesa</option>
-              <option>X1 Futebol</option>
-            </select>
-          </label>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
-            <button class="btn btn-primary" type="button" id="saveSportChange">Salvar nova modalidade</button>
-            <button class="btn btn-outline" type="button" data-close-sport>Cancelar</button>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
   <div id="toast" class="toast"></div>
+  <script src="./config.js"></script>
+  <script src="./api.js"></script>
+  <script src="./cadastro-coordenador.js"></script>
 </body>
 </html>

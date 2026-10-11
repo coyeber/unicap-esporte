@@ -1,4 +1,10 @@
 async function unicapApi(action, data = {}) {
+  // A validação de segurança também precisa existir no Apps Script.
+  if (["saveOfficialTeam", "saveIndependentTeam"].includes(action) ||
+      (["manageOfficialTeam", "manageIndependentTeam"].includes(action) &&
+       data?.operacao !== "adicionar")) {
+    throw new Error("Somente a inclusão de novos atletas em equipes existentes está permitida.");
+  }
   const url = String(window.UNICAP_API_URL || "").trim();
 
   if (!url) {

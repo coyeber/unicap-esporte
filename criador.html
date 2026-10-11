@@ -23,15 +23,44 @@
     </div>
   </header>
 
-  <main class="registration-closed">
-    <section class="registration-status-panel" role="status">
-      <span class="registration-status-label">SUPERCOPA UNICAP 2026</span>
-      <h1>Inscrições encerradas</h1>
-      <p>O prazo de inscrições e o acesso aos painéis de coordenadores de atlética e equipes independentes foram encerrados.</p>
-      <p><strong>As tabelas dos jogos serão divulgadas em breve.</strong> As informações das inscrições serão enviadas aos números de contato dos representantes das equipes.</p>
-      <a class="btn btn-primary" href="./index.html">Voltar ao site →</a>
+  <main class="subpage-shell">
+    <section class="subpage-visual creator-login-visual">
+      <div class="subpage-kicker">EQUIPE INDEPENDENTE</div>
+      <h1>Adicione atletas à equipe já inscrita.</h1>
+      <p>Somente a inclusão de novos atletas está aberta. Novas equipes e remoções não são permitidas.</p>
+      <div class="visual-points">
+        <div class="visual-point"><b>01</b><span>Entre com o e-mail do responsável pela equipe.</span></div>
+        <div class="visual-point"><b>02</b><span>Veja todas as equipes vinculadas ao seu perfil.</span></div>
+        <div class="visual-point"><b>03</b><span>Adicione atletas à equipe existente sem remover os já inscritos.</span></div>
+      </div>
+    </section>
+
+    <section class="subpage-content">
+      <div class="subpage-card">
+        <div class="subpage-card-head">
+          <div>
+            <div class="eyebrow">Acesso do responsável</div>
+            <h2>Criador de Equipe</h2>
+            <p>Entre com o acesso criado no cadastro da equipe independente.</p>
+          </div>
+          <span class="secure-badge">● ACESSO RESTRITO</span>
+        </div>
+
+        <form id="creatorLogin" class="login-form">
+          <label><span>E-mail *</span><input id="creatorEmail" type="email" autocomplete="username" placeholder="seuemail@exemplo.com"></label>
+          <label><span>Senha *</span><input id="creatorPass" type="password" autocomplete="current-password" placeholder="••••••••"></label>
+          <button class="btn btn-primary login-submit" type="submit">Entrar no painel →</button>
+        </form>
+
+        <div class="helper-box">
+          <strong>Somente equipes já inscritas.</strong> Use o e-mail e a senha cadastrados anteriormente.
+        </div>
+      </div>
     </section>
   </main>
   <div id="toast" class="toast"></div>
+  <script src="./config.js"></script>
+  <script src="./api.js"></script>
+  <script src="./criador.js"></script>
 </body>
 </html>

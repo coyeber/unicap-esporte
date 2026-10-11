@@ -23,97 +23,12 @@
     </div>
   </header>
 
-  <main class="official-layout">
-    <aside class="official-sidebar creator-sidebar">
-      <div class="official-title"><small>PAINEL DO CRIADOR</small><strong id="sideCreator">Equipe independente</strong></div>
-      <nav class="official-nav" aria-label="Navegação do painel">
-        <button class="active" type="button" data-view="teams">▤ Minhas equipes</button>
-        <button type="button" data-view="athletes">● Atletas</button>
-        <button type="button" data-view="new">＋ Nova equipe</button>
-        <button type="button" data-view="guidance">? Orientações</button>
-      </nav>
-      <div class="official-user">
-        <strong id="sideUser">Responsável</strong>
-        <span id="sideEmail">Equipe independente</span>
-        <button class="creator-logout" type="button" id="creatorLogout">Sair do painel</button>
-      </div>
-    </aside>
-
-    <section class="official-main">
-      <div class="official-main-head">
-        <div><div class="eyebrow" id="panelEyebrow">Gestão da equipe</div><h1 id="panelTitle">Minhas equipes</h1></div>
-        <span class="athletic-chip">Equipe independente</span>
-      </div>
-
-      <section class="official-panel" data-panel="teams">
-        <div class="panel-toolbar">
-          <div>
-            <span class="panel-kicker">GESTÃO</span>
-            <h2>Minhas equipes</h2>
-            <p>Abra uma equipe para adicionar ou remover atletas do elenco.</p>
-          </div>
-          <button class="btn btn-outline" type="button" id="refreshTeams">↻ Atualizar</button>
-        </div>
-        <div class="panel-stat-grid">
-          <article class="panel-stat"><span>Equipes</span><strong id="dashTeams">0</strong></article>
-          <article class="panel-stat"><span>Atletas</span><strong id="dashAthletes">0</strong></article>
-          <article class="panel-stat"><span>Modalidades</span><strong id="dashSports">0</strong></article>
-        </div>
-        <div class="official-card panel-data-card">
-          <div id="teamList" class="panel-list"><div class="panel-loading">Carregando equipes…</div></div>
-        </div>
-      </section>
-
-      <section class="official-panel" data-panel="athletes" hidden>
-        <div class="panel-toolbar">
-          <div>
-            <span class="panel-kicker">ELENCO</span>
-            <h2>Atletas cadastrados</h2>
-            <p>Consulte os participantes de todas as suas equipes independentes.</p>
-          </div>
-          <button class="btn btn-outline" type="button" id="refreshAthletes">↻ Atualizar</button>
-        </div>
-        <div class="official-card panel-data-card">
-          <div class="panel-search">
-            <input id="athleteSearch" type="search" placeholder="Buscar por nome, R.A, curso, equipe ou modalidade…">
-            <span id="athleteTotal">0 atletas</span>
-          </div>
-          <div id="athleteDirectory" class="panel-list"><div class="panel-loading">Carregando atletas…</div></div>
-        </div>
-      </section>
-
-      <section class="official-panel" data-panel="new" hidden>
-        <div class="panel-toolbar">
-          <div>
-            <span class="panel-kicker">NOVA INSCRIÇÃO</span>
-            <h2>Cadastrar outra equipe</h2>
-            <p>Você pode usar o mesmo e-mail, CPF e senha para vincular outra equipe ao seu perfil.</p>
-          </div>
-        </div>
-        <div class="official-card creator-new-card">
-          <div>
-            <strong>Nova equipe independente</strong>
-            <p>Abra o formulário de inscrição e utilize os mesmos dados de acesso. A nova equipe aparecerá automaticamente neste painel.</p>
-          </div>
-          <a class="btn btn-primary" href="./aluno.html">Cadastrar nova equipe →</a>
-        </div>
-      </section>
-
-      <section class="official-panel" data-panel="guidance" hidden>
-        <div class="panel-toolbar">
-          <div>
-            <span class="panel-kicker">SUPORTE</span>
-            <h2>Orientações</h2>
-            <p>Use este painel para manter o elenco correto até o encerramento das inscrições.</p>
-          </div>
-        </div>
-        <div class="guidance-grid">
-          <article class="official-card guidance-card"><b>01</b><h3>Adicionar atleta</h3><p>Abra “Minhas equipes”, clique em “Gerenciar elenco” e preencha os dados do novo participante.</p></article>
-          <article class="official-card guidance-card"><b>02</b><h3>Remover atleta</h3><p>No mesmo painel de elenco, use “Remover” ao lado do participante que não fará mais parte da equipe.</p></article>
-          <article class="official-card guidance-card"><b>03</b><h3>Dados protegidos</h3><p>O CPF é usado nas validações do cadastro, mas não é exibido nas listas do painel.</p></article>
-          <article class="official-card guidance-card"><b>04</b><h3>Responsabilidade</h3><p>Somente o responsável com e-mail e senha da equipe pode alterar o elenco independente.</p></article>
-        </div>
-      </section>
+  <main class="registration-closed">
+    <section class="registration-status-panel" role="status">
+      <span class="registration-status-label">SUPERCOPA UNICAP 2026</span>
+      <h1>Inscrições encerradas</h1>
+      <p>O prazo de inscrições e o acesso aos painéis de coordenadores de atlética e equipes independentes foram encerrados.</p>
+      <a class="btn btn-primary" href="./index.html">Voltar ao site →</a>
     </section>
   </main>
 
@@ -147,8 +62,5 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <script src="./config.js"></script>
-  <script src="./api.js"></script>
-  <script src="./painel-criador.js"></script>
 </body>
 </html>

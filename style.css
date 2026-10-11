@@ -870,3 +870,16 @@ body.modal-open{overflow:hidden}
 .esports-form-card{max-width:900px;margin:28px auto 0;background:#fff;border:1px solid var(--line);border-radius:26px;padding:30px;box-shadow:var(--shadow)}.esports-form-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:25px}.esports-form-head>div>span{font-size:9px;letter-spacing:.16em;font-weight:950;color:#900020}.esports-form-head h2{font-size:32px;margin:5px 0}.esports-form-head p{margin:0;color:var(--muted);font-size:11px}.esports-notice{margin-top:18px;padding:12px 14px;border-radius:12px;background:#faf3e5;border:1px solid #eeddb6;color:#70592e;font-size:10px}.esports-submit{margin-top:18px;width:100%;justify-content:center}
 .esports-admin-stats{grid-template-columns:repeat(3,minmax(0,1fr));max-width:720px}.esports-admin-filters{grid-template-columns:minmax(220px,1fr) 200px}
 @media(max-width:760px){.esports-shell{padding:28px 14px 70px}.esports-intro{grid-template-columns:1fr;padding:24px}.esports-form-card{padding:20px}.esports-form-head{flex-direction:column}.esports-admin-stats{grid-template-columns:1fr 1fr}.esports-admin-filters{grid-template-columns:1fr}}
+
+/* Supercopa 2026: inscrições de equipes e acessos encerrados. */
+.registration-status-label{display:inline-flex;align-items:center;margin-top:16px;padding:8px 13px;border:1px solid #ead0d4;border-radius:999px;background:#f9edef;color:#910c29;font-size:10px;font-weight:900;letter-spacing:.045em;text-transform:uppercase;max-width:100%}
+.registration-status-panel{max-width:920px;margin:0 auto;padding:34px 38px;border:1px solid #e9d9d8;border-radius:22px;background:#fff;box-shadow:var(--shadow)}
+.registration-status-panel .registration-status-label{margin-top:0}
+.registration-status-panel h3{font-size:clamp(23px,3vw,36px);color:#5f0012;margin:18px 0 10px}
+.registration-status-panel p{font-size:14px;line-height:1.65;color:var(--muted);margin:10px 0}
+.registration-closed{min-height:calc(100vh - 110px);display:grid;place-items:center;padding:52px 18px 90px;background:linear-gradient(180deg,#fcf8f6,#f1e8e6)}
+.registration-closed .registration-status-panel{width:100%;max-width:740px;text-align:center}
+.registration-closed .registration-status-panel h1{font-size:clamp(36px,6vw,64px);line-height:1.08;color:#680012;margin:20px 0 14px}
+.registration-closed .registration-status-panel p{font-size:15px;max-width:600px;margin:12px auto 26px}
+.registration-closed .registration-status-panel .btn{display:inline-flex;text-decoration:none}
+@media(max-width:600px){.registration-status-panel{padding:26px 22px}.registration-closed{padding:32px 16px 60px}}

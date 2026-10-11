@@ -110,8 +110,8 @@ function appMarkup(){
     <div class="dove-watermark"></div>
     <div class="hero-copy reveal">
       <div class="hero-kicker">UNICAP ESPORTE</div>
-      <h1>Inscrições <span>abertas</span></h1>
-      <p class="hero-lead"><strong>As inscrições não são individuais.</strong> O cadastro das equipes deve ser realizado pelo coordenador da atlética ou pelo coordenador do curso.</p>
+      <h1>Inscrições de equipes <span>encerradas</span></h1>
+      <p class="hero-lead"><strong>Prazo encerrado.</strong> As inscrições de equipes oficiais e independentes para a Supercopa UNICAP 2026 foram finalizadas. Acompanhe as novidades da competição.</p>
       <div class="hero-actions">
         <button class="btn btn-ghost" data-scroll="modalidades">Conheça as modalidades</button>
       </div>
@@ -129,22 +129,22 @@ function appMarkup(){
 
   <section class="section white" id="como-funciona">
     <div class="section-heading reveal">
-      <div class="eyebrow">Como fazer a inscrição</div>
-      <h2>Escolha o tipo de inscrição da sua modalidade.</h2>
+      <div class="eyebrow">Inscrições da Supercopa</div>
+      <h2>O prazo de inscrição de equipes foi encerrado.</h2>
     </div>
     <div class="path-grid">
       <article class="path-card reveal">
         <div class="path-icon">${icon("student")}</div>
         <h3>Criador de Equipe Sem vínculo com a atlética</h3>
-        <p>Para equipes independentes, o responsável cria a equipe e recebe um painel próprio para manter o elenco atualizado.</p>
-        <button class="mini-action" data-action="openStudent">→</button>
+        <p>O período de inscrição e de acesso ao painel das equipes independentes foi encerrado.</p>
+        <span class="registration-status-label">Inscrições encerradas</span>
         <div class="path-art">${icon("student")}</div>
       </article>
       <article class="path-card manager reveal">
         <div class="path-icon">${icon("manager")}</div>
         <h3>Coordenador de Atlética</h3>
-        <p>Acesse o painel da sua atlética para cadastrar equipes oficiais, organizar atletas e acompanhar as inscrições por modalidade.</p>
-        <button class="mini-action" data-action="openManager">→</button>
+        <p>O período de inscrição e de acesso ao painel dos coordenadores de atlética foi encerrado.</p>
+        <span class="registration-status-label">Inscrições encerradas</span>
         <div class="path-art">${icon("manager")}</div>
       </article>
       <article class="path-card esports-path reveal">
@@ -221,23 +221,15 @@ function appMarkup(){
     <div class="section-heading row reveal">
       <div>
         <div class="eyebrow">Portal de inscrições</div>
-        <h2>Acesso para os responsáveis pelas inscrições.</h2>
+        <h2>Inscrições de equipes encerradas.</h2>
       </div>
-      <p>As modalidades esportivas, incluindo X1 Futebol, são cadastradas pelo responsável ou coordenador. Apenas o E-Sports possui inscrição individual própria.</p>
+      <p>O prazo para equipes oficiais das atléticas e equipes independentes chegou ao fim.</p>
     </div>
-
-    <div class="portal-tabs reveal">
-      <button data-portal="aluno" class="${state.portalTab==="aluno"?"active":""}">Criador de Equipe</button>
-      <button data-portal="coordenador" class="${state.portalTab==="coordenador"?"active":""}">Coordenador de Atlética</button>
-    </div>
-
-    <div class="preview-grid">
-      <div class="form-panel reveal" id="portalForm">
-        ${state.portalTab==="aluno" ? studentFormMarkup() : coordinatorMarkup()}
-      </div>
-      <div class="dashboard-panel reveal">
-        ${dashboardPreviewMarkup()}
-      </div>
+    <div class="registration-status-panel reveal">
+      <span class="registration-status-label">PRAZO ENCERRADO</span>
+      <h3>O acesso aos painéis de inscrição foi encerrado.</h3>
+      <p>Não é mais possível cadastrar ou alterar equipes por meio dos painéis de coordenadores de atlética ou de equipes independentes.</p>
+      <p>Os registros já realizados ficam preservados para a organização da Supercopa UNICAP 2026.</p>
     </div>
   </section>
 
@@ -278,21 +270,7 @@ function appMarkup(){
 }
 
 function studentFormMarkup(){
-  return `
-  <div class="panel-title">
-    <div><h3>Equipe independente</h3><small>Área do criador da equipe</small></div>
-    <span class="dash-pill">Criador de Equipe</span>
-  </div>
-  <div class="form-content portal-public-access">
-    <div class="portal-public-copy">
-      <strong>Cadastre a equipe e crie seu acesso.</strong>
-      <p>Depois do primeiro cadastro, o responsável poderá entrar no painel para adicionar ou remover atletas da própria equipe.</p>
-    </div>
-    <div class="portal-public-actions">
-      <a class="btn btn-primary" href="./aluno.html">Cadastrar equipe ${icon("arrow")}</a>
-      <a class="btn btn-outline" href="./criador.html">Já tenho equipe · Entrar no painel</a>
-    </div>
-  </div>`;
+  return '<div class="registration-status-panel"><strong>Inscrições encerradas</strong><p>O acesso à inscrição de equipes independentes terminou.</p></div>';
 }
 
 function athleteListMarkup(){
@@ -306,18 +284,7 @@ function athleteListMarkup(){
 }
 
 function coordinatorMarkup(){
-  return `
-    <div class="panel-title">
-      <div><h3>Área do coordenador</h3><small>Acesso exclusivo das atléticas</small></div>
-      <span class="dash-pill">Restrito</span>
-    </div>
-    <div class="form-content portal-public-access">
-      <div class="portal-public-copy">
-        <strong>Gerencie as inscrições da sua atlética.</strong>
-        <p>Cadastre equipes oficiais, organize os atletas e acompanhe as inscrições da sua representação acadêmica.</p>
-      </div>
-      <a class="btn btn-primary" href="./coordenador.html">Acessar painel ${icon("arrow")}</a>
-    </div>`;
+  return '<div class="registration-status-panel"><strong>Inscrições encerradas</strong><p>O acesso à inscrição das atléticas terminou.</p></div>';
 }
 
 function dashboardPreviewMarkup(){
@@ -454,24 +421,11 @@ function wireGlobal(){
     document.querySelector("#mobileMenu")?.classList.remove("open");
     document.getElementById(btn.dataset.scroll)?.scrollIntoView({behavior:"smooth",block:"start"});
   }));
-  document.querySelectorAll("[data-action='openStudent']").forEach(btn=>btn.addEventListener("click",()=>{
-    window.location.href="./aluno.html";
-  }));
-  document.querySelectorAll("[data-action='openManager']").forEach(btn=>btn.addEventListener("click",()=>{
-    window.location.href="./coordenador.html";
-  }));
   document.querySelectorAll("[data-action='openAdmin']").forEach(btn=>btn.addEventListener("click",()=>{
     window.location.href="./administrador.html";
   }));
   document.querySelectorAll("[data-action='openEsports']").forEach(btn=>btn.addEventListener("click",()=>{
     window.location.href="./esports.html";
-  }));
-  document.querySelectorAll("[data-portal]").forEach(btn=>btn.addEventListener("click",()=>{
-    if(btn.dataset.portal==="coordenador"){
-      window.location.href="./coordenador.html";
-      return;
-    }
-    window.location.href="./aluno.html";
   }));
   document.getElementById("mobileMenuBtn")?.addEventListener("click",()=>document.getElementById("mobileMenu").classList.toggle("open"));
 }

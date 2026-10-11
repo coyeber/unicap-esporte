@@ -111,7 +111,7 @@ function appMarkup(){
     <div class="hero-copy reveal">
       <div class="hero-kicker">UNICAP ESPORTE</div>
       <h1>Inscrições de equipes <span>encerradas</span></h1>
-      <p class="hero-lead"><strong>Prazo encerrado.</strong> As inscrições de equipes oficiais e independentes para a Supercopa UNICAP 2026 foram finalizadas. Acompanhe as novidades da competição.</p>
+      <p class="hero-lead"><strong>Inscrições encerradas.</strong> As tabelas dos jogos serão divulgadas em breve. As informações das inscrições serão encaminhadas aos números de contato dos representantes das equipes.</p>
       <div class="hero-actions">
         <button class="btn btn-ghost" data-scroll="modalidades">Conheça as modalidades</button>
       </div>
@@ -229,7 +229,7 @@ function appMarkup(){
       <span class="registration-status-label">PRAZO ENCERRADO</span>
       <h3>O acesso aos painéis de inscrição foi encerrado.</h3>
       <p>Não é mais possível cadastrar ou alterar equipes por meio dos painéis de coordenadores de atlética ou de equipes independentes.</p>
-      <p>Os registros já realizados ficam preservados para a organização da Supercopa UNICAP 2026.</p>
+      <p><strong>As tabelas dos jogos serão divulgadas em breve.</strong> As informações das inscrições serão enviadas aos números de contato dos representantes cadastrados.</p><p>Os registros já realizados ficam preservados para a organização da Supercopa UNICAP 2026.</p>
     </div>
   </section>
 
@@ -246,7 +246,7 @@ function appMarkup(){
           <div>
             ${icon("calendar")}
             <strong>Super Copa UNICAP 2026</strong>
-            <p>Jogos de 19 a 23 de outubro de 2026. A tabela, os grupos, horários e locais serão divulgados pela organização após o encerramento das inscrições.</p>
+            <p>As tabelas de jogos, os grupos, horários e locais serão divulgados em breve pela organização. Os representantes receberão informações nos números de contato cadastrados.</p>
           </div>
         </div>
       </article>

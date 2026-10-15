@@ -51,7 +51,47 @@ function setView(view){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-document.querySelectorAll(".admin-nav [data-view]").forEach(btn => btn.addEventListener("click", () => setView(btn.dataset.view)));
+// No celular, o menu fica recolhido e abre sobre o conteúdo do painel.
+const adminMenuToggle = $("adminMenuToggle");
+const adminMenuClose = $("adminMenuClose");
+const adminMenuOverlay = $("adminMenuOverlay");
+const adminSidebar = $("adminSidebar");
+
+function closeAdminMenu(restoreFocus=false){
+  document.body.classList.remove("admin-menu-open");
+  adminMenuOverlay.hidden = true;
+  adminMenuToggle.setAttribute("aria-expanded", "false");
+  adminMenuToggle.setAttribute("aria-label", "Abrir menu administrativo");
+  if(restoreFocus) adminMenuToggle.focus();
+}
+
+function openAdminMenu(){
+  document.body.classList.add("admin-menu-open");
+  adminMenuOverlay.hidden = false;
+  adminMenuToggle.setAttribute("aria-expanded", "true");
+  adminMenuToggle.setAttribute("aria-label", "Fechar menu administrativo");
+  adminMenuClose.focus();
+}
+
+adminMenuToggle.addEventListener("click", () => {
+  document.body.classList.contains("admin-menu-open") ? closeAdminMenu(true) : openAdminMenu();
+});
+adminMenuClose.addEventListener("click", () => closeAdminMenu(true));
+adminMenuOverlay.addEventListener("click", () => closeAdminMenu(true));
+document.addEventListener("keydown", event => {
+  if(event.key === "Escape" && document.body.classList.contains("admin-menu-open")){
+    closeAdminMenu(true);
+  }
+});
+window.addEventListener("resize", () => {
+  if(window.innerWidth > 940 && document.body.classList.contains("admin-menu-open")){
+    closeAdminMenu();
+  }
+});
+document.querySelectorAll(".admin-nav [data-view]").forEach(btn => btn.addEventListener("click", () => {
+  setView(btn.dataset.view);
+  closeAdminMenu();
+}));
 $("adminName").textContent = adminSavedName;
 
 async function loadAdmin(force=false){

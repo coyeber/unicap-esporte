@@ -17,14 +17,21 @@
       <span class="brand-copy"><strong>UNICAP</strong><b>Esporte</b></span>
     </a>
     <div class="header-actions">
-      <a class="back-home" href="./index.html">← Site principal</a>
+      <button type="button" class="admin-menu-toggle" id="adminMenuToggle" aria-controls="adminSidebar" aria-expanded="false" aria-label="Abrir menu administrativo">
+        <span class="menu-icon" aria-hidden="true">☰</span><span class="menu-label">Menu</span>
+      </button>
+      <a class="back-home" href="./index.html" aria-label="Voltar ao site principal">← Site principal</a>
       <div class="university-logo"><img src="./assets/unicap-universidade.jpg" alt="Universidade Católica de Pernambuco"></div>
     </div>
   </header>
 
+  <button class="admin-menu-overlay" id="adminMenuOverlay" type="button" aria-label="Fechar menu administrativo" hidden></button>
   <main class="admin-layout">
-    <aside class="admin-sidebar">
-      <div class="admin-title"><small>CONTROLE GERAL</small><strong>Administrador</strong></div>
+    <aside class="admin-sidebar" id="adminSidebar" aria-label="Navegação administrativa">
+      <div class="admin-sidebar-heading">
+        <div class="admin-title"><small>CONTROLE GERAL</small><strong>Administrador</strong></div>
+        <button class="admin-menu-close" id="adminMenuClose" type="button" aria-label="Fechar menu administrativo">×</button>
+      </div>
       <nav class="admin-nav" aria-label="Navegação administrativa">
         <button class="active" type="button" data-view="overview">⌂ Visão geral</button>
         <button type="button" data-view="teams">▤ Equipes</button>

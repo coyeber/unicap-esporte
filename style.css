@@ -883,3 +883,60 @@ body.modal-open{overflow:hidden}
 .registration-closed .registration-status-panel p{font-size:15px;max-width:600px;margin:12px auto 26px}
 .registration-closed .registration-status-panel .btn{display:inline-flex;text-decoration:none}
 @media(max-width:600px){.registration-status-panel{padding:26px 22px}.registration-closed{padding:32px 16px 60px}}
+
+
+/* Painel administrativo: navegação lateral acessível no celular */
+.admin-menu-toggle,.admin-menu-close,.admin-menu-overlay{display:none}
+.admin-menu-overlay[hidden]{display:none!important}
+@media(max-width:940px){
+  .admin-menu-toggle{
+    display:inline-flex;align-items:center;justify-content:center;gap:7px;
+    min-width:44px;min-height:44px;padding:8px 12px;
+    border:1px solid #680012;border-radius:12px;background:#680012;color:#fff;
+    font-size:13px;font-weight:850;
+  }
+  .admin-menu-toggle .menu-icon{font-size:21px;line-height:1}
+  .admin-page .admin-sidebar{
+    display:flex;position:fixed;top:0;left:0;bottom:0;
+    z-index:130;width:min(310px,calc(100vw - 44px));
+    height:100dvh;min-height:100vh;overflow-y:auto;
+    visibility:hidden;transform:translateX(-105%);
+    transition:transform .22s ease,visibility .22s ease;
+    box-shadow:14px 0 40px rgba(30,0,5,.25);
+  }
+  .admin-page.admin-menu-open .admin-sidebar{
+    visibility:visible;transform:translateX(0)
+  }
+  .admin-page.admin-menu-open{overflow:hidden}
+  .admin-menu-overlay:not([hidden]){
+    display:block;position:fixed;inset:0;z-index:120;
+    border:0;background:rgba(18,0,5,.62);
+  }
+  .admin-sidebar-heading{
+    display:flex;align-items:flex-start;justify-content:space-between;gap:12px
+  }
+  .admin-menu-close{
+    display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;
+    border:1px solid rgba(255,255,255,.25);border-radius:10px;
+    background:rgba(255,255,255,.08);color:#fff;font-size:25px;
+  }
+}
+@media(max-width:620px){
+  .admin-page .subpage-header{gap:8px}
+  .admin-page .subpage-header .header-actions{gap:6px}
+  .admin-page .subpage-header .round-logo{width:46px;height:46px}
+  .admin-page .subpage-header .brand-copy strong{font-size:22px}
+  .admin-page .subpage-header .brand-copy b{font-size:18px}
+  .admin-page .back-home{padding:10px;font-size:10px}
+  .admin-menu-toggle .menu-label{display:none}
+}
+@media(max-width:380px){
+  .admin-page .back-home{
+    font-size:0;min-width:44px;min-height:44px;
+    padding:8px;justify-content:center
+  }
+  .admin-page .back-home::before{content:"←";font-size:20px}
+}
+@media(prefers-reduced-motion:reduce){
+  .admin-page .admin-sidebar{transition:none}
+}

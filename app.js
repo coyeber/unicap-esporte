@@ -22,6 +22,7 @@ const COURSES = [
   ["História","history"],
   ["Medicina","medicine"],
   ["Direito","law"],
+  ["Direito 2","law"],
   ["Ciência da Computação","computer"],
   ["Matemática","math"],
   ["Arquitetura","architecture"],
@@ -211,7 +212,7 @@ function appMarkup(){
         <div class="eyebrow">Atléticas e cursos</div>
         <h2>Orgulho de cada curso. Força de uma só universidade.</h2>
       </div>
-      <p>Onze atléticas oficiais + equipes independentes.</p>
+      <p>Doze atléticas oficiais + equipes independentes.</p>
     </div>
     <div class="course-grid">
       ${COURSES.map(([name,ico])=>`<article class="course-card reveal"><div class="course-icon">${icon(ico)}</div><strong>${name}</strong></article>`).join("")}

@@ -1,4 +1,4 @@
 /**
  * UNICAP Esporte — backend Google Apps Script
  */
-window.UNICAP_API_URL = "https://script.google.com/macros/s/AKfycbyXEttXjBajqdJQRczGWFfIrfe_klVdFpEiXN8bbzxXtmNvGKSK5cALutcWhqJW2wCW/exec";
+window.UNICAP_API_URL = "https://script.google.com/macros/s/AKfycbykLTscWmmKswqkuM-41mEhUGmUXsPtbBSxedLYPto7Vg_NdN7lwaP6_zMPbpGj19kR/exec";

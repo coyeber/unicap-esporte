@@ -123,7 +123,7 @@
   .tables-panel{padding:22px}
   .tables-final-banner{flex-wrap:wrap}
 }
-@media(max-width:800px){
+@media(max-width:900px){
   .tables-site-header{grid-template-columns:1fr auto;gap:10px}
   .tables-site-header .university-logo{display:none}
   .tables-mobile-back{display:block}

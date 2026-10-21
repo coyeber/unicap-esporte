@@ -258,3 +258,65 @@
   .sports-schedule-heading{break-after:avoid}
   .sports-competition *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
+
+
+/* Interface seletiva por modalidade - 2026 */
+.tables-page{background:#faf9f8;color:#19171a}
+.tables-hero{background:#670015}
+.tables-hero:before{background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.045) 40%,rgba(255,255,255,.045) 41%,transparent 41%),radial-gradient(circle at 90% 10%,rgba(225,24,57,.25),transparent 40%)}
+.tables-hero .tables-wrap{padding-top:45px;padding-bottom:49px}
+.tables-hero h1{font-size:clamp(42px,5vw,64px);letter-spacing:-.045em;margin:18px 0 13px}
+.tables-hero h1 span{display:inline;color:#fff}
+.tables-hero p{color:#f5e7ea;max-width:640px}
+.tables-hero-aside{padding:20px;border-radius:8px;border-color:rgba(255,255,255,.2)}
+.tables-hero-aside strong{font-size:24px}
+.tables-content{padding-top:30px}
+html.tables-enhanced .tables-sport-panel:not(.is-active){display:none!important}
+.sports-modalities-nav{margin:0 0 18px;gap:12px}
+.sports-modalities-nav a{border:1px solid #e3dbdd;border-top:3px solid #79001b;border-radius:9px;box-shadow:none;min-height:116px;padding:19px 22px;transition:background .15s,border-color .15s,transform .15s}
+.sports-modalities-nav a:hover,.sports-modalities-nav a.is-active{transform:none;border-color:#9e1234;background:#fff7f8}
+.sports-modalities-nav a.is-active{box-shadow:inset 0 0 0 1px #9e1234}
+.sports-modalities-nav a:focus-visible{outline:3px solid #c8102e;outline-offset:3px}
+.sports-modalities-nav strong{font-size:22px}
+.sports-modalities-nav span{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;color:#6b5d61}
+.sports-modalities-nav span b{font-size:19px;color:#9e1234}
+.tables-choice-help{border:1px solid #eadfe1;border-radius:9px;background:white;padding:22px 24px;display:grid;gap:5px;min-height:86px}
+.tables-choice-help strong{font-size:17px;color:#6b0016}
+.tables-choice-help span{font-size:13px;color:#64595c}
+.tables-sport-panel{margin-top:32px}
+.tables-sport-panel .tables-panel{border-radius:10px;box-shadow:none}
+.tables-sport-panel .tables-section-head h2{letter-spacing:-.035em}
+.tables-sport-panel .sports-number-grid>div{border-radius:8px}
+.tables-sport-panel .sports-group-card{border-radius:8px}
+.tables-more{border-radius:9px;margin-top:35px}
+
+@media(max-width:700px){
+  .tables-hero .tables-wrap{padding-top:30px;padding-bottom:35px}
+  .tables-hero h1{font-size:43px}
+  .tables-hero-aside{display:none}
+  .tables-content{padding-top:22px}
+  .sports-modalities-nav{grid-template-columns:1fr;gap:9px;margin:0 0 16px}
+  .sports-modalities-nav a{min-height:78px;padding:13px 16px;gap:5px}
+  .sports-modalities-nav strong{font-size:20px}
+  .sports-modalities-nav small{font-size:9px}
+  .tables-sport-panel{margin-top:26px}
+  .tables-choice-help{padding:18px;min-height:76px}
+  .tables-section-head h2{font-size:32px}
+  .tables-overflow:has(>table.tables-fixture-table){overflow:visible;border:0}
+  .tables-fixture-table{min-width:0;width:100%;display:block}
+  .tables-fixture-table thead{display:none}
+  .tables-fixture-table tbody{display:grid;gap:10px}
+  .tables-fixture-table tbody tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px;min-width:0;border:1px solid #e6dcde;border-radius:9px;padding:12px 15px;background:#fff}
+  .tables-fixture-table td,.sports-schedule td{display:grid;align-content:start;gap:6px;min-width:0!important;width:auto!important;padding:8px 0!important;border-bottom:1px solid #f2edef!important;font-size:12px!important;overflow-wrap:anywhere}
+  .tables-fixture-table td::before{content:attr(data-label);display:block;color:#8d7e81;text-transform:uppercase;letter-spacing:.07em;font-size:9px;font-weight:850}
+  .tables-fixture-table td:nth-child(4),.tables-fixture-table td:last-child{grid-column:1/-1}
+  .tables-fixture-table td:last-child{border-bottom:0!important}
+  .sports-duel{gap:6px;overflow-wrap:anywhere}
+  .sports-schedule{min-width:0}
+  .sports-schedule td:last-child{min-width:0!important}
+}
+@media print{
+  html.tables-enhanced .tables-sport-panel{display:block!important}
+  .tables-choice-help{display:none!important}
+  .sports-modalities-nav{display:none!important}
+}

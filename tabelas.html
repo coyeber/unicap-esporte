@@ -33,7 +33,7 @@
         <div class="tables-hero-main">
           <div>
             <h1>Tabelas <span>dos jogos.</span></h1>
-            <p>Confira os confrontos definidos e acompanhe o caminho até as finais. A programação de datas e horários será divulgada pela organização.</p>
+            <p>Confira os confrontos definidos e acompanhe o caminho até as finais. Consulte as datas e os horários de cada modalidade. O calendário de E-Sports será divulgado em breve.</p>
             <div class="tables-hero-actions">
               <a class="tables-primary-action" href="#modalidades-tabelas">Ver confrontos <span aria-hidden="true">↓</span></a>
               <button class="tables-outline-action" type="button" onclick="window.print()">Imprimir / salvar PDF</button>
@@ -49,12 +49,14 @@
       </div>
     </section>
 
-    <section class="tables-content tables-wrap" id="esports">
+    <section class="tables-content tables-wrap">
       <nav class="sports-modalities-nav" id="modalidades-tabelas" aria-label="Modalidades com tabelas publicadas">
-        <a href="#esports"><small>01 · DIGITAL</small><strong>E-Sports</strong><span>eFootball e Clash Royale ↓</span></a>
-        <a href="#futsal"><small>02 · QUADRA</small><strong>Futsal</strong><span>Masculino e feminino ↓</span></a>
-        <a href="#volei"><small>03 · QUADRA</small><strong>Vôlei misto</strong><span>Grupos e eliminatórias ↓</span></a>
+        <a href="#esports" data-sport="esports" aria-expanded="false"><small>01 · DIGITAL</small><strong>E-Sports</strong><span>eFootball e Clash Royale <b aria-hidden="true">→</b></span></a>
+        <a href="#futsal" data-sport="futsal" aria-expanded="false"><small>02 · QUADRA</small><strong>Futsal</strong><span>Masculino e feminino <b aria-hidden="true">→</b></span></a>
+        <a href="#volei" data-sport="volei" aria-expanded="false"><small>03 · QUADRA</small><strong>Vôlei misto</strong><span>Grupos e eliminatórias <b aria-hidden="true">→</b></span></a>
       </nav>
+      <div class="tables-choice-help" id="tables-choice-help" role="status"><strong>Escolha uma modalidade</strong><span>Toque em um dos cartões acima para consultar os confrontos, horários e grupos.</span></div>
+      <div class="tables-sport-panel" id="esports">
       <div class="tables-section-head">
         <div><span class="tables-eyebrow">MODALIDADE 01</span><h2>E-Sports</h2><p>Confrontos publicados · Pavilhão Maker · Datas e horários a divulgar</p></div>
         <span class="tables-status"><span aria-hidden="true">●</span> CHAVES DEFINIDAS</span>
@@ -159,7 +161,9 @@
       <aside class="tables-information"><div><span class="tables-eyebrow">INFORMAÇÕES IMPORTANTES</span><h3>Antes de competir</h3><p>As partidas de eFootball serão únicas, com força total máxima de 3150 e dispositivo do próprio jogador. No Clash Royale, cada confronto será melhor de três. Cartas evoluídas ou heroicas dependem de acordo entre os dois jogadores.</p></div><div class="tables-information-status"><small>LOCAL DOS JOGOS</small><strong>Pavilhão Maker</strong><span>Data e horário a divulgar</span></div></aside>
       <p class="tables-verification">* Os nomes foram transcritos de uma captura da inscrição; algumas grafias podem estar abreviadas e devem ser confirmadas antes da competição.</p>
 
-      <section class="sports-competition" id="futsal" aria-labelledby="futsal-heading">
+      </div>
+
+      <section class="sports-competition tables-sport-panel" id="futsal" aria-labelledby="futsal-heading">
         <div class="tables-section-head sports-section-head">
           <div><span class="tables-eyebrow">MODALIDADE 02</span><h2 id="futsal-heading">Futsal <span>masculino + feminino</span></h2><p>04 e 05/11/2026 · Ginásio Nóbrega · Horário de Recife</p></div>
           <span class="sports-review-flag">SUJEITO À VALIDAÇÃO DA COORDENAÇÃO</span>
@@ -201,7 +205,7 @@
         </div>
       </section>
 
-      <section class="sports-competition" id="volei" aria-labelledby="volei-heading">
+      <section class="sports-competition tables-sport-panel" id="volei" aria-labelledby="volei-heading">
         <div class="tables-section-head sports-section-head">
           <div><span class="tables-eyebrow">MODALIDADE 03</span><h2 id="volei-heading">Vôlei misto</h2><p>05 e 08/11/2026 · fase de grupos, semifinais e final</p></div>
           <span class="tables-status">TABELA DOS JOGOS</span>
@@ -231,5 +235,50 @@
     </section>
   </main>
   <footer class="tables-footer"><span>3ª SUPERCOPA DA UNICAP · 2026</span><strong>REALIZAÇÃO <b>COYEBER</b> + UNICAP ESPORTE</strong><a href="./index.html">Voltar ao site ↑</a></footer>
+
+  <script>
+  (() => {
+    const ids = ["esports", "futsal", "volei"];
+    const sections = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
+    const links = [...document.querySelectorAll("[data-sport]")];
+    const help = document.getElementById("tables-choice-help");
+    const byHash = () => {
+      const hash = decodeURIComponent(location.hash.slice(1));
+      if (ids.includes(hash)) return hash;
+      if (["efootball", "clash"].includes(hash)) return "esports";
+      return null;
+    };
+    function select(id, shouldScroll = false) {
+      ids.forEach(key => sections[key].classList.toggle("is-active", key === id));
+      links.forEach(link => {
+        const selected = link.dataset.sport === id;
+        link.classList.toggle("is-active", selected);
+        link.setAttribute("aria-expanded", String(selected));
+        if (selected) link.setAttribute("aria-current", "true");
+        else link.removeAttribute("aria-current");
+      });
+      help.hidden = Boolean(id);
+      if (shouldScroll && id) sections[id].scrollIntoView({behavior: "smooth", block: "start"});
+    }
+    links.forEach(link => link.addEventListener("click", event => {
+      event.preventDefault();
+      const id = link.dataset.sport;
+      history.pushState(null, "", "#" + id);
+      select(id, true);
+    }));
+    document.querySelectorAll(".tables-fixture-table").forEach(table => {
+      const labels = [...table.querySelectorAll("thead th")].map(th => th.textContent.trim());
+      table.querySelectorAll("tbody tr").forEach(row => {
+        [...row.children].forEach((cell, index) => {
+          cell.dataset.label = labels[index] || "";
+        });
+      });
+    });
+    document.documentElement.classList.add("tables-enhanced");
+    select(byHash());
+    window.addEventListener("hashchange", () => select(byHash()));
+    window.addEventListener("popstate", () => select(byHash()));
+  })();
+  </script>
 </body>
 </html>

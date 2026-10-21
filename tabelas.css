@@ -181,3 +181,80 @@
   .tables-status{display:none}
   .tables-panel *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
+
+
+/* Futsal e vôlei misto — tabelas 2026 */
+.sports-modalities-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:-20px 0 52px;position:relative;z-index:1}
+.sports-modalities-nav a{display:grid;gap:10px;min-height:123px;background:#fff;padding:21px 23px;border:1px solid #ebdfdf;border-top:4px solid #a10b2d;border-radius:12px;box-shadow:0 9px 25px rgba(62,9,20,.055);transition:transform .15s,border-color .15s}
+.sports-modalities-nav a:hover{transform:translateY(-2px);border-color:#ac2841}
+.sports-modalities-nav small{font-size:9px;color:#950424;font-weight:900;letter-spacing:.15em}
+.sports-modalities-nav strong{font-size:24px;letter-spacing:-.035em;color:#2b1c20}
+.sports-modalities-nav span{font-size:11px;color:#8a7278}
+.sports-competition{scroll-margin-top:100px;margin-top:75px}
+.sports-section-head{margin-bottom:26px}
+.sports-section-head h2 span{font-size:.55em;letter-spacing:-.025em;color:#604f53;vertical-align:middle}
+.sports-review-flag{font-size:10px;letter-spacing:.04em;background:#fff7e7;color:#875316;border:1px solid #ead7ae;padding:11px 12px;border-radius:7px;font-weight:900;max-width:260px;text-align:center}
+.sports-number-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 20px}
+.sports-number-grid>div{border:1px solid #e9dfdc;border-radius:10px;background:#fff;padding:18px 20px;display:grid;gap:4px}
+.sports-number-grid strong{font-size:29px;line-height:1.1;letter-spacing:-.06em;color:#79001b}
+.sports-number-grid span{font-size:11px;color:#77706e;font-weight:750}
+.sports-panel{margin-bottom:19px}
+.sports-group-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.sports-group-card{border:1px solid #e7dedd;border-radius:9px;overflow:hidden}
+.sports-group-top{padding:12px 15px;background:#75001b;color:#fbeef1;display:flex;align-items:center;justify-content:space-between;font-size:10px;font-weight:900;letter-spacing:.12em}
+.sports-group-top strong{font-size:19px;color:#fff}
+.sports-group-card ol{list-style:none;padding:8px 14px;margin:0;counter-reset:sportsn}
+.sports-group-card li{counter-increment:sportsn;display:flex;align-items:center;gap:10px;border-bottom:1px solid #f0e7e4;padding:10px 0;font-size:12px;font-weight:750;line-height:1.35}
+.sports-group-card li:before{content:counter(sportsn,decimal-leading-zero);color:#ae1837;font-weight:900;font-size:9px}
+.sports-group-card li:last-child{border:0}
+.sports-female-group{margin-top:16px;border:1px solid #ead3d8;border-radius:9px;overflow:hidden}
+.sports-female-group .sports-group-top{background:#8b2541}
+.sports-female-group .sports-group-top strong{font-size:13px;letter-spacing:.03em}
+.sports-female-group>div:last-child{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:16px}
+.sports-female-group>div:last-child span{font-size:12px;font-weight:800;background:#fbf6f6;border:1px solid #f0e6e7;border-radius:7px;padding:12px}
+.sports-schedule-heading{margin-top:28px;margin-bottom:12px;border-bottom:1px solid #eadfdf;padding-bottom:13px}
+.sports-schedule-heading h4{font-size:21px}
+.sports-match-scroll{border-radius:9px}
+.sports-schedule{min-width:750px}
+.sports-schedule td{font-size:12px}
+.sports-schedule td:last-child{width:64%;min-width:340px}
+.sports-duel{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px}
+.sports-duel b{color:#b81739;font-size:14px}
+.sports-tag{display:inline-block;border:1px solid #ead3d9;background:#f9edf0;color:#7a001a;border-radius:5px;padding:6px 9px;font-size:9px;font-weight:950;letter-spacing:.08em}
+.sports-tag.sports-female{background:#fff2e7;color:#93500a;border-color:#ebd5b9}
+.sports-info-strip{display:flex;flex-wrap:wrap;gap:7px 15px;background:#faf5f1;border:1px solid #eaded3;padding:15px;margin-top:18px;border-radius:9px;font-size:11px}
+.sports-info-strip strong{color:#78182c}
+.sports-info-strip span{color:#72645e}
+.sports-playoffs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.sports-playoffs>div{background:#faf6f6;border:1px solid #eadde0;padding:18px;border-radius:9px;display:grid;gap:8px;align-content:start}
+.sports-playoffs span{font-size:9px;color:#a01736;font-weight:950;letter-spacing:.12em;border-bottom:1px solid #eadbe0;padding-bottom:12px;margin-bottom:6px}
+.sports-playoffs strong{font-size:12px;line-height:1.6}
+.sports-playoffs small{font-size:11px;color:#756264}
+.sports-rules{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+.sports-rules span{font-size:10px;font-weight:750;border-radius:6px;padding:12px 13px;background:#f4edf0;color:#7c1730}
+.sports-semi-row{background:#fff8f6}
+.sports-volley-final{border-left:5px solid #9b0929;background:#f9edf0;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 23px;border-radius:0 9px 9px 0;margin-top:24px}
+.sports-volley-final>div{display:grid;gap:8px}
+.sports-volley-final small{font-size:10px;color:#86122d;font-weight:900;letter-spacing:.08em}
+.sports-volley-final strong{font-size:20px;letter-spacing:-.03em}
+.sports-volley-final>div span{font-size:14px;font-weight:850}
+.sports-volley-final b{color:#a50027;margin:0 6px}
+.sports-final-time{border-radius:20px;white-space:nowrap;background:#fff;color:#87001a;padding:11px 18px;font-size:10px;font-weight:950}
+@media(max-width:960px){.sports-group-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.sports-female-group>div:last-child{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.sports-modalities-nav{grid-template-columns:1fr;gap:8px;margin:5px 0 40px}.sports-modalities-nav a{min-height:auto;padding:15px 17px;gap:3px}.sports-modalities-nav strong{font-size:18px}.sports-number-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.sports-section-head{align-items:start;flex-direction:column}.sports-section-head h2 span{display:block;font-size:.55em;margin-top:7px}.sports-review-flag{max-width:none}.sports-playoffs{grid-template-columns:1fr}.sports-volley-final{display:grid}.sports-group-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.sports-number-grid>div{padding:13px}.sports-number-grid strong{font-size:25px}.sports-female-group>div:last-child{grid-template-columns:1fr}.sports-schedule-heading{display:block}.sports-schedule-heading>span{display:block;margin-top:8px}.sports-volley-final{padding:18px}}
+@media print{
+  .sports-modalities-nav{display:none!important}
+  .sports-competition{margin-top:25px;break-before:page}
+  .sports-group-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sports-number-grid{grid-template-columns:repeat(4,1fr)}
+  .sports-panel{break-inside:auto!important}
+  .sports-panel .tables-panel-heading{break-after:avoid}
+  .sports-group-card,.sports-female-group,.sports-playoffs>div,.sports-volley-final{break-inside:avoid}
+  .sports-schedule{min-width:0}
+  .sports-schedule td:last-child{min-width:0}
+  .sports-schedule td,.sports-schedule th{font-size:8px;padding:7px!important}
+  .sports-duel{gap:3px}
+  .sports-schedule-heading{break-after:avoid}
+  .sports-competition *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}

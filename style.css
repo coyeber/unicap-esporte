@@ -940,3 +940,12 @@ body.modal-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
   .admin-page .admin-sidebar{transition:none}
 }
+
+/* Espaço para a nova aba Tabelas na navegação principal */
+@media(min-width:901px) and (max-width:1180px){
+  .site-header{grid-template-columns:185px minmax(0,1fr) 165px;gap:10px;padding-inline:2vw}
+  .site-header .university-logo{width:165px}
+  .site-header .university-logo img{width:165px}
+  .desktop-nav{gap:0}
+  .desktop-nav button,.desktop-nav .nav-page-link{padding:14px 5px;font-size:10px}
+}

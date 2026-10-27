@@ -235,7 +235,7 @@ function appMarkup(){
          <button class="btn btn-primary" type="button" data-action="openCoordinator">Coordenador de Atlética →</button>
          <button class="btn btn-outline" type="button" data-action="openCreator">Equipe Independente →</button>
        </div>
-       <p style="margin-top:20px"><strong>As tabelas dos jogos serão divulgadas em breve.</strong> Os representantes receberão as informações pelos telefones cadastrados.</p>
+       <p style="margin-top:20px"><strong>Calendário atualizado: 03 a 06 de novembro.</strong> As tabelas de futsal e basquete foram atualizadas. O vôlei segue com sua tabela original. <a href="./tabelas.html">Consultar jogos e horários →</a></p>
     </div>
   </section>
 
@@ -252,7 +252,7 @@ function appMarkup(){
           <div>
             ${icon("calendar")}
             <strong>Super Copa UNICAP 2026</strong>
-            <p>As tabelas de jogos, os grupos, horários e locais serão divulgados em breve pela organização. Os representantes receberão informações nos números de contato cadastrados.</p>
+            <p><strong>03 a 06 de novembro de 2026 (terça a sexta-feira).</strong> As partidas de quarta passaram para terça, as de quinta para quarta e as de sexta para quinta. As finais serão na sexta-feira (06/11), exceto a programação do vôlei, que permanece como publicada. <a href="./tabelas.html">Conferir tabelas →</a></p>
           </div>
         </div>
       </article>

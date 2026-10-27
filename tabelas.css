@@ -184,7 +184,7 @@
 
 
 /* Futsal e vôlei misto — tabelas 2026 */
-.sports-modalities-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:-20px 0 52px;position:relative;z-index:1}
+.sports-modalities-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:-20px 0 52px;position:relative;z-index:1}
 .sports-modalities-nav a{display:grid;gap:10px;min-height:123px;background:#fff;padding:21px 23px;border:1px solid #ebdfdf;border-top:4px solid #a10b2d;border-radius:12px;box-shadow:0 9px 25px rgba(62,9,20,.055);transition:transform .15s,border-color .15s}
 .sports-modalities-nav a:hover{transform:translateY(-2px);border-color:#ac2841}
 .sports-modalities-nav small{font-size:9px;color:#950424;font-weight:900;letter-spacing:.15em}

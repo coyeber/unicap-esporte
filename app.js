@@ -235,7 +235,7 @@ function appMarkup(){
          <button class="btn btn-primary" type="button" data-action="openCoordinator">Coordenador de Atlética →</button>
          <button class="btn btn-outline" type="button" data-action="openCreator">Equipe Independente →</button>
        </div>
-       <p style="margin-top:20px"><strong>Calendário atualizado: 03 a 06 de novembro.</strong> As tabelas de futsal e basquete foram atualizadas. O vôlei segue com sua tabela original. <a href="./tabelas.html">Consultar jogos e horários →</a></p>
+       <p style="margin-top:20px"><strong>Calendário atualizado: 03 a 06 de novembro.</strong> As tabelas de futsal, basquete e handebol foram atualizadas. O vôlei segue com sua tabela original. <a href="./tabelas.html">Consultar jogos e horários →</a></p>
     </div>
   </section>
 
